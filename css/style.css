@@ -540,15 +540,59 @@ h3,
 /* ==========================================================================
    _sky-background.scss
 
-   The sky background.
+   Full-size backgrounds.
    ========================================================================== */
-.sky-background {
+.background--full {
+  height: 100%;
+  width: 100%; }
+
+.background--sky {
   background-image: url(../assets/img/sky-background.jpg);
   background-position: 50% 100%;
   -webkit-background-size: cover;
      -moz-background-size: cover;
        -o-background-size: cover;
           background-size: cover; }
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+.background--cloudy {
+  display: block;
+  position: absolute;
+  background-image: url(../assets/img/cloudy-background.png);
+  -webkit-background-size: cover;
+     -moz-background-size: cover;
+       -o-background-size: cover;
+          background-size: cover;
+  opacity: 0; }
+
+.step-4-active .background--cloudy {
+  -webkit-animation: fadeIn 5s ease forwards;
+  -moz-animation: fadeIn 5s ease forwards;
+  -o-animation: fadeIn 5s ease forwards;
+  animation: fadeIn 5s ease forwards; }
 
 /* ==========================================================================
    _steps.scss
@@ -646,30 +690,26 @@ h3,
    Animations for plant also contained in here.
    ========================================================================== */
 .plant {
-  height: 150px;
-  width: auto;
-  position: absolute;
-  bottom: 3vh;
-  left: -webkit-calc(50% - 75px);
-  left: -moz-calc(50% - 75px);
-  left: calc(50% - 75px); }
-
-.plant--flowered {
   height: 250px;
   width: auto;
-  left: -webkit-calc(50% - 90px);
-  left: -moz-calc(50% - 90px);
-  left: calc(50% - 90px); }
-
-.plant,
-.plant--flowered {
   position: absolute;
-  bottom: 3vh;
+  bottom: 4vh;
+  left: -webkit-calc(50% - 75px);
+  left: -moz-calc(50% - 75px);
+  left: calc(50% - 75px);
   -webkit-transform: scale(0);
      -moz-transform: scale(0);
       -ms-transform: scale(0);
        -o-transform: scale(0);
           transform: scale(0);
+  -webkit-transform-origin: bottom;
+     -moz-transform-origin: bottom;
+      -ms-transform-origin: bottom;
+       -o-transform-origin: bottom;
+          transform-origin: bottom;
+  z-index: 2; }
+
+.plant__stem {
   -webkit-transform-origin: bottom;
      -moz-transform-origin: bottom;
       -ms-transform-origin: bottom;
@@ -687,6 +727,39 @@ h3,
       -ms-transform-origin: center;
        -o-transform-origin: center;
           transform-origin: center; }
+
+.plant__flower {
+  -webkit-transform: scale(0);
+     -moz-transform: scale(0);
+      -ms-transform: scale(0);
+       -o-transform: scale(0);
+          transform: scale(0);
+  -webkit-transform-origin: center;
+     -moz-transform-origin: center;
+      -ms-transform-origin: center;
+       -o-transform-origin: center;
+          transform-origin: center; }
+
+.plant__leaf--top {
+  -webkit-transform-origin: bottom;
+      -ms-transform-origin: bottom;
+       -o-transform-origin: bottom;
+          transform-origin: bottom;
+  -moz-transform-origin: center !important; }
+
+.plant__leaf--left {
+  -webkit-transform-origin: right bottom;
+      -ms-transform-origin: right bottom;
+       -o-transform-origin: right bottom;
+          transform-origin: right bottom;
+  -moz-transform-origin: center !important; }
+
+.plant__leaf--right {
+  -webkit-transform-origin: left bottom;
+      -ms-transform-origin: left bottom;
+       -o-transform-origin: left bottom;
+          transform-origin: left bottom;
+  -moz-transform-origin: center !important; }
 
 .plant__leaf__segment:nth-of-type(1),
 .plant__stem__segment:nth-of-type(1) {
@@ -712,74 +785,74 @@ h3,
    ========================================================================== */
 /* Step 3
    ========================================================================== */
-@-webkit-keyframes plantStemSprout {
+@-webkit-keyframes plantSprout {
   0% {
     -webkit-transform: scale(0);
             transform: scale(0); }
   100% {
-    -webkit-transform: scale(1);
-            transform: scale(1); } }
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5); } }
 
-@-moz-keyframes plantStemSprout {
+@-moz-keyframes plantSprout {
   0% {
     -moz-transform: scale(0);
          transform: scale(0); }
   100% {
-    -moz-transform: scale(1);
-         transform: scale(1); } }
+    -moz-transform: scale(0.5);
+         transform: scale(0.5); } }
 
-@-o-keyframes plantStemSprout {
+@-o-keyframes plantSprout {
   0% {
     -o-transform: scale(0);
        transform: scale(0); }
   100% {
-    -o-transform: scale(1);
-       transform: scale(1); } }
+    -o-transform: scale(0.5);
+       transform: scale(0.5); } }
 
-@keyframes plantStemSprout {
+@keyframes plantSprout {
   0% {
     -webkit-transform: scale(0);
        -moz-transform: scale(0);
          -o-transform: scale(0);
             transform: scale(0); }
   100% {
-    -webkit-transform: scale(1);
-       -moz-transform: scale(1);
-         -o-transform: scale(1);
-            transform: scale(1); } }
+    -webkit-transform: scale(0.5);
+       -moz-transform: scale(0.5);
+         -o-transform: scale(0.5);
+            transform: scale(0.5); } }
 
 @-webkit-keyframes plantLeafSprout {
   0% {
     -webkit-transform: scale(0);
             transform: scale(0); }
   80% {
-    -webkit-transform: scale(1.1);
-            transform: scale(1.1); }
+    -webkit-transform: scale(0.55);
+            transform: scale(0.55); }
   100% {
-    -webkit-transform: scale(1);
-            transform: scale(1); } }
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5); } }
 
 @-moz-keyframes plantLeafSprout {
   0% {
     -moz-transform: scale(0);
          transform: scale(0); }
   80% {
-    -moz-transform: scale(1.1);
-         transform: scale(1.1); }
+    -moz-transform: scale(0.55);
+         transform: scale(0.55); }
   100% {
-    -moz-transform: scale(1);
-         transform: scale(1); } }
+    -moz-transform: scale(0.5);
+         transform: scale(0.5); } }
 
 @-o-keyframes plantLeafSprout {
   0% {
     -o-transform: scale(0);
        transform: scale(0); }
   80% {
-    -o-transform: scale(1.1);
-       transform: scale(1.1); }
+    -o-transform: scale(0.55);
+       transform: scale(0.55); }
   100% {
-    -o-transform: scale(1);
-       transform: scale(1); } }
+    -o-transform: scale(0.5);
+       transform: scale(0.5); } }
 
 @keyframes plantLeafSprout {
   0% {
@@ -788,21 +861,21 @@ h3,
          -o-transform: scale(0);
             transform: scale(0); }
   80% {
-    -webkit-transform: scale(1.1);
-       -moz-transform: scale(1.1);
-         -o-transform: scale(1.1);
-            transform: scale(1.1); }
+    -webkit-transform: scale(0.55);
+       -moz-transform: scale(0.55);
+         -o-transform: scale(0.55);
+            transform: scale(0.55); }
   100% {
-    -webkit-transform: scale(1);
-       -moz-transform: scale(1);
-         -o-transform: scale(1);
-            transform: scale(1); } }
+    -webkit-transform: scale(0.5);
+       -moz-transform: scale(0.5);
+         -o-transform: scale(0.5);
+            transform: scale(0.5); } }
 
 .step-3-active .plant {
-  -webkit-animation: plantStemSprout 2.5s ease-out forwards;
-  -moz-animation: plantStemSprout 2.5s ease-out forwards;
-  -o-animation: plantStemSprout 2.5s ease-out forwards;
-  animation: plantStemSprout 2.5s ease-out forwards; }
+  -webkit-animation: plantSprout 2.5s ease-out forwards;
+  -moz-animation: plantSprout 2.5s ease-out forwards;
+  -o-animation: plantSprout 2.5s ease-out forwards;
+  animation: plantSprout 2.5s ease-out forwards; }
 
 .step-3-active .plant__leaf {
   -webkit-animation: plantLeafSprout 1.25s ease forwards;
@@ -811,7 +884,7 @@ h3,
   animation: plantLeafSprout 1.25s ease forwards; }
 
 /**
- * Delay leaf sprout animation
+ * Delay leaf animation
  * on each leaf individually
  */
 .step-3-active .plant__leaf:nth-of-type(1) {
@@ -838,97 +911,281 @@ h3,
        -o-animation-delay: 2.5s;
           animation-delay: 2.5s; }
 
+.step-3-active .plant__leaf:nth-of-type(5) {
+  -webkit-animation-delay: 3.125s;
+     -moz-animation-delay: 3.125s;
+       -o-animation-delay: 3.125s;
+          animation-delay: 3.125s; }
+
 /* Step 4
    ========================================================================== */
-@-webkit-keyframes plantLeafFalls {
+@-webkit-keyframes plantGrow {
   0% {
-    -webkit-transform: scale(1) translateY(0);
-            transform: scale(1) translateY(0);
-    opacity: 1; }
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5); }
   100% {
-    -webkit-transform: scale(1) translateY(50px);
-            transform: scale(1) translateY(50px);
-    opacity: 0; } }
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
 
-@-moz-keyframes plantLeafFalls {
+@-moz-keyframes plantGrow {
   0% {
-    -moz-transform: scale(1) translateY(0);
-         transform: scale(1) translateY(0);
-    opacity: 1; }
+    -moz-transform: scale(0.5);
+         transform: scale(0.5); }
   100% {
-    -moz-transform: scale(1) translateY(50px);
-         transform: scale(1) translateY(50px);
-    opacity: 0; } }
+    -moz-transform: scale(1);
+         transform: scale(1); } }
 
-@-o-keyframes plantLeafFalls {
+@-o-keyframes plantGrow {
   0% {
-    -o-transform: scale(1) translateY(0);
-       transform: scale(1) translateY(0);
-    opacity: 1; }
+    -o-transform: scale(0.5);
+       transform: scale(0.5); }
   100% {
-    -o-transform: scale(1) translateY(50px);
-       transform: scale(1) translateY(50px);
-    opacity: 0; } }
+    -o-transform: scale(1);
+       transform: scale(1); } }
 
-@keyframes plantLeafFalls {
+@keyframes plantGrow {
   0% {
-    -webkit-transform: scale(1) translateY(0);
-       -moz-transform: scale(1) translateY(0);
-         -o-transform: scale(1) translateY(0);
-            transform: scale(1) translateY(0);
-    opacity: 1; }
+    -webkit-transform: scale(0.5);
+       -moz-transform: scale(0.5);
+         -o-transform: scale(0.5);
+            transform: scale(0.5); }
   100% {
-    -webkit-transform: scale(1) translateY(50px);
-       -moz-transform: scale(1) translateY(50px);
-         -o-transform: scale(1) translateY(50px);
-            transform: scale(1) translateY(50px);
-    opacity: 0; } }
+    -webkit-transform: scale(1);
+       -moz-transform: scale(1);
+         -o-transform: scale(1);
+            transform: scale(1); } }
+
+@-webkit-keyframes plantLeafGrow {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5); }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+
+@-moz-keyframes plantLeafGrow {
+  0% {
+    -moz-transform: scale(0.5);
+         transform: scale(0.5); }
+  100% {
+    -moz-transform: scale(1);
+         transform: scale(1); } }
+
+@-o-keyframes plantLeafGrow {
+  0% {
+    -o-transform: scale(0.5);
+       transform: scale(0.5); }
+  100% {
+    -o-transform: scale(1);
+       transform: scale(1); } }
+
+@keyframes plantLeafGrow {
+  0% {
+    -webkit-transform: scale(0.5);
+       -moz-transform: scale(0.5);
+         -o-transform: scale(0.5);
+            transform: scale(0.5); }
+  100% {
+    -webkit-transform: scale(1);
+       -moz-transform: scale(1);
+         -o-transform: scale(1);
+            transform: scale(1); } }
+
+@-webkit-keyframes plantFlowerGrow {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0); }
+  80% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1); }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+
+@-moz-keyframes plantFlowerGrow {
+  0% {
+    -moz-transform: scale(0);
+         transform: scale(0); }
+  80% {
+    -moz-transform: scale(1.1);
+         transform: scale(1.1); }
+  100% {
+    -moz-transform: scale(1);
+         transform: scale(1); } }
+
+@-o-keyframes plantFlowerGrow {
+  0% {
+    -o-transform: scale(0);
+       transform: scale(0); }
+  80% {
+    -o-transform: scale(1.1);
+       transform: scale(1.1); }
+  100% {
+    -o-transform: scale(1);
+       transform: scale(1); } }
+
+@keyframes plantFlowerGrow {
+  0% {
+    -webkit-transform: scale(0);
+       -moz-transform: scale(0);
+         -o-transform: scale(0);
+            transform: scale(0); }
+  80% {
+    -webkit-transform: scale(1.1);
+       -moz-transform: scale(1.1);
+         -o-transform: scale(1.1);
+            transform: scale(1.1); }
+  100% {
+    -webkit-transform: scale(1);
+       -moz-transform: scale(1);
+         -o-transform: scale(1);
+            transform: scale(1); } }
+
+.step-4-active .plant {
+  -webkit-animation: plantGrow 2.5s ease forwards;
+  -moz-animation: plantGrow 2.5s ease forwards;
+  -o-animation: plantGrow 2.5s ease forwards;
+  animation: plantGrow 2.5s ease forwards; }
 
 .step-4-active .plant__leaf {
-  -webkit-transform: scale(1);
-     -moz-transform: scale(1);
-      -ms-transform: scale(1);
-       -o-transform: scale(1);
-          transform: scale(1);
-  -webkit-animation: plantLeafFalls 1.25s forwards;
-  -moz-animation: plantLeafFalls 1.25s forwards;
-  -o-animation: plantLeafFalls 1.25s forwards;
-  animation: plantLeafFalls 1.25s forwards; }
+  -webkit-animation: plantLeafGrow 2.5s ease forwards;
+  -moz-animation: plantLeafGrow 2.5s ease forwards;
+  -o-animation: plantLeafGrow 2.5s ease forwards;
+  animation: plantLeafGrow 2.5s ease forwards; }
 
+/**
+ * Delay leaf animation
+ * on each leaf individually
+ */
 .step-4-active .plant__leaf:nth-of-type(1) {
-  -webkit-animation-delay: 0.3125s;
-     -moz-animation-delay: 0.3125s;
-       -o-animation-delay: 0.3125s;
-          animation-delay: 0.3125s; }
-
-.step-4-active .plant__leaf:nth-of-type(2) {
+  -webkit-transform: scale(0.5);
+     -moz-transform: scale(0.5);
+      -ms-transform: scale(0.5);
+       -o-transform: scale(0.5);
+          transform: scale(0.5);
   -webkit-animation-delay: 0.625s;
      -moz-animation-delay: 0.625s;
        -o-animation-delay: 0.625s;
           animation-delay: 0.625s; }
 
-.step-4-active .plant__leaf:nth-of-type(3) {
-  -webkit-animation-delay: 0.9375s;
-     -moz-animation-delay: 0.9375s;
-       -o-animation-delay: 0.9375s;
-          animation-delay: 0.9375s; }
-
-.step-4-active .plant__leaf:nth-of-type(4) {
+.step-4-active .plant__leaf:nth-of-type(2) {
+  -webkit-transform: scale(0.5);
+     -moz-transform: scale(0.5);
+      -ms-transform: scale(0.5);
+       -o-transform: scale(0.5);
+          transform: scale(0.5);
   -webkit-animation-delay: 1.25s;
      -moz-animation-delay: 1.25s;
        -o-animation-delay: 1.25s;
           animation-delay: 1.25s; }
 
-.step-4-active .plant {
-  -webkit-transform: scale(1);
-     -moz-transform: scale(1);
-      -ms-transform: scale(1);
-       -o-transform: scale(1);
-          transform: scale(1);
-  -webkit-animation: plantLeafFalls 1.25s 1.25s forwards;
-  -moz-animation: plantLeafFalls 1.25s 1.25s forwards;
-  -o-animation: plantLeafFalls 1.25s 1.25s forwards;
-  animation: plantLeafFalls 1.25s 1.25s forwards; }
+.step-4-active .plant__leaf:nth-of-type(3) {
+  -webkit-transform: scale(0.5);
+     -moz-transform: scale(0.5);
+      -ms-transform: scale(0.5);
+       -o-transform: scale(0.5);
+          transform: scale(0.5);
+  -webkit-animation-delay: 1.875s;
+     -moz-animation-delay: 1.875s;
+       -o-animation-delay: 1.875s;
+          animation-delay: 1.875s; }
+
+.step-4-active .plant__leaf:nth-of-type(4) {
+  -webkit-transform: scale(0.5);
+     -moz-transform: scale(0.5);
+      -ms-transform: scale(0.5);
+       -o-transform: scale(0.5);
+          transform: scale(0.5);
+  -webkit-animation-delay: 2.5s;
+     -moz-animation-delay: 2.5s;
+       -o-animation-delay: 2.5s;
+          animation-delay: 2.5s; }
+
+.step-4-active .plant__leaf:nth-of-type(5) {
+  -webkit-transform: scale(0.5);
+     -moz-transform: scale(0.5);
+      -ms-transform: scale(0.5);
+       -o-transform: scale(0.5);
+          transform: scale(0.5);
+  -webkit-animation-delay: 3.125s;
+     -moz-animation-delay: 3.125s;
+       -o-animation-delay: 3.125s;
+          animation-delay: 3.125s; }
+
+.step-4-active .plant__flower {
+  -webkit-animation: plantFlowerGrow 2.5s ease forwards;
+  -moz-animation: plantFlowerGrow 2.5s ease forwards;
+  -o-animation: plantFlowerGrow 2.5s ease forwards;
+  animation: plantFlowerGrow 2.5s ease forwards; }
+
+/**
+ * Delay flower animation
+ * on each flower individually
+ */
+.step-4-active .plant__flower:nth-of-type(7) {
+  -webkit-animation-delay: 3.125s;
+     -moz-animation-delay: 3.125s;
+       -o-animation-delay: 3.125s;
+          animation-delay: 3.125s; }
+
+.step-4-active .plant__flower:nth-of-type(8) {
+  -webkit-animation-delay: 3.75s;
+     -moz-animation-delay: 3.75s;
+       -o-animation-delay: 3.75s;
+          animation-delay: 3.75s; }
+
+/* ==========================================================================
+   _rain.scss
+
+   Rain SVG and it's manipulations
+   ========================================================================== */
+.rain {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+  background-image: url(../assets/img/rain.svg);
+  -webkit-background-size: contain;
+     -moz-background-size: contain;
+       -o-background-size: contain;
+          background-size: contain;
+  z-index: 0;
+  opacity: 0; }
+
+@-webkit-keyframes makeItRain {
+  0% {
+    background-position-y: 0; }
+  100% {
+    background-position-y: 230%; } }
+
+@-moz-keyframes makeItRain {
+  0% {
+    background-position-y: 0; }
+  100% {
+    background-position-y: 230%; } }
+
+@-o-keyframes makeItRain {
+  0% {
+    background-position-y: 0; }
+  100% {
+    background-position-y: 230%; } }
+
+@keyframes makeItRain {
+  0% {
+    background-position-y: 0; }
+  100% {
+    background-position-y: 230%; } }
+
+.step-4-active .rain {
+  opacity: 0.5;
+  -webkit-transition: opacity 5s ease;
+     -moz-transition: opacity 5s ease;
+       -o-transition: opacity 5s ease;
+          transition: opacity 5s ease;
+  -webkit-animation: makeItRain 30s infinite linear forwards;
+  -moz-animation: makeItRain 30s infinite linear forwards;
+  -o-animation: makeItRain 30s infinite linear forwards;
+  animation: makeItRain 30s infinite linear forwards; }
 
 /* Trumps
 
@@ -987,5 +1244,5 @@ h3,
    ========================================================================== */
 .step-3-active #section-1,
 .step-4-active #section-1 {
-  z-index: 2; }
+  z-index: 3; }
 /*# sourceMappingURL=style.css.map */

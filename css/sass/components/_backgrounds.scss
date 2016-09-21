@@ -1,0 +1,37 @@
+/* ==========================================================================
+   _sky-background.scss
+
+   Full-size backgrounds.
+   ========================================================================== */
+
+.background--full {
+  height: 100%;
+  width: 100%;
+}
+
+.background--sky {
+  background-image: url(../assets/img/sky-background.jpg);
+  background-position: 50% 100%;
+  background-size: cover;
+}
+
+@include keyframes(fadeIn) {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.background--cloudy {
+  display: block;
+  position: absolute;
+  background-image: url(../assets/img/cloudy-background.png);
+  background-size: cover;
+  opacity: 0; // overwritten by ani
+}
+.step-4-active .background--cloudy {
+  @include animation(fadeIn $gtd * 4 ease forwards);
+}
