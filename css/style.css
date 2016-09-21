@@ -930,58 +930,6 @@ h3,
   -o-animation: plantLeafFalls 1.25s 1.25s forwards;
   animation: plantLeafFalls 1.25s 1.25s forwards; }
 
-/* Plant with flowers
-   ========================================================================== */
-@-webkit-keyframes plantSprout {
-  0% {
-    -webkit-transform: scale(0);
-            transform: scale(0);
-    opacity: 0; }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-    opacity: 1; } }
-
-@-moz-keyframes plantSprout {
-  0% {
-    -moz-transform: scale(0);
-         transform: scale(0);
-    opacity: 0; }
-  100% {
-    -moz-transform: scale(1);
-         transform: scale(1);
-    opacity: 1; } }
-
-@-o-keyframes plantSprout {
-  0% {
-    -o-transform: scale(0);
-       transform: scale(0);
-    opacity: 0; }
-  100% {
-    -o-transform: scale(1);
-       transform: scale(1);
-    opacity: 1; } }
-
-@keyframes plantSprout {
-  0% {
-    -webkit-transform: scale(0);
-       -moz-transform: scale(0);
-         -o-transform: scale(0);
-            transform: scale(0);
-    opacity: 0; }
-  100% {
-    -webkit-transform: scale(1);
-       -moz-transform: scale(1);
-         -o-transform: scale(1);
-            transform: scale(1);
-    opacity: 1; } }
-
-.step-4-active .plant--flowered {
-  -webkit-animation: plantSprout 1.25s forwards;
-  -moz-animation: plantSprout 1.25s forwards;
-  -o-animation: plantSprout 1.25s forwards;
-  animation: plantSprout 1.25s forwards; }
-
 /* Trumps
 
    Helpers & overrides

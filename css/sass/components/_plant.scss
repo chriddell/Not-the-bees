@@ -133,20 +133,3 @@
   transform: scale(1);
   @include animation(plantLeafFalls $gtd $gtd forwards);
 }
-
-/* Plant with flowers
-   ========================================================================== */
-@include keyframes(plantSprout) {
-  0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.step-4-active .plant--flowered {
-  @include animation(plantSprout $gtd forwards);
-}
