@@ -1,0 +1,54 @@
+/* ==========================================================================
+   _earth.scss
+
+   Earth layers. They look like dirt.
+   ========================================================================== */
+
+.earth__container {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  height: 20vh;
+  transition: height $gtd ease;
+}
+
+.earth__layer {
+  display: block;
+  transition: height $gtd ease;
+}
+
+.earth__layer--one {
+  background-color: #754c24;
+  height: 25%;
+}
+
+.earth__layer--two {
+  background-color: #603913;
+  height: 75%;
+}
+
+
+/* Step activations
+   ========================================================================== */
+.step-2-active .earth__container,
+.step-3-active .earth__container,
+.step-4-active .earth__container,
+.step-5-active .earth__container {
+  height: 5vh;
+}
+.step-2-active .earth__layer--two,
+.step-3-active .earth__layer--two,
+.step-4-active .earth__layer--two,
+.step-5-active .earth__layer--two {
+  height: 0;
+}
+.step-2-active .earth__layer--one,
+.step-3-active .earth__layer--one,
+.step-4-active .earth__layer--one,
+.step-5-active .earth__layer--one {
+  height: 100%;
+}
+
+.step-5-active .earth__container {
+  height: 0;
+}

@@ -1,0 +1,21 @@
+/* ==========================================================================
+   _grid.scss
+
+   We are using Susy 2.2.12.
+   ========================================================================== */
+
+@import './node_modules/susy/sass/susy';
+
+$susy: (
+  columns: 12,
+  gutters: 0,
+  math: fluid,
+  output: float
+);
+
+@for $i from 1 through map-get($susy, columns) {
+  // Make us some grid classes
+  .col-#{$i} {
+    @include span($i);
+  }
+}

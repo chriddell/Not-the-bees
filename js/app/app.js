@@ -1,15 +1,14 @@
 'use strict';
 
+/* ==========================================================================
+   Global Vars
+   ========================================================================== */
 
-// Import the libraries we need
-
-import $ from "../lib/jquery-3.1.0.min";
-
-// Set some global vars
-
-let currentSection = 1,
+var currentSection = 1,
     totalSections = 7,
-    scrollAllowed = true;
+    scrollAllowed = true,
+    usefulClassName = 'step';
+
 
 /* ==========================================================================
    Functions
@@ -131,7 +130,7 @@ $(document).ready(function(){
           }
         }
 
-        $('#main-container').alterClass('section-*', 'section-' + currentSection);
+        $('#main-container').alterClass(usefulClassName + '-*', usefulClassName + '-' +  currentSection + '-active');
 
       } else {
 

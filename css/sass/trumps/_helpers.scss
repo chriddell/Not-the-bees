@@ -1,0 +1,22 @@
+/* ==========================================================================
+   _helpers.scss
+
+   Helper classes
+   ========================================================================== */
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/**
+ * Generate some z-index 
+ * oo-classes
+ */
+@for $i from 1 to 10 {
+  .zi--#{$i} {
+    z-index: $i;
+  }
+}

@@ -1,0 +1,12 @@
+/* ==========================================================================
+   _buttons.scss
+
+   Button styles.
+   ========================================================================== */
+
+.btn {
+  display: inline-block;
+  padding: .75em 4em;
+  border: 2px solid $main-text-color;
+  border-radius: 5px;
+}

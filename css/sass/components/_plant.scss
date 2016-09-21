@@ -1,0 +1,152 @@
+/* ==========================================================================
+   _plant.scss
+
+   Plant is an SVG.
+   Animations for plant also contained in here.
+   ========================================================================== */
+
+.plant {
+  height: 150px;
+  width: auto;
+  position: absolute;
+  bottom: 3vh;
+  left: calc(50% - 75px);
+}
+
+.plant--flowered {
+  height: 250px;
+  width: auto;
+  left: calc(50% - 90px);
+}
+
+.plant,
+.plant--flowered {
+  position: absolute;
+  bottom: 3vh;
+  transform: scale(0);
+  transform-origin: bottom;
+}
+
+.plant__leaf {
+  transform: scale(0);
+  transform-origin: center;
+}
+
+.plant__leaf__segment:nth-of-type(1),
+.plant__stem__segment:nth-of-type(1) { 
+  fill: #59b790;
+}
+
+.plant__stem,
+.plant__leaf__segment:nth-of-type(2),
+.plant__stem__segment:nth-of-type(2) { 
+  fill: #499778;
+}
+
+.plant__flower__segment:nth-of-type(1) {
+  fill: #eb6870;
+}
+.plant__flower__segment:nth-of-type(2) {
+  fill: #c1565d;
+}
+.plant__flower__middle {
+  fill: #d4d64d;
+}
+
+/* Animations
+   ========================================================================== */
+
+/* Plant (no flowers)
+   ========================================================================== */
+
+/* Step 3
+   ========================================================================== */
+
+@include keyframes(plantStemSprout) {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@include keyframes(plantLeafSprout) {
+  0% {
+    transform: scale(0);
+  }
+
+  80% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.step-3-active .plant {
+  @include animation(plantStemSprout $gtd * 2 ease-out forwards);
+}
+
+.step-3-active .plant__leaf {
+  @include animation(plantLeafSprout $gtd ease forwards);
+}
+
+/**
+ * Delay leaf sprout animation
+ * on each leaf individually
+ */
+@for $i from 1 through 4 {
+  .step-3-active .plant__leaf:nth-of-type(#{$i}) {
+    animation-delay: ($gtd * 2) / 4 * $i;
+  }
+}
+
+/* Step 4
+   ========================================================================== */
+
+@include keyframes(plantLeafFalls) {
+  0% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1) translateY(50px);
+    opacity: 0;
+  }
+}
+
+.step-4-active .plant__leaf {
+  transform: scale(1);
+  @include animation(plantLeafFalls $gtd forwards);
+}
+@for $i from 1 through 4 {
+  .step-4-active .plant__leaf:nth-of-type(#{$i}) {
+    animation-delay: ($gtd / 4) * $i;
+  }
+}
+
+.step-4-active .plant {
+  transform: scale(1);
+  @include animation(plantLeafFalls $gtd $gtd forwards);
+}
+
+/* Plant with flowers
+   ========================================================================== */
+@include keyframes(plantSprout) {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.step-4-active .plant--flowered {
+  @include animation(plantSprout $gtd forwards);
+}

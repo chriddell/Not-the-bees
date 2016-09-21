@@ -1,0 +1,36 @@
+/* ==========================================================================
+   _steps.scss
+
+   Hide/show sections dependent on main-container (parent) class
+   ========================================================================== */
+
+// State no. of sections in DOM
+$sectionCount: 5;
+
+.section {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+/* Copy
+   ========================================================================== */
+
+.section__copy {
+  opacity: 0;
+  transition: opacity $gtd ease;
+}
+
+
+/* Progression through states
+   ========================================================================== */
+
+@for $i from 1 through $sectionCount {
+  .step-#{$i}-active #section-#{$i} {
+    //opacity: 1;
+
+    .section__copy {
+      opacity: 1;
+    }
+  }
+}

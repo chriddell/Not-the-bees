@@ -1,0 +1,29 @@
+/* ==========================================================================
+   _headings.scss
+
+   Headings and pseudo.
+   ========================================================================== */
+
+h1, 
+.like-h1,
+%like-h1 {
+  font-size: 3em;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+h2,
+.like-h2,
+%like-h2 {
+  font-size: 2em;
+  margin-top: 0;
+  margin-bottom: 0.75em;
+}
+
+h3,
+.like-h3,
+%like-h3 {
+  font-size: 1.75em;
+  margin-top: 0;
+  margin-bottom: 0.75em;
+}
