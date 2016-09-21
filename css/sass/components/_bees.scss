@@ -1,0 +1,163 @@
+/* ==========================================================================
+   _bees.scss
+
+   (NOT) the bees SVGs.
+   ========================================================================== */
+
+.bee {
+  //visibility: hidden; // set to hidden until we need it
+  position: absolute;
+  z-index: 3;
+  transform-origin: center;
+
+  .step-5-active & {
+    visibility: visible; // now we need it
+  }
+}
+
+.bee--one {
+  height: 10%;
+  bottom: -10%; // position just under the window
+  left: 25%; // position 1/4 from left of window
+}
+.bee--two {
+  height: 8%;
+  bottom: 25%; // position 1/4 way up page
+  left: -100px; // position just off left of window
+  transform: rotate(95deg);
+}
+.bee--three {
+  height: 6%;
+  bottom: 25%; // position 1/4 way up page
+  left: -100px; // position just off left of window
+  transform: rotate(95deg);
+}
+
+.bee__wing {
+  transform-origin: top;
+}
+
+/**
+ * SVG styles exported
+ * from Illustrator which I'm too lazy/
+ * there is no need to change
+ */
+.bee {
+  .st0 {
+    fill: url(#SVGID_1_);
+  }
+  .st1 {
+    fill: url(#SVGID_2_);
+  }
+  .st2 {
+    fill: url(#SVGID_3_);
+  }
+  .st3 {
+    fill: url(#SVGID_4_);
+  }
+  .st4 {
+    fill: url(#SVGID_5_);
+  }
+  .st5 {
+    fill: url(#SVGID_6_);
+  }
+  .st6{
+    opacity: .75;
+  }
+  .st7,
+  .st8 {
+    fill: #e1eefb;
+  }
+  .st8 {
+    opacity: .75;
+  }
+}
+
+/* Animations
+   ========================================================================== */
+
+@include keyframes(flutterLeftWing) {
+  0% {
+    transform: rotate(0);
+  }
+
+  50% {
+    transform: rotate(5deg);
+  }
+
+  100% {
+    transform: rotate(0);
+  }
+}
+
+@include keyframes(flutterRightWing) {
+  0% {
+    transform: rotate(0);
+  }
+
+  50% {
+    transform: rotate(-5deg);
+  }
+
+  100% {
+    transform: rotate(0);
+  }
+}
+
+.bee__wing--left {
+  @include animation(flutterLeftWing .25s infinite linear);
+}
+.bee__wing--right {
+  @include animation(flutterRightWing .25s infinite linear);
+}
+
+/* Step 5
+   ========================================================================== */
+
+@include keyframes(beeOneToFlower) {
+  0% {
+    transform: translate(0) rotate(0);
+  }
+
+  100% {
+    transform: translate(-200%, -250%) rotate(40deg);
+    left: 75%;
+  }
+}
+
+@include keyframes(beeTwoToFlower) {
+  0% {
+    transform: translate(0) rotate(95deg);
+  }
+
+  100% {
+    transform: translate(-380%, 90%) rotate(65deg);
+    left: 75%;
+  }
+}
+
+@include keyframes(beeThreeToFlower) {
+  0% {
+    transform: translate(0) rotate(95deg);
+  }
+
+  100% {
+    transform: translate(-310%, 50%) rotate(95deg);
+    left: 75%;
+  }
+}
+
+/* Step Activation
+   ========================================================================== */
+.step-5-active .bee--one {
+  @include animation(beeOneToFlower $gtd * 5 forwards);
+}
+.step-5-active .bee--two {
+  @include animation(beeTwoToFlower $gtd * 5 forwards);
+}
+.step-5-active .bee--three {
+  @include animation(beeThreeToFlower $gtd * 5 forwards);
+}
+.step-5-active .bee {
+  animation-delay: $gtd; // match animation on .plant .step-5-active
+}

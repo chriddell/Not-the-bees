@@ -6,27 +6,29 @@
    ========================================================================== */
 
 .plant {
-  height: 250px;
+  height: 150px;
   width: auto;
   position: absolute;
   bottom: 4vh;
-  left: calc(50% - 75px);
-  transform: scale(0);
+  left: 50%;
+  transform: translateX(-50%); // any plant animations must now include these transforms 
   transform-origin: bottom;
+  transition: all $gtd * 2 ease;
   z-index: 2;
 }
 
 .plant__stem {
+  transform: scale(0); // start at scale(0) to hide
   transform-origin: bottom;
 }
 
 .plant__leaf {
-  transform: scale(0);
+  transform: scale(0); // start at scale(0) to hide
   transform-origin: center;
 }
 
 .plant__flower {
-  transform: scale(0);
+  transform: scale(0); // start at scale(0) to hide
   transform-origin: center;
 }
 
@@ -67,19 +69,16 @@
 /* Animations
    ========================================================================== */
 
-/* Plant (no flowers)
-   ========================================================================== */
-
 /* Step 3
    ========================================================================== */
 
-@include keyframes(plantSprout) {
+@include keyframes(plantStemSprout) {
   0% {
     transform: scale(0);
   }
 
   100% {
-    transform: scale(0.5);
+    transform: scale(1);
   }
 }
 
@@ -97,34 +96,16 @@
   }
 }
 
-.step-3-active .plant {
-  @include animation(plantSprout $gtd * 2 ease-out forwards);
-}
-
-.step-3-active .plant__leaf {
-  @include animation(plantLeafSprout $gtd ease forwards);
-}
-
-/**
- * Delay leaf animation
- * on each leaf individually
- */
-@for $i from 1 through 5 {
-  .step-3-active .plant__leaf:nth-of-type(#{$i}) {
-    animation-delay: ($gtd * 2) / 4 * $i;
-  }
-}
-
 /* Step 4
    ========================================================================== */
 
 @include keyframes(plantGrow) {
   0% {
-    transform: scale(0.5);
+    height: 150px;
   }
 
   100% {
-    transform: scale(1);
+    height: 250px;
   }
 }
 
@@ -151,6 +132,51 @@
     transform: scale(1);
   }
 }
+
+/* Step 5
+   ========================================================================== */
+
+@include keyframes(plantGrowTallest) {
+  0% {
+    // should match attributes of .plant in step-4
+    height: 250px;
+    bottom: 4vh;
+    left: 50%;
+  }
+
+  100% {
+    height: 50%; // make taller
+    bottom: -15vh; // bring plant down
+    left: 75%; // push to right
+  }
+}
+
+/* Step activations
+   ========================================================================== */
+
+/* Step 3
+   ========================================================================== */
+
+.step-3-active .plant__stem {
+  @include animation(plantStemSprout $gtd * 2 ease-out forwards);
+}
+
+.step-3-active .plant__leaf {
+  @include animation(plantLeafSprout $gtd ease forwards);
+}
+
+/**
+ * Delay leaf animation
+ * on each leaf individually
+ */
+@for $i from 1 through 5 {
+  .step-3-active .plant__leaf:nth-of-type(#{$i}) {
+    animation-delay: ($gtd * 2) / 4 * $i;
+  }
+}
+
+/* Step 4
+   ========================================================================== */
 
 .step-4-active .plant {
   @include animation(plantGrow $gtd * 2 ease forwards);
@@ -182,4 +208,16 @@
   .step-4-active .plant__flower:nth-of-type(#{$i}) {
     animation-delay: ($gtd * 2) / 4 * ($i - 2);
   }
+}
+
+/* Step 5
+   ========================================================================== */
+
+.step-5-active .plant__stem,
+.step-5-active .plant__flower,
+.step-5-active .plant__leaf {
+  transform: scale(1);
+}
+.step-5-active .plant {
+  @include animation(plantGrowTallest $gtd * 2 forwards ease); // make taller
 }
