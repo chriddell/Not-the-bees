@@ -25,6 +25,9 @@
   }
 }
 
+/* Step activations
+   ========================================================================== */
+
 .step-4-active .rain {
   opacity: 0.5;
   transition: opacity $gtd * 4 ease;

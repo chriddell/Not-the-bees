@@ -114,7 +114,7 @@
 /* Step 5
    ========================================================================== */
 
-@include keyframes(beeOneToFlower) {
+@include keyframes(beeOneStepFive) {
   0% {
     transform: translate(0) rotate(0);
   }
@@ -125,7 +125,7 @@
   }
 }
 
-@include keyframes(beeTwoToFlower) {
+@include keyframes(beeTwoStepFive) {
   0% {
     transform: translate(0) rotate(95deg);
   }
@@ -136,7 +136,7 @@
   }
 }
 
-@include keyframes(beeThreeToFlower) {
+@include keyframes(beeThreeStepFive) {
   0% {
     transform: translate(0) rotate(95deg);
   }
@@ -150,7 +150,7 @@
 /* Step 6
    ========================================================================== */
 
-@include keyframes(beeOneToTop) {
+@include keyframes(beeOneStepSix) {
   0% {
     // styles need to match step-5 .bee--one 
     // final animation state to be seamless
@@ -166,7 +166,7 @@
   }
 }
 
-@include keyframes(beeTwoOffScreen) {
+@include keyframes(beeTwoStepSix) {
   0% {
     // styles need to match step-5 .bee--two 
     // final animation state to be seamless
@@ -182,7 +182,7 @@
   }
 }
 
-@include keyframes(beeThreeOffScreen) {
+@include keyframes(beeThreeStepSix) {
   0% {
     // initial styles need to match step-5 .bee--three 
     // final animation state to be seamless
@@ -197,6 +197,25 @@
   }
 }
 
+/* Step 6
+   ========================================================================== */
+
+@include keyframes(beeOneStepSeven) {
+  0% {
+    // styles need to match step-6 .bee--one 
+    // final animation state to be seamless
+    transform: translate(-50%, -400%) rotate(0deg);
+    left: 50%;
+    height: 20%;
+  }
+
+  100% {
+    transform: translate(-50%, -130%) rotate(0deg);
+    left: 50%;
+    height: 20%;
+  }
+}
+
 /* Step Activation
    ========================================================================== */
 
@@ -204,13 +223,13 @@
    ========================================================================== */
 
 .step-5-active .bee--one {
-  @include animation(beeOneToFlower $gtd * 5 forwards);
+  @include animation(beeOneStepFive $gtd * 5 forwards);
 }
 .step-5-active .bee--two {
-  @include animation(beeTwoToFlower $gtd * 5 forwards);
+  @include animation(beeTwoStepFive $gtd * 5 forwards);
 }
 .step-5-active .bee--three {
-  @include animation(beeThreeToFlower $gtd * 5 forwards);
+  @include animation(beeThreeStepFive $gtd * 5 forwards);
 }
 .step-5-active .bee {
   animation-delay: $gtd; // match animation on .plant .step-5-active
@@ -220,11 +239,18 @@
    ========================================================================== */
 
 .step-6-active .bee--one {
-  @include animation(beeOneToTop $gtd * 5 forwards);
+  @include animation(beeOneStepSix $gtd * 5 forwards);
 }
 .step-6-active .bee--two {
-  @include animation(beeTwoOffScreen $gtd * 5 forwards);
+  @include animation(beeTwoStepSix $gtd * 5 forwards);
 }
 .step-6-active .bee--three {
-  @include animation(beeThreeOffScreen $gtd * 5 forwards);
+  @include animation(beeThreeStepSix $gtd * 5 forwards);
+}
+
+/* Step 7
+   ========================================================================== */
+
+.step-7-active .bee--one {
+  @include animation(beeOneStepSeven $gtd * 2 linear forwards);
 }

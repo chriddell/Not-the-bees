@@ -1,0 +1,90 @@
+/* ==========================================================================
+   _honeycomb.scss
+   ========================================================================== */
+
+.honeycomb {
+  transform: translateY(-100%); // position off screen until we need it
+  transition: transform $gtd * 2 linear;
+}
+
+/**
+ * Hide text + icon in honeycomb 
+ * until we need it
+ */
+.honeycomb__key-panel__text,
+.honeycomb__key-panel__icon {
+  visibility: hidden;
+}
+
+.honeycomb__key-panel--large {
+  visibility: hidden;
+  height: 80%;
+  width: 80%;
+  color: black;
+  background-image: url(../assets/img/hex-single.svg);
+  background-size: 100% 100%;
+}
+
+.honeycomb__key-panel--large__wrapper {
+  height: 100%;
+  display: block;
+}
+
+.honeycomb__key-panel--large__close {
+  width: 35px;
+  display: block;
+  margin: 1em auto 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+/**
+ * SVG styles exported
+ * from Illustrator which
+ * there is no need to change
+ */
+.honeycomb {
+  .st0 {
+    fill: #FFB312;
+    stroke: #FFA300;
+    stroke-width: 11;
+    stroke-miterlimit: 10;
+  }
+
+  .st1 {
+    font-family: 'Apex', 'Helvetica', 'Arial', sans-serif;
+  }
+
+  .st2 {
+    font-size:20px;
+  }
+}
+
+.step-8-active .honeycomb__key-panel {
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+/* Step activations
+   ========================================================================== */
+
+/* Step 7
+   ========================================================================== */
+
+.step-7-active .honeycomb {
+  transform: translateY(-75%);
+}
+
+/* Step 7
+   ========================================================================== */
+.step-8-active .honeycomb {
+  transform: translateY(-55%);
+}
+
+.step-8-active .honeycomb__key-panel__text,
+.step-8-active .honeycomb__key-panel__icon {
+  visibility: visible;
+}

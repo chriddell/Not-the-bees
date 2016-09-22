@@ -7,3 +7,12 @@
 $main-text-color: #FFFFFF;
 
 $gtd: 1.25s; // global transition duration
+
+
+/* Fonts
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Apex';
+  src: url(../assets/fonts/ApexRounded-Book.eot?) format('eot'), url(../assets/fonts/ApexRounded-Book.woff) format('woff'), url(../assets/fonts/ApexRounded-Book.ttf) format('truetype');
+}

@@ -5,7 +5,7 @@
    ========================================================================== */
 
 var currentSection = 1,
-    totalSections = 7,
+    totalSections = 10,
     scrollAllowed = true,
     usefulClassName = 'step';
 
@@ -60,6 +60,37 @@ $.fn.alterClass = function ( removals, additions ) {
 
   return !additions ? self : self.addClass( additions );
 };
+
+/**
+ * Show key panel
+ */
+function showKeyPanel( clicked ) {
+
+  var self = clicked;
+
+  // target has similar id to clicked so let's merge
+  var targetID = '#large-' + self.id;
+
+  $('#honeycomb-key-panels').find(targetID)
+    .css({
+      'visibility': 'visible'
+    });
+
+};
+
+/**
+ * Hide key panel
+ */
+function hideKeyPanel( clicked ) {
+
+  var self = clicked;
+
+  $(self).parents('.honeycomb__key-panel--large').css({
+    'visibility': 'hidden'
+  });
+
+};
+
 
 /* ==========================================================================
    Master scroll function
@@ -138,9 +169,16 @@ $(document).ready(function(){
         return false;
 
       }
-
       
     }
   });
 
+});
+
+$('.honeycomb__key-panel').on('click', function(){
+  showKeyPanel(this);
+});
+
+$('.honeycomb__key-panel--large__close').on('click', function(){
+  hideKeyPanel(this);
 })

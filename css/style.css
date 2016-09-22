@@ -10,6 +10,12 @@
 
    Global vars and config
    ========================================================================== */
+/* Fonts
+   ========================================================================== */
+@font-face {
+  font-family: 'Apex';
+  src: url(../assets/fonts/ApexRounded-Book.eot?) format("eot"), url(../assets/fonts/ApexRounded-Book.woff) format("woff"), url(../assets/fonts/ApexRounded-Book.ttf) format("truetype"); }
+
 /* Tools
 
    Default mixins and functions
@@ -423,7 +429,8 @@ body,
 html {
   height: 100%;
   width: 100%;
-  overflow: hidden; }
+  overflow: hidden;
+  font-family: 'Apex', 'Helvetica', 'Arial', sans-serif; }
 
 body {
   color: #FFFFFF;
@@ -512,6 +519,9 @@ ul {
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px; }
+
+.btn--black {
+  border-color: #000000; }
 
 /* ==========================================================================
    _headings.scss
@@ -702,7 +712,10 @@ h4,
   height: 100%; }
 
 .step-5-active .earth__container,
-.step-6-active .earth__container {
+.step-6-active .earth__container,
+.step-7-active .earth__container,
+.step-8-active .earth__container,
+.step-9-active .earth__container {
   height: 0; }
 
 /* ==========================================================================
@@ -1315,6 +1328,8 @@ h4,
   100% {
     background-position-y: 230%; } }
 
+/* Step activations
+   ========================================================================== */
 .step-4-active .rain {
   opacity: 0.5;
   -webkit-transition: opacity 5s ease;
@@ -1523,7 +1538,7 @@ h4,
 
 /* Step 5
    ========================================================================== */
-@-webkit-keyframes beeOneToFlower {
+@-webkit-keyframes beeOneStepFive {
   0% {
     -webkit-transform: translate(0) rotate(0);
             transform: translate(0) rotate(0); }
@@ -1532,7 +1547,7 @@ h4,
             transform: translate(-200%, -250%) rotate(40deg);
     left: 75%; } }
 
-@-moz-keyframes beeOneToFlower {
+@-moz-keyframes beeOneStepFive {
   0% {
     -moz-transform: translate(0) rotate(0);
          transform: translate(0) rotate(0); }
@@ -1541,7 +1556,7 @@ h4,
          transform: translate(-200%, -250%) rotate(40deg);
     left: 75%; } }
 
-@-o-keyframes beeOneToFlower {
+@-o-keyframes beeOneStepFive {
   0% {
     -o-transform: translate(0) rotate(0);
        transform: translate(0) rotate(0); }
@@ -1550,7 +1565,7 @@ h4,
        transform: translate(-200%, -250%) rotate(40deg);
     left: 75%; } }
 
-@keyframes beeOneToFlower {
+@keyframes beeOneStepFive {
   0% {
     -webkit-transform: translate(0) rotate(0);
        -moz-transform: translate(0) rotate(0);
@@ -1563,7 +1578,7 @@ h4,
             transform: translate(-200%, -250%) rotate(40deg);
     left: 75%; } }
 
-@-webkit-keyframes beeTwoToFlower {
+@-webkit-keyframes beeTwoStepFive {
   0% {
     -webkit-transform: translate(0) rotate(95deg);
             transform: translate(0) rotate(95deg); }
@@ -1572,7 +1587,7 @@ h4,
             transform: translate(-380%, 90%) rotate(65deg);
     left: 75%; } }
 
-@-moz-keyframes beeTwoToFlower {
+@-moz-keyframes beeTwoStepFive {
   0% {
     -moz-transform: translate(0) rotate(95deg);
          transform: translate(0) rotate(95deg); }
@@ -1581,7 +1596,7 @@ h4,
          transform: translate(-380%, 90%) rotate(65deg);
     left: 75%; } }
 
-@-o-keyframes beeTwoToFlower {
+@-o-keyframes beeTwoStepFive {
   0% {
     -o-transform: translate(0) rotate(95deg);
        transform: translate(0) rotate(95deg); }
@@ -1590,7 +1605,7 @@ h4,
        transform: translate(-380%, 90%) rotate(65deg);
     left: 75%; } }
 
-@keyframes beeTwoToFlower {
+@keyframes beeTwoStepFive {
   0% {
     -webkit-transform: translate(0) rotate(95deg);
        -moz-transform: translate(0) rotate(95deg);
@@ -1603,7 +1618,7 @@ h4,
             transform: translate(-380%, 90%) rotate(65deg);
     left: 75%; } }
 
-@-webkit-keyframes beeThreeToFlower {
+@-webkit-keyframes beeThreeStepFive {
   0% {
     -webkit-transform: translate(0) rotate(95deg);
             transform: translate(0) rotate(95deg); }
@@ -1612,7 +1627,7 @@ h4,
             transform: translate(-310%, 50%) rotate(95deg);
     left: 75%; } }
 
-@-moz-keyframes beeThreeToFlower {
+@-moz-keyframes beeThreeStepFive {
   0% {
     -moz-transform: translate(0) rotate(95deg);
          transform: translate(0) rotate(95deg); }
@@ -1621,7 +1636,7 @@ h4,
          transform: translate(-310%, 50%) rotate(95deg);
     left: 75%; } }
 
-@-o-keyframes beeThreeToFlower {
+@-o-keyframes beeThreeStepFive {
   0% {
     -o-transform: translate(0) rotate(95deg);
        transform: translate(0) rotate(95deg); }
@@ -1630,7 +1645,7 @@ h4,
        transform: translate(-310%, 50%) rotate(95deg);
     left: 75%; } }
 
-@keyframes beeThreeToFlower {
+@keyframes beeThreeStepFive {
   0% {
     -webkit-transform: translate(0) rotate(95deg);
        -moz-transform: translate(0) rotate(95deg);
@@ -1645,7 +1660,7 @@ h4,
 
 /* Step 6
    ========================================================================== */
-@-webkit-keyframes beeOneToTop {
+@-webkit-keyframes beeOneStepSix {
   0% {
     -webkit-transform: translate(-200%, -250%) rotate(40deg);
             transform: translate(-200%, -250%) rotate(40deg);
@@ -1657,7 +1672,7 @@ h4,
     left: 50%;
     height: 20%; } }
 
-@-moz-keyframes beeOneToTop {
+@-moz-keyframes beeOneStepSix {
   0% {
     -moz-transform: translate(-200%, -250%) rotate(40deg);
          transform: translate(-200%, -250%) rotate(40deg);
@@ -1669,7 +1684,7 @@ h4,
     left: 50%;
     height: 20%; } }
 
-@-o-keyframes beeOneToTop {
+@-o-keyframes beeOneStepSix {
   0% {
     -o-transform: translate(-200%, -250%) rotate(40deg);
        transform: translate(-200%, -250%) rotate(40deg);
@@ -1681,7 +1696,7 @@ h4,
     left: 50%;
     height: 20%; } }
 
-@keyframes beeOneToTop {
+@keyframes beeOneStepSix {
   0% {
     -webkit-transform: translate(-200%, -250%) rotate(40deg);
        -moz-transform: translate(-200%, -250%) rotate(40deg);
@@ -1697,7 +1712,7 @@ h4,
     left: 50%;
     height: 20%; } }
 
-@-webkit-keyframes beeTwoOffScreen {
+@-webkit-keyframes beeTwoStepSix {
   0% {
     -webkit-transform: translate(-380%, 90%) rotate(65deg);
             transform: translate(-380%, 90%) rotate(65deg);
@@ -1709,7 +1724,7 @@ h4,
     left: 205%;
     bottom: 45%; } }
 
-@-moz-keyframes beeTwoOffScreen {
+@-moz-keyframes beeTwoStepSix {
   0% {
     -moz-transform: translate(-380%, 90%) rotate(65deg);
          transform: translate(-380%, 90%) rotate(65deg);
@@ -1721,7 +1736,7 @@ h4,
     left: 205%;
     bottom: 45%; } }
 
-@-o-keyframes beeTwoOffScreen {
+@-o-keyframes beeTwoStepSix {
   0% {
     -o-transform: translate(-380%, 90%) rotate(65deg);
        transform: translate(-380%, 90%) rotate(65deg);
@@ -1733,7 +1748,7 @@ h4,
     left: 205%;
     bottom: 45%; } }
 
-@keyframes beeTwoOffScreen {
+@keyframes beeTwoStepSix {
   0% {
     -webkit-transform: translate(-380%, 90%) rotate(65deg);
        -moz-transform: translate(-380%, 90%) rotate(65deg);
@@ -1749,7 +1764,7 @@ h4,
     left: 205%;
     bottom: 45%; } }
 
-@-webkit-keyframes beeThreeOffScreen {
+@-webkit-keyframes beeThreeStepSix {
   0% {
     -webkit-transform: translate(-310%, 50%) rotate(95deg);
             transform: translate(-310%, 50%) rotate(95deg);
@@ -1760,7 +1775,7 @@ h4,
     left: 205%;
     bottom: 23%; } }
 
-@-moz-keyframes beeThreeOffScreen {
+@-moz-keyframes beeThreeStepSix {
   0% {
     -moz-transform: translate(-310%, 50%) rotate(95deg);
          transform: translate(-310%, 50%) rotate(95deg);
@@ -1771,7 +1786,7 @@ h4,
     left: 205%;
     bottom: 23%; } }
 
-@-o-keyframes beeThreeOffScreen {
+@-o-keyframes beeThreeStepSix {
   0% {
     -o-transform: translate(-310%, 50%) rotate(95deg);
        transform: translate(-310%, 50%) rotate(95deg);
@@ -1782,7 +1797,7 @@ h4,
     left: 205%;
     bottom: 23%; } }
 
-@keyframes beeThreeOffScreen {
+@keyframes beeThreeStepSix {
   0% {
     -webkit-transform: translate(-310%, 50%) rotate(95deg);
        -moz-transform: translate(-310%, 50%) rotate(95deg);
@@ -1796,28 +1811,82 @@ h4,
             transform: translate(-310%, 50%) rotate(95deg);
     left: 205%;
     bottom: 23%; } }
+
+/* Step 6
+   ========================================================================== */
+@-webkit-keyframes beeOneStepSeven {
+  0% {
+    -webkit-transform: translate(-50%, -400%) rotate(0deg);
+            transform: translate(-50%, -400%) rotate(0deg);
+    left: 50%;
+    height: 20%; }
+  100% {
+    -webkit-transform: translate(-50%, -130%) rotate(0deg);
+            transform: translate(-50%, -130%) rotate(0deg);
+    left: 50%;
+    height: 20%; } }
+
+@-moz-keyframes beeOneStepSeven {
+  0% {
+    -moz-transform: translate(-50%, -400%) rotate(0deg);
+         transform: translate(-50%, -400%) rotate(0deg);
+    left: 50%;
+    height: 20%; }
+  100% {
+    -moz-transform: translate(-50%, -130%) rotate(0deg);
+         transform: translate(-50%, -130%) rotate(0deg);
+    left: 50%;
+    height: 20%; } }
+
+@-o-keyframes beeOneStepSeven {
+  0% {
+    -o-transform: translate(-50%, -400%) rotate(0deg);
+       transform: translate(-50%, -400%) rotate(0deg);
+    left: 50%;
+    height: 20%; }
+  100% {
+    -o-transform: translate(-50%, -130%) rotate(0deg);
+       transform: translate(-50%, -130%) rotate(0deg);
+    left: 50%;
+    height: 20%; } }
+
+@keyframes beeOneStepSeven {
+  0% {
+    -webkit-transform: translate(-50%, -400%) rotate(0deg);
+       -moz-transform: translate(-50%, -400%) rotate(0deg);
+         -o-transform: translate(-50%, -400%) rotate(0deg);
+            transform: translate(-50%, -400%) rotate(0deg);
+    left: 50%;
+    height: 20%; }
+  100% {
+    -webkit-transform: translate(-50%, -130%) rotate(0deg);
+       -moz-transform: translate(-50%, -130%) rotate(0deg);
+         -o-transform: translate(-50%, -130%) rotate(0deg);
+            transform: translate(-50%, -130%) rotate(0deg);
+    left: 50%;
+    height: 20%; } }
 
 /* Step Activation
    ========================================================================== */
 /* Step 5
    ========================================================================== */
 .step-5-active .bee--one {
-  -webkit-animation: beeOneToFlower 6.25s forwards;
-  -moz-animation: beeOneToFlower 6.25s forwards;
-  -o-animation: beeOneToFlower 6.25s forwards;
-  animation: beeOneToFlower 6.25s forwards; }
+  -webkit-animation: beeOneStepFive 6.25s forwards;
+  -moz-animation: beeOneStepFive 6.25s forwards;
+  -o-animation: beeOneStepFive 6.25s forwards;
+  animation: beeOneStepFive 6.25s forwards; }
 
 .step-5-active .bee--two {
-  -webkit-animation: beeTwoToFlower 6.25s forwards;
-  -moz-animation: beeTwoToFlower 6.25s forwards;
-  -o-animation: beeTwoToFlower 6.25s forwards;
-  animation: beeTwoToFlower 6.25s forwards; }
+  -webkit-animation: beeTwoStepFive 6.25s forwards;
+  -moz-animation: beeTwoStepFive 6.25s forwards;
+  -o-animation: beeTwoStepFive 6.25s forwards;
+  animation: beeTwoStepFive 6.25s forwards; }
 
 .step-5-active .bee--three {
-  -webkit-animation: beeThreeToFlower 6.25s forwards;
-  -moz-animation: beeThreeToFlower 6.25s forwards;
-  -o-animation: beeThreeToFlower 6.25s forwards;
-  animation: beeThreeToFlower 6.25s forwards; }
+  -webkit-animation: beeThreeStepFive 6.25s forwards;
+  -moz-animation: beeThreeStepFive 6.25s forwards;
+  -o-animation: beeThreeStepFive 6.25s forwards;
+  animation: beeThreeStepFive 6.25s forwards; }
 
 .step-5-active .bee {
   -webkit-animation-delay: 1.25s;
@@ -1828,45 +1897,120 @@ h4,
 /* Step 6
    ========================================================================== */
 .step-6-active .bee--one {
-  -webkit-animation: beeOneToTop 6.25s forwards;
-  -moz-animation: beeOneToTop 6.25s forwards;
-  -o-animation: beeOneToTop 6.25s forwards;
-  animation: beeOneToTop 6.25s forwards; }
+  -webkit-animation: beeOneStepSix 6.25s forwards;
+  -moz-animation: beeOneStepSix 6.25s forwards;
+  -o-animation: beeOneStepSix 6.25s forwards;
+  animation: beeOneStepSix 6.25s forwards; }
 
 .step-6-active .bee--two {
-  -webkit-animation: beeTwoOffScreen 6.25s forwards;
-  -moz-animation: beeTwoOffScreen 6.25s forwards;
-  -o-animation: beeTwoOffScreen 6.25s forwards;
-  animation: beeTwoOffScreen 6.25s forwards; }
+  -webkit-animation: beeTwoStepSix 6.25s forwards;
+  -moz-animation: beeTwoStepSix 6.25s forwards;
+  -o-animation: beeTwoStepSix 6.25s forwards;
+  animation: beeTwoStepSix 6.25s forwards; }
 
 .step-6-active .bee--three {
-  -webkit-animation: beeThreeOffScreen 6.25s forwards;
-  -moz-animation: beeThreeOffScreen 6.25s forwards;
-  -o-animation: beeThreeOffScreen 6.25s forwards;
-  animation: beeThreeOffScreen 6.25s forwards; }
+  -webkit-animation: beeThreeStepSix 6.25s forwards;
+  -moz-animation: beeThreeStepSix 6.25s forwards;
+  -o-animation: beeThreeStepSix 6.25s forwards;
+  animation: beeThreeStepSix 6.25s forwards; }
+
+/* Step 7
+   ========================================================================== */
+.step-7-active .bee--one {
+  -webkit-animation: beeOneStepSeven 2.5s linear forwards;
+  -moz-animation: beeOneStepSeven 2.5s linear forwards;
+  -o-animation: beeOneStepSeven 2.5s linear forwards;
+  animation: beeOneStepSeven 2.5s linear forwards; }
 
 /* ==========================================================================
-   _hexagons.scss
-
-   Honeycomb hexagons.
+   _honeycomb.scss
    ========================================================================== */
-.hex {
-  position: relative; }
+.honeycomb {
+  -webkit-transform: translateY(-100%);
+     -moz-transform: translateY(-100%);
+      -ms-transform: translateY(-100%);
+       -o-transform: translateY(-100%);
+          transform: translateY(-100%);
+  -webkit-transition: -webkit-transform 2.5s linear;
+     -moz-transition: -moz-transform 2.5s linear;
+       -o-transition: -o-transform 2.5s linear;
+          transition: transform 2.5s linear; }
 
-.hex:nth-of-type(1) {
-  left: -2px; }
+/**
+ * Hide text + icon in honeycomb 
+ * until we need it
+ */
+.honeycomb__key-panel__text,
+.honeycomb__key-panel__icon {
+  visibility: hidden; }
 
-.hex:nth-of-type(2) {
-  left: -4px; }
+.honeycomb__key-panel--large {
+  visibility: hidden;
+  height: 80%;
+  width: 80%;
+  color: black;
+  background-image: url(../assets/img/hex-single.svg);
+  -webkit-background-size: 100% 100%;
+     -moz-background-size: 100% 100%;
+       -o-background-size: 100% 100%;
+          background-size: 100% 100%; }
 
-.hex:nth-of-type(3) {
-  left: -6px; }
+.honeycomb__key-panel--large__wrapper {
+  height: 100%;
+  display: block; }
 
-.hex:nth-of-type(4) {
-  left: -8px; }
+.honeycomb__key-panel--large__close {
+  width: 35px;
+  display: block;
+  margin: 1em auto 0;
+  text-align: center;
+  cursor: pointer; }
 
-.hex:nth-of-type(5) {
-  left: -10px; }
+/**
+ * SVG styles exported
+ * from Illustrator which
+ * there is no need to change
+ */
+.honeycomb .st0 {
+  fill: #FFB312;
+  stroke: #FFA300;
+  stroke-width: 11;
+  stroke-miterlimit: 10; }
+
+.honeycomb .st1 {
+  font-family: 'Apex', 'Helvetica', 'Arial', sans-serif; }
+
+.honeycomb .st2 {
+  font-size: 20px; }
+
+.step-8-active .honeycomb__key-panel {
+  cursor: pointer; }
+  .step-8-active .honeycomb__key-panel:hover {
+    opacity: 0.8; }
+
+/* Step activations
+   ========================================================================== */
+/* Step 7
+   ========================================================================== */
+.step-7-active .honeycomb {
+  -webkit-transform: translateY(-75%);
+     -moz-transform: translateY(-75%);
+      -ms-transform: translateY(-75%);
+       -o-transform: translateY(-75%);
+          transform: translateY(-75%); }
+
+/* Step 7
+   ========================================================================== */
+.step-8-active .honeycomb {
+  -webkit-transform: translateY(-55%);
+     -moz-transform: translateY(-55%);
+      -ms-transform: translateY(-55%);
+       -o-transform: translateY(-55%);
+          transform: translateY(-55%); }
+
+.step-8-active .honeycomb__key-panel__text,
+.step-8-active .honeycomb__key-panel__icon {
+  visibility: visible; }
 
 /* ==========================================================================
    _service-group.scss
