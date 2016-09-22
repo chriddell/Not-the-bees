@@ -32,8 +32,7 @@
    ========================================================================== */
 .step-2-active .earth__container,
 .step-3-active .earth__container,
-.step-4-active .earth__container,
-.step-5-active .earth__container {
+.step-4-active .earth__container {
   height: 5vh;
 }
 .step-2-active .earth__layer--two,
@@ -49,6 +48,7 @@
   height: 100%;
 }
 
-.step-5-active .earth__container {
+.step-5-active .earth__container,
+.step-6-active .earth__container {
   height: 0;
 }

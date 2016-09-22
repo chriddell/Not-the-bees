@@ -1,0 +1,27 @@
+/* ==========================================================================
+   _service-group.scss
+
+   Image & text components
+   ========================================================================== */
+
+.service-group {
+  margin-top: 1em;
+}
+
+.service-group__item {
+  float: none;
+  display: inline-block; // override floats
+  vertical-align: top;
+  box-sizing: border-box;
+
+  &:not(:first-of-type) {
+    padding-left: 1.25em;
+  }
+}
+
+.service-group__image {
+  max-height: 70px;
+  display: block;
+  margin: 0 auto 1em;
+  fill: #FFF;
+}

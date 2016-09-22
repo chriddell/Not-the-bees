@@ -432,6 +432,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center; }
 
+ul {
+  margin: 0;
+  padding: 0; }
+  ul li {
+    list-style: none; }
+
 /* Objects
 
    Cosmetic-free design patterns.
@@ -442,50 +448,42 @@ body {
    We are using Susy 2.2.12.
    ========================================================================== */
 .col-1 {
-  width: 8.3333333333%;
+  width: 10%;
   float: left; }
 
 .col-2 {
-  width: 16.6666666667%;
+  width: 20%;
   float: left; }
 
 .col-3 {
-  width: 25%;
+  width: 30%;
   float: left; }
 
 .col-4 {
-  width: 33.3333333333%;
+  width: 40%;
   float: left; }
 
 .col-5 {
-  width: 41.6666666667%;
-  float: left; }
-
-.col-6 {
   width: 50%;
   float: left; }
 
+.col-6 {
+  width: 60%;
+  float: left; }
+
 .col-7 {
-  width: 58.3333333333%;
+  width: 70%;
   float: left; }
 
 .col-8 {
-  width: 66.6666666667%;
+  width: 80%;
   float: left; }
 
 .col-9 {
-  width: 75%;
+  width: 90%;
   float: left; }
 
 .col-10 {
-  width: 83.3333333333%;
-  float: left; }
-
-.col-11 {
-  width: 91.6666666667%;
-  float: left; }
-
-.col-12 {
   width: 100%;
   float: left;
   margin-left: 0;
@@ -535,6 +533,12 @@ h2,
 h3,
 .like-h3 {
   font-size: 1.75em;
+  margin-top: 0;
+  margin-bottom: 0.75em; }
+
+h4,
+.like-h4 {
+  font-size: 1.5em;
   margin-top: 0;
   margin-bottom: 0.75em; }
 
@@ -604,6 +608,11 @@ h3,
   height: 100%;
   width: 100%;
   position: absolute; }
+
+.section-copy__wrapper {
+  display: block;
+  max-width: 1024px;
+  margin: 0 auto; }
 
 /* Copy
    ========================================================================== */
@@ -677,8 +686,7 @@ h3,
    ========================================================================== */
 .step-2-active .earth__container,
 .step-3-active .earth__container,
-.step-4-active .earth__container,
-.step-5-active .earth__container {
+.step-4-active .earth__container {
   height: 5vh; }
 
 .step-2-active .earth__layer--two,
@@ -693,7 +701,8 @@ h3,
 .step-5-active .earth__layer--one {
   height: 100%; }
 
-.step-5-active .earth__container {
+.step-5-active .earth__container,
+.step-6-active .earth__container {
   height: 0; }
 
 /* ==========================================================================
@@ -1043,6 +1052,48 @@ h3,
     bottom: -15vh;
     left: 75%; } }
 
+/* Step 6
+   ========================================================================== */
+@-webkit-keyframes plantSlideToBottom {
+  0% {
+    height: 50%;
+    bottom: -15vh;
+    left: 75%; }
+  100% {
+    height: 50%;
+    bottom: -45vh;
+    left: 50%; } }
+
+@-moz-keyframes plantSlideToBottom {
+  0% {
+    height: 50%;
+    bottom: -15vh;
+    left: 75%; }
+  100% {
+    height: 50%;
+    bottom: -45vh;
+    left: 50%; } }
+
+@-o-keyframes plantSlideToBottom {
+  0% {
+    height: 50%;
+    bottom: -15vh;
+    left: 75%; }
+  100% {
+    height: 50%;
+    bottom: -45vh;
+    left: 50%; } }
+
+@keyframes plantSlideToBottom {
+  0% {
+    height: 50%;
+    bottom: -15vh;
+    left: 75%; }
+  100% {
+    height: 50%;
+    bottom: -45vh;
+    left: 50%; } }
+
 /* Step activations
    ========================================================================== */
 /* Step 3
@@ -1205,6 +1256,23 @@ h3,
   -o-animation: plantGrowTallest 2.5s forwards ease;
   animation: plantGrowTallest 2.5s forwards ease; }
 
+/* Step 6
+   ========================================================================== */
+.step-6-active .plant__stem,
+.step-6-active .plant__flower,
+.step-6-active .plant__leaf {
+  -webkit-transform: scale(1);
+     -moz-transform: scale(1);
+      -ms-transform: scale(1);
+       -o-transform: scale(1);
+          transform: scale(1); }
+
+.step-6-active .plant {
+  -webkit-animation: plantSlideToBottom 2.5s forwards ease;
+  -moz-animation: plantSlideToBottom 2.5s forwards ease;
+  -o-animation: plantSlideToBottom 2.5s forwards ease;
+  animation: plantSlideToBottom 2.5s forwards ease; }
+
 /* ==========================================================================
    _rain.scss
 
@@ -1261,7 +1329,7 @@ h3,
 /* ==========================================================================
    _bees.scss
 
-   (NOT) the bees SVGs.
+   BEES(?!) SVGs.
    ========================================================================== */
 .bee {
   position: absolute;
@@ -1308,7 +1376,7 @@ h3,
 
 /**
  * SVG styles exported
- * from Illustrator which I'm too lazy/
+ * from Illustrator which
  * there is no need to change
  */
 .bee .st0 {
@@ -1575,7 +1643,163 @@ h3,
             transform: translate(-310%, 50%) rotate(95deg);
     left: 75%; } }
 
+/* Step 6
+   ========================================================================== */
+@-webkit-keyframes beeOneToTop {
+  0% {
+    -webkit-transform: translate(-200%, -250%) rotate(40deg);
+            transform: translate(-200%, -250%) rotate(40deg);
+    left: 75%;
+    height: 10%; }
+  100% {
+    -webkit-transform: translate(-50%, -400%) rotate(0deg);
+            transform: translate(-50%, -400%) rotate(0deg);
+    left: 50%;
+    height: 20%; } }
+
+@-moz-keyframes beeOneToTop {
+  0% {
+    -moz-transform: translate(-200%, -250%) rotate(40deg);
+         transform: translate(-200%, -250%) rotate(40deg);
+    left: 75%;
+    height: 10%; }
+  100% {
+    -moz-transform: translate(-50%, -400%) rotate(0deg);
+         transform: translate(-50%, -400%) rotate(0deg);
+    left: 50%;
+    height: 20%; } }
+
+@-o-keyframes beeOneToTop {
+  0% {
+    -o-transform: translate(-200%, -250%) rotate(40deg);
+       transform: translate(-200%, -250%) rotate(40deg);
+    left: 75%;
+    height: 10%; }
+  100% {
+    -o-transform: translate(-50%, -400%) rotate(0deg);
+       transform: translate(-50%, -400%) rotate(0deg);
+    left: 50%;
+    height: 20%; } }
+
+@keyframes beeOneToTop {
+  0% {
+    -webkit-transform: translate(-200%, -250%) rotate(40deg);
+       -moz-transform: translate(-200%, -250%) rotate(40deg);
+         -o-transform: translate(-200%, -250%) rotate(40deg);
+            transform: translate(-200%, -250%) rotate(40deg);
+    left: 75%;
+    height: 10%; }
+  100% {
+    -webkit-transform: translate(-50%, -400%) rotate(0deg);
+       -moz-transform: translate(-50%, -400%) rotate(0deg);
+         -o-transform: translate(-50%, -400%) rotate(0deg);
+            transform: translate(-50%, -400%) rotate(0deg);
+    left: 50%;
+    height: 20%; } }
+
+@-webkit-keyframes beeTwoOffScreen {
+  0% {
+    -webkit-transform: translate(-380%, 90%) rotate(65deg);
+            transform: translate(-380%, 90%) rotate(65deg);
+    left: 75%;
+    bottom: 25%; }
+  100% {
+    -webkit-transform: translate(-380%, 90%) rotate(65deg);
+            transform: translate(-380%, 90%) rotate(65deg);
+    left: 205%;
+    bottom: 45%; } }
+
+@-moz-keyframes beeTwoOffScreen {
+  0% {
+    -moz-transform: translate(-380%, 90%) rotate(65deg);
+         transform: translate(-380%, 90%) rotate(65deg);
+    left: 75%;
+    bottom: 25%; }
+  100% {
+    -moz-transform: translate(-380%, 90%) rotate(65deg);
+         transform: translate(-380%, 90%) rotate(65deg);
+    left: 205%;
+    bottom: 45%; } }
+
+@-o-keyframes beeTwoOffScreen {
+  0% {
+    -o-transform: translate(-380%, 90%) rotate(65deg);
+       transform: translate(-380%, 90%) rotate(65deg);
+    left: 75%;
+    bottom: 25%; }
+  100% {
+    -o-transform: translate(-380%, 90%) rotate(65deg);
+       transform: translate(-380%, 90%) rotate(65deg);
+    left: 205%;
+    bottom: 45%; } }
+
+@keyframes beeTwoOffScreen {
+  0% {
+    -webkit-transform: translate(-380%, 90%) rotate(65deg);
+       -moz-transform: translate(-380%, 90%) rotate(65deg);
+         -o-transform: translate(-380%, 90%) rotate(65deg);
+            transform: translate(-380%, 90%) rotate(65deg);
+    left: 75%;
+    bottom: 25%; }
+  100% {
+    -webkit-transform: translate(-380%, 90%) rotate(65deg);
+       -moz-transform: translate(-380%, 90%) rotate(65deg);
+         -o-transform: translate(-380%, 90%) rotate(65deg);
+            transform: translate(-380%, 90%) rotate(65deg);
+    left: 205%;
+    bottom: 45%; } }
+
+@-webkit-keyframes beeThreeOffScreen {
+  0% {
+    -webkit-transform: translate(-310%, 50%) rotate(95deg);
+            transform: translate(-310%, 50%) rotate(95deg);
+    left: 75%; }
+  100% {
+    -webkit-transform: translate(-310%, 50%) rotate(95deg);
+            transform: translate(-310%, 50%) rotate(95deg);
+    left: 205%;
+    bottom: 23%; } }
+
+@-moz-keyframes beeThreeOffScreen {
+  0% {
+    -moz-transform: translate(-310%, 50%) rotate(95deg);
+         transform: translate(-310%, 50%) rotate(95deg);
+    left: 75%; }
+  100% {
+    -moz-transform: translate(-310%, 50%) rotate(95deg);
+         transform: translate(-310%, 50%) rotate(95deg);
+    left: 205%;
+    bottom: 23%; } }
+
+@-o-keyframes beeThreeOffScreen {
+  0% {
+    -o-transform: translate(-310%, 50%) rotate(95deg);
+       transform: translate(-310%, 50%) rotate(95deg);
+    left: 75%; }
+  100% {
+    -o-transform: translate(-310%, 50%) rotate(95deg);
+       transform: translate(-310%, 50%) rotate(95deg);
+    left: 205%;
+    bottom: 23%; } }
+
+@keyframes beeThreeOffScreen {
+  0% {
+    -webkit-transform: translate(-310%, 50%) rotate(95deg);
+       -moz-transform: translate(-310%, 50%) rotate(95deg);
+         -o-transform: translate(-310%, 50%) rotate(95deg);
+            transform: translate(-310%, 50%) rotate(95deg);
+    left: 75%; }
+  100% {
+    -webkit-transform: translate(-310%, 50%) rotate(95deg);
+       -moz-transform: translate(-310%, 50%) rotate(95deg);
+         -o-transform: translate(-310%, 50%) rotate(95deg);
+            transform: translate(-310%, 50%) rotate(95deg);
+    left: 205%;
+    bottom: 23%; } }
+
 /* Step Activation
+   ========================================================================== */
+/* Step 5
    ========================================================================== */
 .step-5-active .bee--one {
   -webkit-animation: beeOneToFlower 6.25s forwards;
@@ -1600,6 +1824,73 @@ h3,
      -moz-animation-delay: 1.25s;
        -o-animation-delay: 1.25s;
           animation-delay: 1.25s; }
+
+/* Step 6
+   ========================================================================== */
+.step-6-active .bee--one {
+  -webkit-animation: beeOneToTop 6.25s forwards;
+  -moz-animation: beeOneToTop 6.25s forwards;
+  -o-animation: beeOneToTop 6.25s forwards;
+  animation: beeOneToTop 6.25s forwards; }
+
+.step-6-active .bee--two {
+  -webkit-animation: beeTwoOffScreen 6.25s forwards;
+  -moz-animation: beeTwoOffScreen 6.25s forwards;
+  -o-animation: beeTwoOffScreen 6.25s forwards;
+  animation: beeTwoOffScreen 6.25s forwards; }
+
+.step-6-active .bee--three {
+  -webkit-animation: beeThreeOffScreen 6.25s forwards;
+  -moz-animation: beeThreeOffScreen 6.25s forwards;
+  -o-animation: beeThreeOffScreen 6.25s forwards;
+  animation: beeThreeOffScreen 6.25s forwards; }
+
+/* ==========================================================================
+   _hexagons.scss
+
+   Honeycomb hexagons.
+   ========================================================================== */
+.hex {
+  position: relative; }
+
+.hex:nth-of-type(1) {
+  left: -2px; }
+
+.hex:nth-of-type(2) {
+  left: -4px; }
+
+.hex:nth-of-type(3) {
+  left: -6px; }
+
+.hex:nth-of-type(4) {
+  left: -8px; }
+
+.hex:nth-of-type(5) {
+  left: -10px; }
+
+/* ==========================================================================
+   _service-group.scss
+
+   Image & text components
+   ========================================================================== */
+.service-group {
+  margin-top: 1em; }
+
+.service-group__item {
+  float: none;
+  display: inline-block;
+  vertical-align: top;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box; }
+  .service-group__item:not(:first-of-type) {
+    padding-left: 1.25em; }
+
+.service-group__image {
+  max-height: 70px;
+  display: block;
+  margin: 0 auto 1em;
+  fill: #FFF; }
 
 /* Trumps
 
@@ -1650,6 +1941,9 @@ h3,
 
 .zi--9 {
   z-index: 9; }
+
+.of-visible {
+  overflow: visible !important; }
 
 /* ==========================================================================
    _trumps.scss
