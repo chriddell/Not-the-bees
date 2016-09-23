@@ -4,14 +4,17 @@
    Cheats. Hacks.
    ========================================================================== */
 
-.step-3-active,
-.step-4-active,
-.step-5-active {
-  #section-1 {
-    //z-index: 3; // Make sure earth layers are above plant
-  }
+.step-8-active #section-7 {
+  // because we have no #section-8 in DOM, section 7 still needs to be active
+  z-index: 3; 
 }
 
 .step-4-active .plant__stem {
-  transform: scale(1); // keep plant stem visible when not used in animations
+  // keep plant stem visible when not used in animations
+  transform: scale(1);
+}
+
+.step-7-active .section__copy {
+  // allows text to be selectable because honeycomb image is above by default
+  z-index: 4;
 }

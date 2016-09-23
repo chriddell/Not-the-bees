@@ -2454,10 +2454,16 @@ h4,
 
    Cheats. Hacks.
    ========================================================================== */
+.step-8-active #section-7 {
+  z-index: 3; }
+
 .step-4-active .plant__stem {
   -webkit-transform: scale(1);
      -moz-transform: scale(1);
       -ms-transform: scale(1);
        -o-transform: scale(1);
           transform: scale(1); }
+
+.step-7-active .section__copy {
+  z-index: 4; }
 /*# sourceMappingURL=style.css.map */
