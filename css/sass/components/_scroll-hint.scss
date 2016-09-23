@@ -1,0 +1,29 @@
+/* ==========================================================================
+   _scroll-hint.scss
+
+   Mouse/scroll icon
+   ========================================================================== */
+
+.scroll-hint {
+  height: 75px;
+  fill: #FFFFFF;
+}
+
+/* Animations
+   ========================================================================== */
+
+@include keyframes(hintScrollDown) {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(15px);
+  }
+}
+
+.scroll-hint__chevron {
+  @include animation(hintScrollDown $gtd * 5 ease forwards infinite)
+}

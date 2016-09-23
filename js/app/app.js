@@ -201,7 +201,7 @@ $('.honeycomb__key-panel--large__close').on('click', function(){
 
    Burn after using.
    ========================================================================== */
-var startingLevel = 4;
+var startingLevel = 1;
 
 currentSection = startingLevel;
 
