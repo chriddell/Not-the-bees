@@ -9,7 +9,7 @@
   height: 150px;
   width: auto;
   position: absolute;
-  bottom: 4vh;
+  bottom: 5vh;
   left: 50%;
   transform: translateX(-50%); // any plant animations must now include these transforms 
   transform-origin: bottom;
@@ -176,11 +176,11 @@
    ========================================================================== */
 
 .step-3-active .plant__stem {
-  @include animation(plantStemSprout $gtd * 2 ease-out forwards);
+  @include animation(plantStemSprout $gtd * 2 $gtd ease-out forwards);
 }
 
 .step-3-active .plant__leaf {
-  @include animation(plantLeafSprout $gtd ease forwards);
+  @include animation(plantLeafSprout $gtd $gtd ease forwards);
 }
 
 /**
@@ -189,7 +189,7 @@
  */
 @for $i from 1 through 5 {
   .step-3-active .plant__leaf:nth-of-type(#{$i}) {
-    animation-delay: ($gtd * 2) / 4 * $i;
+    animation-delay: $gtd + (($gtd * 2) / 4 * $i);
   }
 }
 

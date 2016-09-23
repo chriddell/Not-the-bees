@@ -4,7 +4,9 @@
 
 .honeycomb {
   transform: translateY(-100%); // position off screen until we need it
-  transition: transform $gtd * 2 linear;
+  transition: transform $gtd * 2 ease;
+  z-index: 4;
+  position: relative;
 }
 
 /**
@@ -14,28 +16,6 @@
 .honeycomb__key-panel__text,
 .honeycomb__key-panel__icon {
   visibility: hidden;
-}
-
-.honeycomb__key-panel--large {
-  visibility: hidden;
-  height: 80%;
-  width: 80%;
-  color: black;
-  background-image: url(../assets/img/hex-single.svg);
-  background-size: 100% 100%;
-}
-
-.honeycomb__key-panel--large__wrapper {
-  height: 100%;
-  display: block;
-}
-
-.honeycomb__key-panel--large__close {
-  width: 35px;
-  display: block;
-  margin: 1em auto 0;
-  text-align: center;
-  cursor: pointer;
 }
 
 /**
@@ -60,12 +40,52 @@
   }
 }
 
+.honeycomb__key-panel--large {
+  visibility: hidden;
+  height: 800px;
+  width: 800px;
+  color: black;
+  background-image: url(../assets/img/hex-single.svg);
+  background-size: 100% 100%;
+  z-index: 3;
+}
+
+.honeycomb__key-panel--large__wrapper {
+  height: 100%;
+  display: block;
+}
+
+.honeycomb__key-panel--large__close {
+  width: 35px;
+  display: block;
+  margin: 1em auto 0;
+  text-align: center;
+  cursor: pointer;
+}
+
 .step-8-active .honeycomb__key-panel {
   cursor: pointer;
 
   &:hover {
-    opacity: 0.8;
+    polygon { 
+      fill: #FFA300;
+    }
+
+    .honeycomb__key-panel__text,
+    .honeycomb__key-panel__icon {
+      fill: white;
+    }
   }
+}
+
+.honeycomb-key-panels--active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 5;
 }
 
 /* Step activations
@@ -78,8 +98,9 @@
   transform: translateY(-75%);
 }
 
-/* Step 7
+/* Step 8
    ========================================================================== */
+
 .step-8-active .honeycomb {
   transform: translateY(-55%);
 }
@@ -87,4 +108,12 @@
 .step-8-active .honeycomb__key-panel__text,
 .step-8-active .honeycomb__key-panel__icon {
   visibility: visible;
+}
+
+/* Step 9
+   ========================================================================== */
+
+.step-9-active .honeycomb {
+  transform: translateY(27.5%);
+  transition: transform $gtd * 4 ease;
 }

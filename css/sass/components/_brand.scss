@@ -1,0 +1,15 @@
+/* ==========================================================================
+   _brand.scss
+   ========================================================================== */
+
+.logo {
+  height: 50px;
+  width: 210px;
+  display: block;
+  position: absolute;
+  top: 35px;
+  left: 60px;
+  background-image: url(../assets/img/ssc-advent-logo.png);
+  background-repeat: no-repeat;
+  @include image-2x('../assets/img/ssc-advent-logo@2x.png', 210px, 50px);
+}

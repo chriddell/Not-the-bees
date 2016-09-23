@@ -27,21 +27,44 @@
   height: 75%;
 }
 
+.earth__seed {
+  height: 25px;
+  position: absolute;
+  left: 50%;
+  bottom: 5vh;
+  transform: translateX(-50%);
+  fill: #24180e;
+  opacity: 0; // overwritten by ani
+}
+
+/* Animations
+   ========================================================================== */
+
+@include keyframes(seedStepTwo) {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
 
 /* Step activations
    ========================================================================== */
-.step-2-active .earth__container,
+
 .step-3-active .earth__container,
 .step-4-active .earth__container {
   height: 5vh;
 }
-.step-2-active .earth__layer--two,
 .step-3-active .earth__layer--two,
 .step-4-active .earth__layer--two,
 .step-5-active .earth__layer--two {
   height: 0;
 }
-.step-2-active .earth__layer--one,
 .step-3-active .earth__layer--one,
 .step-4-active .earth__layer--one,
 .step-5-active .earth__layer--one {
@@ -54,4 +77,8 @@
 .step-8-active .earth__container,
 .step-9-active .earth__container {
   height: 0;
+}
+
+.step-2-active .earth__seed {
+  @include animation(seedStepTwo $gtd $gtd * 2 forwards ease);
 }

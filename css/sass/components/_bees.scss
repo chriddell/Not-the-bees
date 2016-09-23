@@ -197,7 +197,7 @@
   }
 }
 
-/* Step 6
+/* Step 7
    ========================================================================== */
 
 @include keyframes(beeOneStepSeven) {
@@ -211,6 +211,48 @@
 
   100% {
     transform: translate(-50%, -130%) rotate(0deg);
+    left: 50%;
+    height: 20%;
+  }
+}
+
+/* Step 8
+   ========================================================================== */
+
+@include keyframes(beeOneStepEight) {
+  0% {
+    // styles need to match step-7 .bee--one 
+    // final animation state to be seamless
+    transform: translate(-50%, -130%) rotate(0deg);
+    left: 50%;
+    height: 20%;
+  }
+
+  100% {
+    transform: translate(-50%, -170%) rotate(0deg);
+    left: 50%;
+    height: 20%;
+  }
+}
+
+/* Step 9
+   ========================================================================== */
+
+@include keyframes(beeOneStepNine) {
+  0% {
+    // styles need to match step-8 .bee--one 
+    // final animation state to be seamless
+    transform: translate(-50%, -170%) rotate(0deg);
+    left: 50%;
+    height: 20%;
+  }
+
+  20% {
+    transform: translate(-50%, -190%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, 50%) rotate(0deg);
     left: 50%;
     height: 20%;
   }
@@ -252,5 +294,20 @@
    ========================================================================== */
 
 .step-7-active .bee--one {
-  @include animation(beeOneStepSeven $gtd * 2 linear forwards);
+  @include animation(beeOneStepSeven $gtd * 2 ease forwards);
+}
+
+
+/* Step 8
+   ========================================================================== */
+
+.step-8-active .bee--one {
+  @include animation(beeOneStepEight $gtd * 2 ease forwards);
+}
+
+/* Step 9
+   ========================================================================== */
+
+.step-9-active .bee--one {
+  @include animation(beeOneStepNine $gtd * 2 ease forwards);
 }
