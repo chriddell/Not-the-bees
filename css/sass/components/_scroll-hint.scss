@@ -14,16 +14,26 @@
 
 @include keyframes(hintScrollDown) {
   0% {
-    opacity: 1;
-    transform: translateY(0);
+    transform: translateY(5px);
+  }
+
+  50% {
+    transform: translateY(5px);
+  }
+
+  60% {
+    transform: translateY(10px);
+  }
+
+  70% {
+    transform: translateY(5px);
   }
 
   100% {
-    opacity: 1;
-    transform: translateY(15px);
+    transform: translateY(5px);
   }
 }
 
 .scroll-hint__chevron {
-  @include animation(hintScrollDown $gtd * 5 ease forwards infinite)
+  @include animation(hintScrollDown $gtd * 3 ease forwards infinite)
 }

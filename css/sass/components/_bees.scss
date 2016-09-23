@@ -120,8 +120,9 @@
   }
 
   100% {
-    transform: translate(-200%, -250%) rotate(40deg);
-    left: 75%;
+    transform: rotate(40deg);
+    left: 67%;
+    bottom: 15%;
   }
 }
 
@@ -154,15 +155,16 @@
   0% {
     // styles need to match step-5 .bee--one 
     // final animation state to be seamless
-    transform: translate(-200%, -250%) rotate(40deg);
-    left: 75%;
-    height: 10%;
+    transform: rotate(40deg);
+    left: 67%;
+    bottom: 15%;
   }
 
   100% {
-    transform: translate(-50%, -400%) rotate(0deg);
+    transform: translateX(-50%) rotate(0deg);
     left: 50%;
     height: 20%;
+    bottom: 72%;
   }
 }
 
@@ -204,15 +206,17 @@
   0% {
     // styles need to match step-6 .bee--one 
     // final animation state to be seamless
-    transform: translate(-50%, -400%) rotate(0deg);
+    transform: translateX(-50%) rotate(0deg);
     left: 50%;
     height: 20%;
+    bottom: 72%;
   }
 
   100% {
-    transform: translate(-50%, -130%) rotate(0deg);
+    transform: translateX(-50%) rotate(0deg);
     left: 50%;
     height: 20%;
+    bottom: 10%;
   }
 }
 
@@ -223,15 +227,17 @@
   0% {
     // styles need to match step-7 .bee--one 
     // final animation state to be seamless
-    transform: translate(-50%, -130%) rotate(0deg);
+    transform: translateX(-50%) rotate(0deg);
     left: 50%;
     height: 20%;
+    bottom: 10%;
   }
 
   100% {
-    transform: translate(-50%, -170%) rotate(0deg);
+    transform: translateX(-50%) rotate(0deg);
     left: 50%;
     height: 20%;
+    bottom: 15%;
   }
 }
 

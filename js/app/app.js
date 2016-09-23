@@ -9,7 +9,6 @@ var currentSection = 1,
     scrollAllowed = true,
     usefulClassName = 'step';
 
-
 /* ==========================================================================
    Functions
    ========================================================================== */
@@ -97,6 +96,28 @@ function hideKeyPanel( clicked ) {
 
 };
 
+/**
+ * Reset app to step 1
+ */
+function resetApp() {
+
+  // Set to 2, because we don't need to 
+  // show user the scroll tip again
+  currentSection = 2;
+
+  // Add the class to trigger animations
+  DOMGetsTheClass();
+}
+
+/**
+ * Modify DOM element with current section class
+ *
+ * This triggers the CSS animations which drive the application
+ */
+function DOMGetsTheClass() {
+  $('body').alterClass(usefulClassName + '-*', usefulClassName + '-' +  currentSection + '-active');
+}
+
 
 /* ==========================================================================
    Master scroll function
@@ -169,7 +190,7 @@ $(document).ready(function(){
             }
           }
 
-          $('#main-container').alterClass(usefulClassName + '-*', usefulClassName + '-' +  currentSection + '-active');
+          DOMGetsTheClass();
 
         } else {
 
@@ -185,6 +206,11 @@ $(document).ready(function(){
 
 });
 
+/**
+ * Key panel triggers
+ * 
+ * Open/close DOM element
+ */ 
 $('.honeycomb__key-panel').on('click', function(){
   showKeyPanel(this);
   $('body').addClass('no-scroll');
@@ -195,17 +221,38 @@ $('.honeycomb__key-panel--large__close').on('click', function(){
   $('body').removeClass('no-scroll');
 });
 
+/**
+ * Advance to next step when user
+ * clicks button
+ */
+$('#plant-seed, #scroll-start').on('click', function(){
+  currentSection++;
+  DOMGetsTheClass();
+});
+
+/**
+ * Reset the app
+ */
+$('#reset-app').on('click', function(){
+
+  // Only reset if we are not on first screen
+  if ( currentSection !== 1 ) {
+    resetApp();
+  }
+
+});
+
 
 /* ==========================================================================
    Development functions
 
    Burn after using.
    ========================================================================== */
-var startingLevel = 1;
+var startAt = 1;
 
-currentSection = startingLevel;
+currentSection = startAt;
 
 $(document).ready(function(){
 
-  $('#main-container').addClass(usefulClassName + '-' +  currentSection + '-active');
+  DOMGetsTheClass();
 });
