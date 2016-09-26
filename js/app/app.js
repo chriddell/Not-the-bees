@@ -118,15 +118,42 @@ function DOMGetsTheClass() {
   $('body').alterClass(usefulClassName + '-*', usefulClassName + '-' +  currentSection + '-active');
 }
 
+/**
+ * Prevent vertical scrolling bounce on iOS
+ *
+ * http://bit.ly/1t7M4qp
+ */
+function preventBounceiOS() {
 
-/* ==========================================================================
-   Master scroll function
-   ========================================================================== */
-$(document).ready(function(){
+  var xStart, yStart = 0;
+ 
+  document.addEventListener('touchstart',function(e) {
 
-  $('body').on({
+    xStart = e.touches[0].screenX;
+    yStart = e.touches[0].screenY;
 
-    'DOMMouseScroll mousewheel MozMousePixelScroll': function(e) { 
+  });
+   
+  document.addEventListener('touchmove',function(e) {
+
+    var xMovement = Math.abs(e.touches[0].screenX - xStart);
+    var yMovement = Math.abs(e.touches[0].screenY - yStart);
+
+    if((yMovement * 3) > xMovement) {
+      
+      e.preventDefault();
+    }
+  });
+}
+
+/**
+ * Master scroll function
+ */
+function scrollProgressApp() {
+
+  $('body').on(
+
+    'DOMMouseScroll mousewheel MozMousePixelScroll scroll', function(e) {  
     /*
      * Multiple events for compat.
      *
@@ -192,55 +219,89 @@ $(document).ready(function(){
 
           DOMGetsTheClass();
 
-        } else {
+        } 
+
+        else {
 
           // Do nothing...
           return false;
 
         }
-        
       }
+    }
+  );
+}
 
+function scrollProgressAppTouch() {
+
+  $('body').on('swipeup', function(){
+
+    if (currentSection < totalSections) {
+      currentSection++;
+      DOMGetsTheClass();
     }
   });
 
-});
+  $('body').on('swipedown', function(){
 
-/**
- * Key panel triggers
- * 
- * Open/close DOM element
- */ 
-$('.honeycomb__key-panel').on('click', function(){
-  showKeyPanel(this);
-  $('body').addClass('no-scroll');
-});
+    if (currentSection > 1) {
+      currentSection--;
+      DOMGetsTheClass();
+    }
+  });
+}
 
-$('.honeycomb__key-panel--large__close').on('click', function(){
-  hideKeyPanel(this);
-  $('body').removeClass('no-scroll');
-});
+/* ==========================================================================
+   Event Listeners / Triggers
+   ========================================================================== */
 
-/**
- * Advance to next step when user
- * clicks button
- */
-$('#plant-seed, #scroll-start').on('click', function(){
-  currentSection++;
-  DOMGetsTheClass();
-});
+$(document).ready(function(){
 
-/**
- * Reset the app
- */
-$('#reset-app').on('click', function(){
+  // Master scroll function
+  scrollProgressApp();
+  scrollProgressAppTouch();
 
-  // Only reset if we are not on first screen
-  if ( currentSection !== 1 ) {
-    resetApp();
+  // Prevent bouncing on touch devices when user scrolls
+  preventBounceiOS();
+
+  // Reset to step 1
+  $('#reset-app').on('click', function(){
+    // Only reset if we are not on first screen
+    if ( currentSection !== 1 ) {
+      resetApp();
+    }
+  });
+
+  // Advance to next step
+  $('#plant-seed, #scroll-start').on('click', function(){
+    currentSection++;
+    DOMGetsTheClass();
+  });
+
+  // Key panels - open
+  $('.honeycomb__key-panel').on('click', function(){
+
+    // only fire if we're on step 8
+    if ( $('body').hasClass('step-8-active') ) {
+
+      showKeyPanel(this);
+      $('body').addClass('no-scroll');
+    }
+  });
+
+  // Key panel - close
+  $('.honeycomb__key-panel--large__close').on('click', function(){
+    hideKeyPanel(this);
+    $('body').removeClass('no-scroll');
+  });
+
+  // Add body class if Microsoft browser
+  if (/MSIE 10/i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent)) {
+      $('html').addClass('is-not-a-good-browser');
   }
-
 });
+
+
 
 
 /* ==========================================================================

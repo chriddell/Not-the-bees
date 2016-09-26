@@ -6,3 +6,17 @@
   position: absolute;
   z-index: 999;
 }
+
+.header--ie {
+  display: none;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+
+  .is-not-a-good-browser .step-1-active &,
+  .is-not-a-good-browser .step-2-active & {
+    display: block;
+  }
+}

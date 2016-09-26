@@ -14,3 +14,12 @@
 .btn--black {
   border-color: #000000;
 }
+
+.btn.like-link {
+  transition: background-color $gtd / 2 ease, color $gtd / 2 ease;
+
+  &:hover {  // hover state for buttons which are triggers
+    background-color: white;
+    color: #79c2eb;
+  }
+}

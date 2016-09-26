@@ -430,9 +430,12 @@ textarea {
    Unclassed HTML selectors
    ========================================================================== */
 body,
-html {
+html,
+section {
   height: 100%;
+  height: 100vh;
   width: 100%;
+  width: 100vw;
   overflow: hidden;
   font-family: 'Apex', 'Helvetica', 'Arial', sans-serif; }
 
@@ -519,6 +522,17 @@ ul {
   position: absolute;
   z-index: 999; }
 
+.header--ie {
+  display: none;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10; }
+  .is-not-a-good-browser .step-1-active .header--ie,
+  .is-not-a-good-browser .step-2-active .header--ie {
+    display: block; }
+
 /* ==========================================================================
    _buttons.scss
 
@@ -534,6 +548,15 @@ ul {
 
 .btn--black {
   border-color: #000000; }
+
+.btn.like-link {
+  -webkit-transition: background-color 0.625s ease, color 0.625s ease;
+     -moz-transition: background-color 0.625s ease, color 0.625s ease;
+       -o-transition: background-color 0.625s ease, color 0.625s ease;
+          transition: background-color 0.625s ease, color 0.625s ease; }
+  .btn.like-link:hover {
+    background-color: white;
+    color: #79c2eb; }
 
 /* ==========================================================================
    _headings.scss
@@ -938,11 +961,11 @@ h4,
   position: absolute;
   bottom: 5vh;
   left: 50%;
-  -webkit-transform: translateX(-50%);
-     -moz-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-       -o-transform: translateX(-50%);
-          transform: translateX(-50%);
+  -webkit-transform: scale(0) translateX(-50%);
+     -moz-transform: scale(0) translateX(-50%);
+      -ms-transform: scale(0) translateX(-50%);
+       -o-transform: scale(0) translateX(-50%);
+          transform: scale(0) translateX(-50%);
   -webkit-transform-origin: bottom;
      -moz-transform-origin: bottom;
       -ms-transform-origin: bottom;
@@ -1614,24 +1637,6 @@ h4,
  * from Illustrator which
  * there is no need to change
  */
-.bee .st0 {
-  fill: url(#SVGID_1_); }
-
-.bee .st1 {
-  fill: url(#SVGID_2_); }
-
-.bee .st2 {
-  fill: url(#SVGID_3_); }
-
-.bee .st3 {
-  fill: url(#SVGID_4_); }
-
-.bee .st4 {
-  fill: url(#SVGID_5_); }
-
-.bee .st5 {
-  fill: url(#SVGID_6_); }
-
 .bee .st6 {
   opacity: .75; }
 
@@ -2348,7 +2353,7 @@ h4,
 .honeycomb__key-panel--large {
   visibility: hidden;
   height: 600px;
-  width: 600px;
+  width: 530px;
   color: black;
   background-image: url(../assets/img/hex-single.svg);
   -webkit-background-size: 100% 100%;
@@ -2527,4 +2532,68 @@ h4,
 
 .step-7-active .section__copy {
   z-index: 4; }
+
+.step-3-active .plant,
+.step-4-active .plant,
+.step-5-active .plant,
+.step-6-active .plant {
+  -webkit-transform: scale(1) translateX(-50%);
+     -moz-transform: scale(1) translateX(-50%);
+      -ms-transform: scale(1) translateX(-50%);
+       -o-transform: scale(1) translateX(-50%);
+          transform: scale(1) translateX(-50%); }
+
+.is-not-a-good-browser .bee {
+  visibility: hidden; }
+
+.is-not-a-good-browser .svg-flex-inner {
+  position: relative;
+  padding-top: 100%; }
+
+.is-not-a-good-browser .svg-flex svg {
+  width: 100%;
+  height: 100%;
+  margin-top: -100%;
+  position: absolute;
+  left: 0; }
+
+/* Animations
+   ========================================================================== */
+@-webkit-keyframes stepNineIndexHack {
+  0% {
+    z-index: 0; }
+  99% {
+    z-index: 0; }
+  100% {
+    z-index: 3; } }
+
+@-moz-keyframes stepNineIndexHack {
+  0% {
+    z-index: 0; }
+  99% {
+    z-index: 0; }
+  100% {
+    z-index: 3; } }
+
+@-o-keyframes stepNineIndexHack {
+  0% {
+    z-index: 0; }
+  99% {
+    z-index: 0; }
+  100% {
+    z-index: 3; } }
+
+@keyframes stepNineIndexHack {
+  0% {
+    z-index: 0; }
+  99% {
+    z-index: 0; }
+  100% {
+    z-index: 3; } }
+
+.step-9-active #section-9 {
+  -webkit-animation: stepNineIndexHack 5s linear forwards;
+  -moz-animation: stepNineIndexHack 5s linear forwards;
+  -o-animation: stepNineIndexHack 5s linear forwards;
+  animation: stepNineIndexHack 5s linear forwards; }
 /*# sourceMappingURL=style.css.map */
