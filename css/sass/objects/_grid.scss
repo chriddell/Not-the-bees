@@ -18,4 +18,10 @@ $susy: (
   .col-#{$i} {
     @include span($i);
   }
+
+  .col-mob-#{$i} {
+    @include respond-to(small) {
+      @include span($i);
+    }
+  }
 }

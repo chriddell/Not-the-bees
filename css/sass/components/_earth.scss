@@ -56,29 +56,27 @@
 /* Step activations
    ========================================================================== */
 
-.step-3-active .earth__container,
-.step-4-active .earth__container {
+.step-2-active .earth__container,
+.step-3-active .earth__container {
   height: 5vh;
 }
-.step-3-active .earth__layer--two,
-.step-4-active .earth__layer--two,
-.step-5-active .earth__layer--two {
+.step-2-active .earth__layer--two,
+.step-3-active .earth__layer--two {
   height: 0;
 }
-.step-3-active .earth__layer--one,
-.step-4-active .earth__layer--one,
-.step-5-active .earth__layer--one {
+.step-2-active .earth__layer--one,
+.step-3-active .earth__layer--one {
   height: 100%;
 }
 
+.step-4-active .earth__container,
 .step-5-active .earth__container,
 .step-6-active .earth__container,
 .step-7-active .earth__container,
-.step-8-active .earth__container,
-.step-9-active .earth__container {
+.step-8-active .earth__container {
   height: 0;
 }
 
-.step-2-active .earth__seed {
+.step-1-active .earth__seed {
   @include animation(seedStepTwo $gtd $gtd forwards ease);
 }

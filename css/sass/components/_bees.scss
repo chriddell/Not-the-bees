@@ -39,8 +39,7 @@
 
 /**
  * SVG styles exported
- * from Illustrator which
- * there is no need to change
+ * from Illustrator
  */
 .bee {
   .st6{
@@ -114,8 +113,8 @@
   }
 
   100% {
-    transform: translate(-380%, 90%) rotate(65deg);
-    left: 75%;
+    transform: translateY(140%) rotate(60deg);
+    left: 60%;
   }
 }
 
@@ -125,8 +124,8 @@
   }
 
   100% {
-    transform: translate(-310%, 50%) rotate(95deg);
-    left: 75%;
+    transform: translate(0%, 0%) rotate(95deg);
+    left: 62%;
   }
 }
 
@@ -137,7 +136,7 @@
   0% {
     // styles need to match step-5 .bee--one 
     // final animation state to be seamless
-    transform: rotate(40deg);
+    transform: translate(0, 0) rotate(40deg);
     left: 67%;
     bottom: 15%;
   }
@@ -154,9 +153,8 @@
   0% {
     // styles need to match step-5 .bee--two 
     // final animation state to be seamless
-    transform: translate(-380%, 90%) rotate(65deg);
-    left: 75%;
-    bottom: 25%;
+    transform: translateY(140%) rotate(60deg);
+    left: 60%;
   }
 
   100% {
@@ -170,8 +168,8 @@
   0% {
     // initial styles need to match step-5 .bee--three 
     // final animation state to be seamless
-    transform: translate(-310%, 50%) rotate(95deg);
-    left: 75%;
+    transform: translate(0%, 0%) rotate(95deg);
+    left: 62%;
   }
 
   100% {
@@ -252,36 +250,36 @@
 /* Step 5
    ========================================================================== */
 
-.step-5-active .bee--one {
+.step-4-active .bee--one {
   @include animation(beeOneStepFive $gtd * 5 forwards);
 }
-.step-5-active .bee--two {
+.step-4-active .bee--two {
   @include animation(beeTwoStepFive $gtd * 5 forwards);
 }
-.step-5-active .bee--three {
+.step-4-active .bee--three {
   @include animation(beeThreeStepFive $gtd * 5 forwards);
 }
-.step-5-active .bee {
+.step-4-active .bee {
   animation-delay: $gtd; // match animation on .plant .step-5-active
 }
 
 /* Step 6
    ========================================================================== */
 
-.step-6-active .bee--one {
+.step-5-active .bee--one {
   @include animation(beeOneStepSix $gtd * 5 forwards);
 }
-.step-6-active .bee--two {
+.step-5-active .bee--two {
   @include animation(beeTwoStepSix $gtd * 5 forwards);
 }
-.step-6-active .bee--three {
+.step-5-active .bee--three {
   @include animation(beeThreeStepSix $gtd * 5 forwards);
 }
 
 /* Step 7
    ========================================================================== */
 
-.step-7-active .bee--one {
+.step-6-active .bee--one {
   @include animation(beeOneStepSeven $gtd * 2 ease forwards);
 }
 
@@ -289,13 +287,13 @@
 /* Step 8
    ========================================================================== */
 
-.step-8-active .bee--one {
+.step-7-active .bee--one {
   @include animation(beeOneStepEight $gtd * 2 ease forwards);
 }
 
 /* Step 9
    ========================================================================== */
 
-.step-9-active .bee--one {
+.step-8-active .bee--one {
   @include animation(beeOneStepNine $gtd * 2 ease forwards);
 }

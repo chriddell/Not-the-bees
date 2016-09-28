@@ -25,18 +25,26 @@
   }
 }
 
-/*
+@include keyframes(fadeOut) {
+  0% {
+    opacity: 1;
+  }
 
-
+  100% {
+    opacity: 0;
+  }
+}
 
 .background--cloudy {
   display: block;
   position: absolute;
-  background-image: url(../assets/img/cloudy-background.png);
+  background-image: url(../assets/img/sky-dark-background.png);
   background-size: cover;
   opacity: 0; // overwritten by ani
 }
-.step-4-active .background--cloudy {
+.step-3-active .background--cloudy {
   @include animation(fadeIn $gtd * 4 ease forwards);
 }
-*/
+.step-4-active .background--cloudy {
+  @include animation(fadeOut $gtd * 4 ease forwards);
+}

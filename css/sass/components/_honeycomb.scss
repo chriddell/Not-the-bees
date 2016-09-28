@@ -16,6 +16,45 @@
 .honeycomb__key-panel__text,
 .honeycomb__key-panel__icon {
   visibility: hidden;
+  transition: fill $gtd / 4 ease;
+}
+
+.honeycomb__key-panel--large {
+  visibility: hidden;
+  height: 650px;
+  width: 580px;
+  color: black;
+  background-image: url(../assets/img/hex-single.svg);
+  background-size: 100% 100%;
+  z-index: 3;
+}
+
+.honeycomb__key-panel--large__wrapper {
+  height: 100%;
+  display: block;
+}
+
+.honeycomb__key-panel--large__text-wrapper {
+  width: 80%;
+  top: 53% !important; // override centered class
+}
+
+.honeycomb__key-panel--large__close {
+  width: 35px;
+  display: block;
+  margin: 1em auto 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.honeycomb-key-panels--active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 5;
 }
 
 /**
@@ -40,31 +79,39 @@
   }
 }
 
-.honeycomb__key-panel--large {
-  visibility: hidden;
-  height: 600px;
-  width: 530px;
-  color: black;
-  background-image: url(../assets/img/hex-single.svg);
-  background-size: 100% 100%;
-  z-index: 3;
+
+/* Step activations
+   ========================================================================== */
+
+/* Step 6
+   ========================================================================== */
+
+.step-6-active .honeycomb {
+  transform: translateY(-75%);
 }
 
-.honeycomb__key-panel--large__wrapper {
-  height: 100%;
-  display: block;
+/* Step 7
+   ========================================================================== */
+
+.step-7-active .honeycomb {
+  transform: translateY(-55%);
+
+  @include respond-to(small) {
+    transform: translateY(-15%);
+  }
 }
 
-.honeycomb__key-panel--large__close {
-  width: 35px;
-  display: block;
-  margin: 1em auto 0;
-  text-align: center;
+.step-7-active .honeycomb__key-panel__text,
+.step-7-active .honeycomb__key-panel__icon {
+  visibility: visible;
+}
+
+.step-7-active .honeycomb__key-panel {
   cursor: pointer;
-}
 
-.step-8-active .honeycomb__key-panel {
-  cursor: pointer;
+  polygon {
+    transition: fill $gtd / 2 ease;
+  }
 
   &:hover {
     polygon { 
@@ -78,42 +125,39 @@
   }
 }
 
-.honeycomb-key-panels--active {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.75);
-  z-index: 5;
-}
-
-/* Step activations
-   ========================================================================== */
-
-/* Step 7
-   ========================================================================== */
-
-.step-7-active .honeycomb {
-  transform: translateY(-75%);
-}
-
 /* Step 8
    ========================================================================== */
 
 .step-8-active .honeycomb {
-  transform: translateY(-55%);
-}
-
-.step-8-active .honeycomb__key-panel__text,
-.step-8-active .honeycomb__key-panel__icon {
-  visibility: visible;
-}
-
-/* Step 9
-   ========================================================================== */
-
-.step-9-active .honeycomb {
   transform: translateY(27.5%);
   transition: transform $gtd * 4 ease;
+
+  @include respond-to(small) {
+    transform: translateY(105%);
+  }
+}
+
+/* Mobile
+
+   Have written these styles in there own section as they are unusual mods
+   to apply for mobile.
+   ========================================================================== */
+
+@include respond-to(small) {
+  .step-7-active {
+    .honeycomb > g {
+      visibility: hidden;
+      display: none;
+
+      &.honeycomb__key-panel {
+        visibility: visible;
+        display: block;
+      }
+    }
+  }
+
+  .honeycomb__key-panel--one {
+    transform: translateY(-120%);
+    transform-origin: center;
+  }
 }

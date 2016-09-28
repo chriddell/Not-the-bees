@@ -5,7 +5,7 @@
    ========================================================================== */
 
 var currentSection = 1,
-    totalSections = 9,
+    totalSections = 8,
     scrollAllowed = true,
     usefulClassName = 'step';
 
@@ -148,6 +148,7 @@ function preventBounceiOS() {
 
 /**
  * Master scroll function
+ * which powers app through it's stages
  */
 function scrollProgressApp() {
 
@@ -174,7 +175,7 @@ function scrollProgressApp() {
         clearTimeout( $.data( this, 'timer' ) );
         $.data(this, 'timer', setTimeout(function() {
           scrollAllowed = true;
-        }, 250));
+        }, 150));
 
         if ( scrollAllowed ) {
 
@@ -232,23 +233,57 @@ function scrollProgressApp() {
   );
 }
 
+/**
+ * Scroll function for touch devices
+ */
 function scrollProgressAppTouch() {
 
   $('body').on('swipeup', function(){
 
-    if (currentSection < totalSections) {
-      currentSection++;
-      DOMGetsTheClass();
+    if (!$('body').hasClass('no-scroll')) {
+      if (currentSection < totalSections) {
+        currentSection++;
+        DOMGetsTheClass();
+      }
     }
   });
 
   $('body').on('swipedown', function(){
 
-    if (currentSection > 1) {
-      currentSection--;
-      DOMGetsTheClass();
+    if (!$('body').hasClass('no-scroll')) {
+      if (currentSection > 1) {
+        currentSection--;
+        DOMGetsTheClass();
+      }
     }
   });
+}
+
+/**
+ * Show overlay
+ */
+function showOverlay(clicked) {
+
+  // find out which overlay to show based on data-attr
+  var whichOverlay = $(clicked).data('overlay');
+
+  // find the relevant overlay
+  var target = $('body').find('.overlay[data-overlay="' + whichOverlay + '"]'); 
+
+  // remove the hidden class
+  target.removeClass('overlay--hidden'); 
+
+}
+
+/**
+ * Hide overlay
+ */
+function closeOverlay(clicked) {
+
+  $(clicked)
+   .parent('.overlay')
+   .addClass('overlay--hidden'); 
+
 }
 
 /* ==========================================================================
@@ -273,7 +308,7 @@ $(document).ready(function(){
   });
 
   // Advance to next step
-  $('#plant-seed, #scroll-start').on('click', function(){
+  $('#plant-seed, #scroll-start, .service-group__item').on('click', function(){
     currentSection++;
     DOMGetsTheClass();
   });
@@ -282,7 +317,7 @@ $(document).ready(function(){
   $('.honeycomb__key-panel').on('click', function(){
 
     // only fire if we're on step 8
-    if ( $('body').hasClass('step-8-active') ) {
+    if ( $('body').hasClass('step-7-active') ) {
 
       showKeyPanel(this);
       $('body').addClass('no-scroll');
@@ -295,21 +330,28 @@ $(document).ready(function(){
     $('body').removeClass('no-scroll');
   });
 
+  // Overlay - open
+  $(document).on('click', '.overlay__open', function(){
+    showOverlay(this);
+  });
+
+  // Overlay - close
+  $(document).on('click', '.overlay__close', function(){
+    closeOverlay(this);
+  });
+
   // Add body class if Microsoft browser
   if (/MSIE 10/i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent)) {
       $('html').addClass('is-not-a-good-browser');
   }
 });
 
-
-
-
 /* ==========================================================================
    Development functions
 
    Burn after using.
    ========================================================================== */
-var startAt = 1;
+var startAt = 8;
 
 currentSection = startAt;
 

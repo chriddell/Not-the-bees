@@ -69,7 +69,7 @@
 /* Animations
    ========================================================================== */
 
-/* Step 3
+/* Step 2
    ========================================================================== */
 
 @include keyframes(plantStemSprout) {
@@ -96,7 +96,7 @@
   }
 }
 
-/* Step 4
+/* Step 3
    ========================================================================== */
 
 @include keyframes(plantGrow) {
@@ -133,7 +133,7 @@
   }
 }
 
-/* Step 5
+/* Step 4
    ========================================================================== */
 
 @include keyframes(plantGrowTallest) {
@@ -151,7 +151,7 @@
   }
 }
 
-/* Step 6
+/* Step 5
    ========================================================================== */
 
 @include keyframes(plantSlideToBottom) {
@@ -172,14 +172,14 @@
 /* Step activations
    ========================================================================== */
 
-/* Step 3
+/* Step 2
    ========================================================================== */
 
-.step-3-active .plant__stem {
+.step-2-active .plant__stem {
   @include animation(plantStemSprout $gtd * 2 $gtd ease-out forwards);
 }
 
-.step-3-active .plant__leaf {
+.step-2-active .plant__leaf {
   @include animation(plantLeafSprout $gtd $gtd ease forwards);
 }
 
@@ -188,19 +188,19 @@
  * on each leaf individually
  */
 @for $i from 1 through 5 {
-  .step-3-active .plant__leaf:nth-of-type(#{$i}) {
+  .step-2-active .plant__leaf:nth-of-type(#{$i}) {
     animation-delay: $gtd + (($gtd * 2) / 4 * $i);
   }
 }
 
-/* Step 4
+/* Step 3
    ========================================================================== */
 
-.step-4-active .plant {
+.step-3-active .plant {
   @include animation(plantGrow $gtd * 2 ease forwards);
 }
 
-.step-4-active .plant__leaf {
+.step-3-active .plant__leaf {
   @include animation(plantLeafGrow $gtd * 2 ease forwards);
 }
 
@@ -209,13 +209,13 @@
  * on each leaf individually
  */
 @for $i from 1 through 5 {
-  .step-4-active .plant__leaf:nth-of-type(#{$i}) {
+  .step-3-active .plant__leaf:nth-of-type(#{$i}) {
     transform: scale(0.5);
     animation-delay: ($gtd * 2) / 4 * $i;
   }
 }
 
-.step-4-active .plant__flower {
+.step-3-active .plant__flower {
   @include animation(plantFlowerGrow $gtd * 2 ease forwards);
 }
 /**
@@ -223,30 +223,30 @@
  * on each flower individually
  */
 @for $i from 7 through 8 {
-  .step-4-active .plant__flower:nth-of-type(#{$i}) {
+  .step-3-active .plant__flower:nth-of-type(#{$i}) {
     animation-delay: ($gtd * 2) / 4 * ($i - 2);
   }
 }
 
-/* Step 5
+/* Step 4
    ========================================================================== */
 
+.step-4-active .plant__stem,
+.step-4-active .plant__flower,
+.step-4-active .plant__leaf {
+  transform: scale(1);
+}
+.step-4-active .plant {
+  @include animation(plantGrowTallest $gtd * 2 forwards ease); // make taller
+}
+
+/* Step 5
+   ========================================================================== */
 .step-5-active .plant__stem,
 .step-5-active .plant__flower,
 .step-5-active .plant__leaf {
   transform: scale(1);
 }
 .step-5-active .plant {
-  @include animation(plantGrowTallest $gtd * 2 forwards ease); // make taller
-}
-
-/* Step 6
-   ========================================================================== */
-.step-6-active .plant__stem,
-.step-6-active .plant__flower,
-.step-6-active .plant__leaf {
-  transform: scale(1);
-}
-.step-6-active .plant {
   @include animation(plantSlideToBottom $gtd * 2 forwards ease);
 }

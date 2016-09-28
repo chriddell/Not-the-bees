@@ -19,6 +19,24 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+
+  @include respond-to(small) {
+    /** 
+     * Set font-size smaller than actually used, 
+     * as fonts are in ems so are worked out against
+     * this value. We adjust paragraph font-size below
+     * so no-one will see a font-size this small
+     */
+    font-size: 12px;
+  }
+}
+
+p,
+ul,
+.btn {
+  @include respond-to(small) {
+    font-size: 16px;
+  }
 }
 
 ul {

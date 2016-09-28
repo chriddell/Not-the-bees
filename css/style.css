@@ -42,6 +42,9 @@
  * Retina Images
  * https://web-design-weekly.com/2013/05/12/handy-sass-mixins/
  */
+/**
+ * Transitions
+ */
 /* Generic
 
    Ground-zero styles [Normalize, resets, box-sizing]
@@ -445,6 +448,21 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center; }
+  @media (max-width: 767px) {
+    body {
+      /** 
+     * Set font-size smaller than actually used, 
+     * as fonts are in ems so are worked out against
+     * this value. We adjust paragraph font-size below
+     * so no-one will see a font-size this small
+     */
+      font-size: 12px; } }
+
+@media (max-width: 767px) {
+  p,
+  ul,
+  .btn {
+    font-size: 16px; } }
 
 ul {
   margin: 0;
@@ -473,43 +491,95 @@ ul {
   width: 10%;
   float: left; }
 
+@media (max-width: 767px) {
+  .col-mob-1 {
+    width: 10%;
+    float: left; } }
+
 .col-2 {
   width: 20%;
   float: left; }
+
+@media (max-width: 767px) {
+  .col-mob-2 {
+    width: 20%;
+    float: left; } }
 
 .col-3 {
   width: 30%;
   float: left; }
 
+@media (max-width: 767px) {
+  .col-mob-3 {
+    width: 30%;
+    float: left; } }
+
 .col-4 {
   width: 40%;
   float: left; }
+
+@media (max-width: 767px) {
+  .col-mob-4 {
+    width: 40%;
+    float: left; } }
 
 .col-5 {
   width: 50%;
   float: left; }
 
+@media (max-width: 767px) {
+  .col-mob-5 {
+    width: 50%;
+    float: left; } }
+
 .col-6 {
   width: 60%;
   float: left; }
+
+@media (max-width: 767px) {
+  .col-mob-6 {
+    width: 60%;
+    float: left; } }
 
 .col-7 {
   width: 70%;
   float: left; }
 
+@media (max-width: 767px) {
+  .col-mob-7 {
+    width: 70%;
+    float: left; } }
+
 .col-8 {
   width: 80%;
   float: left; }
 
+@media (max-width: 767px) {
+  .col-mob-8 {
+    width: 80%;
+    float: left; } }
+
 .col-9 {
   width: 90%;
   float: left; }
+
+@media (max-width: 767px) {
+  .col-mob-9 {
+    width: 90%;
+    float: left; } }
 
 .col-10 {
   width: 100%;
   float: left;
   margin-left: 0;
   margin-right: 0; }
+
+@media (max-width: 767px) {
+  .col-mob-10 {
+    width: 100%;
+    float: left;
+    margin-left: 0;
+    margin-right: 0; } }
 
 /* Components
 
@@ -550,13 +620,26 @@ ul {
   border-color: #000000; }
 
 .btn.like-link {
-  -webkit-transition: background-color 0.625s ease, color 0.625s ease;
-     -moz-transition: background-color 0.625s ease, color 0.625s ease;
-       -o-transition: background-color 0.625s ease, color 0.625s ease;
-          transition: background-color 0.625s ease, color 0.625s ease; }
+  -webkit-transition: background-color 0.625s ease, color 0.3125s ease;
+     -moz-transition: background-color 0.625s ease, color 0.3125s ease;
+       -o-transition: background-color 0.625s ease, color 0.3125s ease;
+          transition: background-color 0.625s ease, color 0.3125s ease; }
   .btn.like-link:hover {
     background-color: white;
-    color: #79c2eb; }
+    color: #79C2EB; }
+
+.btn--one-of-two {
+  width: 270px;
+  padding-left: 0;
+  padding-right: 0;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box; }
+  @media (max-width: 767px) {
+    .btn--one-of-two {
+      width: 100%; }
+      .btn--one-of-two:not(:first-of-type) {
+        margin-top: 1em; } }
 
 /* ==========================================================================
    _headings.scss
@@ -587,6 +670,9 @@ h4,
   margin-top: 0;
   margin-bottom: 0.75em; }
 
+/* ==========================================================================
+   _forms.scss
+   ========================================================================== */
 /* ==========================================================================
    _brand.scss
    ========================================================================== */
@@ -744,21 +830,52 @@ h4,
   100% {
     opacity: 1; } }
 
-/*
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
 
+@-moz-keyframes fadeOut {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
 
+@-o-keyframes fadeOut {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
 
 .background--cloudy {
   display: block;
   position: absolute;
-  background-image: url(../assets/img/cloudy-background.png);
-  background-size: cover;
-  opacity: 0; // overwritten by ani
-}
+  background-image: url(../assets/img/sky-dark-background.png);
+  -webkit-background-size: cover;
+     -moz-background-size: cover;
+       -o-background-size: cover;
+          background-size: cover;
+  opacity: 0; }
+
+.step-3-active .background--cloudy {
+  -webkit-animation: fadeIn 5s ease forwards;
+  -moz-animation: fadeIn 5s ease forwards;
+  -o-animation: fadeIn 5s ease forwards;
+  animation: fadeIn 5s ease forwards; }
+
 .step-4-active .background--cloudy {
-  @include animation(fadeIn $gtd * 4 ease forwards);
-}
-*/
+  -webkit-animation: fadeOut 5s ease forwards;
+  -moz-animation: fadeOut 5s ease forwards;
+  -o-animation: fadeOut 5s ease forwards;
+  animation: fadeOut 5s ease forwards; }
+
 /* ==========================================================================
    _steps.scss
 
@@ -824,11 +941,6 @@ h4,
 .step-8-active #section-8 {
   z-index: 2; }
   .step-8-active #section-8 .section__copy {
-    opacity: 1; }
-
-.step-9-active #section-9 {
-  z-index: 2; }
-  .step-9-active #section-9 .section__copy {
     opacity: 1; }
 
 /* ==========================================================================
@@ -922,28 +1034,26 @@ h4,
 
 /* Step activations
    ========================================================================== */
-.step-3-active .earth__container,
-.step-4-active .earth__container {
+.step-2-active .earth__container,
+.step-3-active .earth__container {
   height: 5vh; }
 
-.step-3-active .earth__layer--two,
-.step-4-active .earth__layer--two,
-.step-5-active .earth__layer--two {
+.step-2-active .earth__layer--two,
+.step-3-active .earth__layer--two {
   height: 0; }
 
-.step-3-active .earth__layer--one,
-.step-4-active .earth__layer--one,
-.step-5-active .earth__layer--one {
+.step-2-active .earth__layer--one,
+.step-3-active .earth__layer--one {
   height: 100%; }
 
+.step-4-active .earth__container,
 .step-5-active .earth__container,
 .step-6-active .earth__container,
 .step-7-active .earth__container,
-.step-8-active .earth__container,
-.step-9-active .earth__container {
+.step-8-active .earth__container {
   height: 0; }
 
-.step-2-active .earth__seed {
+.step-1-active .earth__seed {
   -webkit-animation: seedStepTwo 1.25s 1.25s forwards ease;
   -moz-animation: seedStepTwo 1.25s 1.25s forwards ease;
   -o-animation: seedStepTwo 1.25s 1.25s forwards ease;
@@ -1054,7 +1164,7 @@ h4,
 
 /* Animations
    ========================================================================== */
-/* Step 3
+/* Step 2
    ========================================================================== */
 @-webkit-keyframes plantStemSprout {
   0% {
@@ -1142,7 +1252,7 @@ h4,
          -o-transform: scale(0.5);
             transform: scale(0.5); } }
 
-/* Step 4
+/* Step 3
    ========================================================================== */
 @-webkit-keyframes plantGrow {
   0% {
@@ -1254,7 +1364,7 @@ h4,
          -o-transform: scale(1);
             transform: scale(1); } }
 
-/* Step 5
+/* Step 4
    ========================================================================== */
 @-webkit-keyframes plantGrowTallest {
   0% {
@@ -1296,7 +1406,7 @@ h4,
     bottom: -15vh;
     left: 75%; } }
 
-/* Step 6
+/* Step 5
    ========================================================================== */
 @-webkit-keyframes plantSlideToBottom {
   0% {
@@ -1340,15 +1450,15 @@ h4,
 
 /* Step activations
    ========================================================================== */
-/* Step 3
+/* Step 2
    ========================================================================== */
-.step-3-active .plant__stem {
+.step-2-active .plant__stem {
   -webkit-animation: plantStemSprout 2.5s 1.25s ease-out forwards;
   -moz-animation: plantStemSprout 2.5s 1.25s ease-out forwards;
   -o-animation: plantStemSprout 2.5s 1.25s ease-out forwards;
   animation: plantStemSprout 2.5s 1.25s ease-out forwards; }
 
-.step-3-active .plant__leaf {
+.step-2-active .plant__leaf {
   -webkit-animation: plantLeafSprout 1.25s 1.25s ease forwards;
   -moz-animation: plantLeafSprout 1.25s 1.25s ease forwards;
   -o-animation: plantLeafSprout 1.25s 1.25s ease forwards;
@@ -1358,45 +1468,45 @@ h4,
  * Delay leaf animation
  * on each leaf individually
  */
-.step-3-active .plant__leaf:nth-of-type(1) {
+.step-2-active .plant__leaf:nth-of-type(1) {
   -webkit-animation-delay: 1.875s;
      -moz-animation-delay: 1.875s;
        -o-animation-delay: 1.875s;
           animation-delay: 1.875s; }
 
-.step-3-active .plant__leaf:nth-of-type(2) {
+.step-2-active .plant__leaf:nth-of-type(2) {
   -webkit-animation-delay: 2.5s;
      -moz-animation-delay: 2.5s;
        -o-animation-delay: 2.5s;
           animation-delay: 2.5s; }
 
-.step-3-active .plant__leaf:nth-of-type(3) {
+.step-2-active .plant__leaf:nth-of-type(3) {
   -webkit-animation-delay: 3.125s;
      -moz-animation-delay: 3.125s;
        -o-animation-delay: 3.125s;
           animation-delay: 3.125s; }
 
-.step-3-active .plant__leaf:nth-of-type(4) {
+.step-2-active .plant__leaf:nth-of-type(4) {
   -webkit-animation-delay: 3.75s;
      -moz-animation-delay: 3.75s;
        -o-animation-delay: 3.75s;
           animation-delay: 3.75s; }
 
-.step-3-active .plant__leaf:nth-of-type(5) {
+.step-2-active .plant__leaf:nth-of-type(5) {
   -webkit-animation-delay: 4.375s;
      -moz-animation-delay: 4.375s;
        -o-animation-delay: 4.375s;
           animation-delay: 4.375s; }
 
-/* Step 4
+/* Step 3
    ========================================================================== */
-.step-4-active .plant {
+.step-3-active .plant {
   -webkit-animation: plantGrow 2.5s ease forwards;
   -moz-animation: plantGrow 2.5s ease forwards;
   -o-animation: plantGrow 2.5s ease forwards;
   animation: plantGrow 2.5s ease forwards; }
 
-.step-4-active .plant__leaf {
+.step-3-active .plant__leaf {
   -webkit-animation: plantLeafGrow 2.5s ease forwards;
   -moz-animation: plantLeafGrow 2.5s ease forwards;
   -o-animation: plantLeafGrow 2.5s ease forwards;
@@ -1406,7 +1516,7 @@ h4,
  * Delay leaf animation
  * on each leaf individually
  */
-.step-4-active .plant__leaf:nth-of-type(1) {
+.step-3-active .plant__leaf:nth-of-type(1) {
   -webkit-transform: scale(0.5);
      -moz-transform: scale(0.5);
       -ms-transform: scale(0.5);
@@ -1417,7 +1527,7 @@ h4,
        -o-animation-delay: 0.625s;
           animation-delay: 0.625s; }
 
-.step-4-active .plant__leaf:nth-of-type(2) {
+.step-3-active .plant__leaf:nth-of-type(2) {
   -webkit-transform: scale(0.5);
      -moz-transform: scale(0.5);
       -ms-transform: scale(0.5);
@@ -1428,7 +1538,7 @@ h4,
        -o-animation-delay: 1.25s;
           animation-delay: 1.25s; }
 
-.step-4-active .plant__leaf:nth-of-type(3) {
+.step-3-active .plant__leaf:nth-of-type(3) {
   -webkit-transform: scale(0.5);
      -moz-transform: scale(0.5);
       -ms-transform: scale(0.5);
@@ -1439,7 +1549,7 @@ h4,
        -o-animation-delay: 1.875s;
           animation-delay: 1.875s; }
 
-.step-4-active .plant__leaf:nth-of-type(4) {
+.step-3-active .plant__leaf:nth-of-type(4) {
   -webkit-transform: scale(0.5);
      -moz-transform: scale(0.5);
       -ms-transform: scale(0.5);
@@ -1450,7 +1560,7 @@ h4,
        -o-animation-delay: 2.5s;
           animation-delay: 2.5s; }
 
-.step-4-active .plant__leaf:nth-of-type(5) {
+.step-3-active .plant__leaf:nth-of-type(5) {
   -webkit-transform: scale(0.5);
      -moz-transform: scale(0.5);
       -ms-transform: scale(0.5);
@@ -1461,7 +1571,7 @@ h4,
        -o-animation-delay: 3.125s;
           animation-delay: 3.125s; }
 
-.step-4-active .plant__flower {
+.step-3-active .plant__flower {
   -webkit-animation: plantFlowerGrow 2.5s ease forwards;
   -moz-animation: plantFlowerGrow 2.5s ease forwards;
   -o-animation: plantFlowerGrow 2.5s ease forwards;
@@ -1471,17 +1581,34 @@ h4,
  * Delay flower animation
  * on each flower individually
  */
-.step-4-active .plant__flower:nth-of-type(7) {
+.step-3-active .plant__flower:nth-of-type(7) {
   -webkit-animation-delay: 3.125s;
      -moz-animation-delay: 3.125s;
        -o-animation-delay: 3.125s;
           animation-delay: 3.125s; }
 
-.step-4-active .plant__flower:nth-of-type(8) {
+.step-3-active .plant__flower:nth-of-type(8) {
   -webkit-animation-delay: 3.75s;
      -moz-animation-delay: 3.75s;
        -o-animation-delay: 3.75s;
           animation-delay: 3.75s; }
+
+/* Step 4
+   ========================================================================== */
+.step-4-active .plant__stem,
+.step-4-active .plant__flower,
+.step-4-active .plant__leaf {
+  -webkit-transform: scale(1);
+     -moz-transform: scale(1);
+      -ms-transform: scale(1);
+       -o-transform: scale(1);
+          transform: scale(1); }
+
+.step-4-active .plant {
+  -webkit-animation: plantGrowTallest 2.5s forwards ease;
+  -moz-animation: plantGrowTallest 2.5s forwards ease;
+  -o-animation: plantGrowTallest 2.5s forwards ease;
+  animation: plantGrowTallest 2.5s forwards ease; }
 
 /* Step 5
    ========================================================================== */
@@ -1495,23 +1622,6 @@ h4,
           transform: scale(1); }
 
 .step-5-active .plant {
-  -webkit-animation: plantGrowTallest 2.5s forwards ease;
-  -moz-animation: plantGrowTallest 2.5s forwards ease;
-  -o-animation: plantGrowTallest 2.5s forwards ease;
-  animation: plantGrowTallest 2.5s forwards ease; }
-
-/* Step 6
-   ========================================================================== */
-.step-6-active .plant__stem,
-.step-6-active .plant__flower,
-.step-6-active .plant__leaf {
-  -webkit-transform: scale(1);
-     -moz-transform: scale(1);
-      -ms-transform: scale(1);
-       -o-transform: scale(1);
-          transform: scale(1); }
-
-.step-6-active .plant {
   -webkit-animation: plantSlideToBottom 2.5s forwards ease;
   -moz-animation: plantSlideToBottom 2.5s forwards ease;
   -o-animation: plantSlideToBottom 2.5s forwards ease;
@@ -1551,29 +1661,29 @@ h4,
   0% {
     background-position-y: 0; }
   100% {
-    background-position-y: 230%; } }
+    background-position-y: 2000px; } }
 
 @-moz-keyframes makeItRain {
   0% {
     background-position-y: 0; }
   100% {
-    background-position-y: 230%; } }
+    background-position-y: 2000px; } }
 
 @-o-keyframes makeItRain {
   0% {
     background-position-y: 0; }
   100% {
-    background-position-y: 230%; } }
+    background-position-y: 2000px; } }
 
 @keyframes makeItRain {
   0% {
     background-position-y: 0; }
   100% {
-    background-position-y: 230%; } }
+    background-position-y: 2000px; } }
 
 /* Step activations
    ========================================================================== */
-.step-4-active .rain {
+.step-3-active .rain {
   opacity: 0.5;
   -webkit-transition: opacity 5s ease;
      -moz-transition: opacity 5s ease;
@@ -1634,8 +1744,7 @@ h4,
 
 /**
  * SVG styles exported
- * from Illustrator which
- * there is no need to change
+ * from Illustrator
  */
 .bee .st6 {
   opacity: .75; }
@@ -1812,27 +1921,27 @@ h4,
     -webkit-transform: translate(0) rotate(95deg);
             transform: translate(0) rotate(95deg); }
   100% {
-    -webkit-transform: translate(-380%, 90%) rotate(65deg);
-            transform: translate(-380%, 90%) rotate(65deg);
-    left: 75%; } }
+    -webkit-transform: translateY(140%) rotate(60deg);
+            transform: translateY(140%) rotate(60deg);
+    left: 60%; } }
 
 @-moz-keyframes beeTwoStepFive {
   0% {
     -moz-transform: translate(0) rotate(95deg);
          transform: translate(0) rotate(95deg); }
   100% {
-    -moz-transform: translate(-380%, 90%) rotate(65deg);
-         transform: translate(-380%, 90%) rotate(65deg);
-    left: 75%; } }
+    -moz-transform: translateY(140%) rotate(60deg);
+         transform: translateY(140%) rotate(60deg);
+    left: 60%; } }
 
 @-o-keyframes beeTwoStepFive {
   0% {
     -o-transform: translate(0) rotate(95deg);
        transform: translate(0) rotate(95deg); }
   100% {
-    -o-transform: translate(-380%, 90%) rotate(65deg);
-       transform: translate(-380%, 90%) rotate(65deg);
-    left: 75%; } }
+    -o-transform: translateY(140%) rotate(60deg);
+       transform: translateY(140%) rotate(60deg);
+    left: 60%; } }
 
 @keyframes beeTwoStepFive {
   0% {
@@ -1841,38 +1950,38 @@ h4,
          -o-transform: translate(0) rotate(95deg);
             transform: translate(0) rotate(95deg); }
   100% {
-    -webkit-transform: translate(-380%, 90%) rotate(65deg);
-       -moz-transform: translate(-380%, 90%) rotate(65deg);
-         -o-transform: translate(-380%, 90%) rotate(65deg);
-            transform: translate(-380%, 90%) rotate(65deg);
-    left: 75%; } }
+    -webkit-transform: translateY(140%) rotate(60deg);
+       -moz-transform: translateY(140%) rotate(60deg);
+         -o-transform: translateY(140%) rotate(60deg);
+            transform: translateY(140%) rotate(60deg);
+    left: 60%; } }
 
 @-webkit-keyframes beeThreeStepFive {
   0% {
     -webkit-transform: translate(0) rotate(95deg);
             transform: translate(0) rotate(95deg); }
   100% {
-    -webkit-transform: translate(-310%, 50%) rotate(95deg);
-            transform: translate(-310%, 50%) rotate(95deg);
-    left: 75%; } }
+    -webkit-transform: translate(0%, 0%) rotate(95deg);
+            transform: translate(0%, 0%) rotate(95deg);
+    left: 62%; } }
 
 @-moz-keyframes beeThreeStepFive {
   0% {
     -moz-transform: translate(0) rotate(95deg);
          transform: translate(0) rotate(95deg); }
   100% {
-    -moz-transform: translate(-310%, 50%) rotate(95deg);
-         transform: translate(-310%, 50%) rotate(95deg);
-    left: 75%; } }
+    -moz-transform: translate(0%, 0%) rotate(95deg);
+         transform: translate(0%, 0%) rotate(95deg);
+    left: 62%; } }
 
 @-o-keyframes beeThreeStepFive {
   0% {
     -o-transform: translate(0) rotate(95deg);
        transform: translate(0) rotate(95deg); }
   100% {
-    -o-transform: translate(-310%, 50%) rotate(95deg);
-       transform: translate(-310%, 50%) rotate(95deg);
-    left: 75%; } }
+    -o-transform: translate(0%, 0%) rotate(95deg);
+       transform: translate(0%, 0%) rotate(95deg);
+    left: 62%; } }
 
 @keyframes beeThreeStepFive {
   0% {
@@ -1881,18 +1990,18 @@ h4,
          -o-transform: translate(0) rotate(95deg);
             transform: translate(0) rotate(95deg); }
   100% {
-    -webkit-transform: translate(-310%, 50%) rotate(95deg);
-       -moz-transform: translate(-310%, 50%) rotate(95deg);
-         -o-transform: translate(-310%, 50%) rotate(95deg);
-            transform: translate(-310%, 50%) rotate(95deg);
-    left: 75%; } }
+    -webkit-transform: translate(0%, 0%) rotate(95deg);
+       -moz-transform: translate(0%, 0%) rotate(95deg);
+         -o-transform: translate(0%, 0%) rotate(95deg);
+            transform: translate(0%, 0%) rotate(95deg);
+    left: 62%; } }
 
 /* Step 6
    ========================================================================== */
 @-webkit-keyframes beeOneStepSix {
   0% {
-    -webkit-transform: rotate(40deg);
-            transform: rotate(40deg);
+    -webkit-transform: translate(0, 0) rotate(40deg);
+            transform: translate(0, 0) rotate(40deg);
     left: 67%;
     bottom: 15%; }
   100% {
@@ -1904,8 +2013,8 @@ h4,
 
 @-moz-keyframes beeOneStepSix {
   0% {
-    -moz-transform: rotate(40deg);
-         transform: rotate(40deg);
+    -moz-transform: translate(0, 0) rotate(40deg);
+         transform: translate(0, 0) rotate(40deg);
     left: 67%;
     bottom: 15%; }
   100% {
@@ -1917,8 +2026,8 @@ h4,
 
 @-o-keyframes beeOneStepSix {
   0% {
-    -o-transform: rotate(40deg);
-       transform: rotate(40deg);
+    -o-transform: translate(0, 0) rotate(40deg);
+       transform: translate(0, 0) rotate(40deg);
     left: 67%;
     bottom: 15%; }
   100% {
@@ -1930,10 +2039,10 @@ h4,
 
 @keyframes beeOneStepSix {
   0% {
-    -webkit-transform: rotate(40deg);
-       -moz-transform: rotate(40deg);
-         -o-transform: rotate(40deg);
-            transform: rotate(40deg);
+    -webkit-transform: translate(0, 0) rotate(40deg);
+       -moz-transform: translate(0, 0) rotate(40deg);
+         -o-transform: translate(0, 0) rotate(40deg);
+            transform: translate(0, 0) rotate(40deg);
     left: 67%;
     bottom: 15%; }
   100% {
@@ -1947,10 +2056,9 @@ h4,
 
 @-webkit-keyframes beeTwoStepSix {
   0% {
-    -webkit-transform: translate(-380%, 90%) rotate(65deg);
-            transform: translate(-380%, 90%) rotate(65deg);
-    left: 75%;
-    bottom: 25%; }
+    -webkit-transform: translateY(140%) rotate(60deg);
+            transform: translateY(140%) rotate(60deg);
+    left: 60%; }
   100% {
     -webkit-transform: translate(-380%, 90%) rotate(65deg);
             transform: translate(-380%, 90%) rotate(65deg);
@@ -1959,10 +2067,9 @@ h4,
 
 @-moz-keyframes beeTwoStepSix {
   0% {
-    -moz-transform: translate(-380%, 90%) rotate(65deg);
-         transform: translate(-380%, 90%) rotate(65deg);
-    left: 75%;
-    bottom: 25%; }
+    -moz-transform: translateY(140%) rotate(60deg);
+         transform: translateY(140%) rotate(60deg);
+    left: 60%; }
   100% {
     -moz-transform: translate(-380%, 90%) rotate(65deg);
          transform: translate(-380%, 90%) rotate(65deg);
@@ -1971,10 +2078,9 @@ h4,
 
 @-o-keyframes beeTwoStepSix {
   0% {
-    -o-transform: translate(-380%, 90%) rotate(65deg);
-       transform: translate(-380%, 90%) rotate(65deg);
-    left: 75%;
-    bottom: 25%; }
+    -o-transform: translateY(140%) rotate(60deg);
+       transform: translateY(140%) rotate(60deg);
+    left: 60%; }
   100% {
     -o-transform: translate(-380%, 90%) rotate(65deg);
        transform: translate(-380%, 90%) rotate(65deg);
@@ -1983,12 +2089,11 @@ h4,
 
 @keyframes beeTwoStepSix {
   0% {
-    -webkit-transform: translate(-380%, 90%) rotate(65deg);
-       -moz-transform: translate(-380%, 90%) rotate(65deg);
-         -o-transform: translate(-380%, 90%) rotate(65deg);
-            transform: translate(-380%, 90%) rotate(65deg);
-    left: 75%;
-    bottom: 25%; }
+    -webkit-transform: translateY(140%) rotate(60deg);
+       -moz-transform: translateY(140%) rotate(60deg);
+         -o-transform: translateY(140%) rotate(60deg);
+            transform: translateY(140%) rotate(60deg);
+    left: 60%; }
   100% {
     -webkit-transform: translate(-380%, 90%) rotate(65deg);
        -moz-transform: translate(-380%, 90%) rotate(65deg);
@@ -1999,9 +2104,9 @@ h4,
 
 @-webkit-keyframes beeThreeStepSix {
   0% {
-    -webkit-transform: translate(-310%, 50%) rotate(95deg);
-            transform: translate(-310%, 50%) rotate(95deg);
-    left: 75%; }
+    -webkit-transform: translate(0%, 0%) rotate(95deg);
+            transform: translate(0%, 0%) rotate(95deg);
+    left: 62%; }
   100% {
     -webkit-transform: translate(-310%, 50%) rotate(95deg);
             transform: translate(-310%, 50%) rotate(95deg);
@@ -2010,9 +2115,9 @@ h4,
 
 @-moz-keyframes beeThreeStepSix {
   0% {
-    -moz-transform: translate(-310%, 50%) rotate(95deg);
-         transform: translate(-310%, 50%) rotate(95deg);
-    left: 75%; }
+    -moz-transform: translate(0%, 0%) rotate(95deg);
+         transform: translate(0%, 0%) rotate(95deg);
+    left: 62%; }
   100% {
     -moz-transform: translate(-310%, 50%) rotate(95deg);
          transform: translate(-310%, 50%) rotate(95deg);
@@ -2021,9 +2126,9 @@ h4,
 
 @-o-keyframes beeThreeStepSix {
   0% {
-    -o-transform: translate(-310%, 50%) rotate(95deg);
-       transform: translate(-310%, 50%) rotate(95deg);
-    left: 75%; }
+    -o-transform: translate(0%, 0%) rotate(95deg);
+       transform: translate(0%, 0%) rotate(95deg);
+    left: 62%; }
   100% {
     -o-transform: translate(-310%, 50%) rotate(95deg);
        transform: translate(-310%, 50%) rotate(95deg);
@@ -2032,11 +2137,11 @@ h4,
 
 @keyframes beeThreeStepSix {
   0% {
-    -webkit-transform: translate(-310%, 50%) rotate(95deg);
-       -moz-transform: translate(-310%, 50%) rotate(95deg);
-         -o-transform: translate(-310%, 50%) rotate(95deg);
-            transform: translate(-310%, 50%) rotate(95deg);
-    left: 75%; }
+    -webkit-transform: translate(0%, 0%) rotate(95deg);
+       -moz-transform: translate(0%, 0%) rotate(95deg);
+         -o-transform: translate(0%, 0%) rotate(95deg);
+            transform: translate(0%, 0%) rotate(95deg);
+    left: 62%; }
   100% {
     -webkit-transform: translate(-310%, 50%) rotate(95deg);
        -moz-transform: translate(-310%, 50%) rotate(95deg);
@@ -2241,25 +2346,25 @@ h4,
    ========================================================================== */
 /* Step 5
    ========================================================================== */
-.step-5-active .bee--one {
+.step-4-active .bee--one {
   -webkit-animation: beeOneStepFive 6.25s forwards;
   -moz-animation: beeOneStepFive 6.25s forwards;
   -o-animation: beeOneStepFive 6.25s forwards;
   animation: beeOneStepFive 6.25s forwards; }
 
-.step-5-active .bee--two {
+.step-4-active .bee--two {
   -webkit-animation: beeTwoStepFive 6.25s forwards;
   -moz-animation: beeTwoStepFive 6.25s forwards;
   -o-animation: beeTwoStepFive 6.25s forwards;
   animation: beeTwoStepFive 6.25s forwards; }
 
-.step-5-active .bee--three {
+.step-4-active .bee--three {
   -webkit-animation: beeThreeStepFive 6.25s forwards;
   -moz-animation: beeThreeStepFive 6.25s forwards;
   -o-animation: beeThreeStepFive 6.25s forwards;
   animation: beeThreeStepFive 6.25s forwards; }
 
-.step-5-active .bee {
+.step-4-active .bee {
   -webkit-animation-delay: 1.25s;
      -moz-animation-delay: 1.25s;
        -o-animation-delay: 1.25s;
@@ -2267,19 +2372,19 @@ h4,
 
 /* Step 6
    ========================================================================== */
-.step-6-active .bee--one {
+.step-5-active .bee--one {
   -webkit-animation: beeOneStepSix 6.25s forwards;
   -moz-animation: beeOneStepSix 6.25s forwards;
   -o-animation: beeOneStepSix 6.25s forwards;
   animation: beeOneStepSix 6.25s forwards; }
 
-.step-6-active .bee--two {
+.step-5-active .bee--two {
   -webkit-animation: beeTwoStepSix 6.25s forwards;
   -moz-animation: beeTwoStepSix 6.25s forwards;
   -o-animation: beeTwoStepSix 6.25s forwards;
   animation: beeTwoStepSix 6.25s forwards; }
 
-.step-6-active .bee--three {
+.step-5-active .bee--three {
   -webkit-animation: beeThreeStepSix 6.25s forwards;
   -moz-animation: beeThreeStepSix 6.25s forwards;
   -o-animation: beeThreeStepSix 6.25s forwards;
@@ -2287,7 +2392,7 @@ h4,
 
 /* Step 7
    ========================================================================== */
-.step-7-active .bee--one {
+.step-6-active .bee--one {
   -webkit-animation: beeOneStepSeven 2.5s ease forwards;
   -moz-animation: beeOneStepSeven 2.5s ease forwards;
   -o-animation: beeOneStepSeven 2.5s ease forwards;
@@ -2295,7 +2400,7 @@ h4,
 
 /* Step 8
    ========================================================================== */
-.step-8-active .bee--one {
+.step-7-active .bee--one {
   -webkit-animation: beeOneStepEight 2.5s ease forwards;
   -moz-animation: beeOneStepEight 2.5s ease forwards;
   -o-animation: beeOneStepEight 2.5s ease forwards;
@@ -2303,7 +2408,7 @@ h4,
 
 /* Step 9
    ========================================================================== */
-.step-9-active .bee--one {
+.step-8-active .bee--one {
   -webkit-animation: beeOneStepNine 2.5s ease forwards;
   -moz-animation: beeOneStepNine 2.5s ease forwards;
   -o-animation: beeOneStepNine 2.5s ease forwards;
@@ -2331,7 +2436,47 @@ h4,
  */
 .honeycomb__key-panel__text,
 .honeycomb__key-panel__icon {
-  visibility: hidden; }
+  visibility: hidden;
+  -webkit-transition: fill 0.3125s ease;
+     -moz-transition: fill 0.3125s ease;
+       -o-transition: fill 0.3125s ease;
+          transition: fill 0.3125s ease; }
+
+.honeycomb__key-panel--large {
+  visibility: hidden;
+  height: 650px;
+  width: 580px;
+  color: black;
+  background-image: url(../assets/img/hex-single.svg);
+  -webkit-background-size: 100% 100%;
+     -moz-background-size: 100% 100%;
+       -o-background-size: 100% 100%;
+          background-size: 100% 100%;
+  z-index: 3; }
+
+.honeycomb__key-panel--large__wrapper {
+  height: 100%;
+  display: block; }
+
+.honeycomb__key-panel--large__text-wrapper {
+  width: 80%;
+  top: 53% !important; }
+
+.honeycomb__key-panel--large__close {
+  width: 35px;
+  display: block;
+  margin: 1em auto 0;
+  text-align: center;
+  cursor: pointer; }
+
+.honeycomb-key-panels--active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 5; }
 
 /**
  * SVG styles exported
@@ -2350,73 +2495,53 @@ h4,
 .honeycomb .st2 {
   font-size: 20px; }
 
-.honeycomb__key-panel--large {
-  visibility: hidden;
-  height: 600px;
-  width: 530px;
-  color: black;
-  background-image: url(../assets/img/hex-single.svg);
-  -webkit-background-size: 100% 100%;
-     -moz-background-size: 100% 100%;
-       -o-background-size: 100% 100%;
-          background-size: 100% 100%;
-  z-index: 3; }
-
-.honeycomb__key-panel--large__wrapper {
-  height: 100%;
-  display: block; }
-
-.honeycomb__key-panel--large__close {
-  width: 35px;
-  display: block;
-  margin: 1em auto 0;
-  text-align: center;
-  cursor: pointer; }
-
-.step-8-active .honeycomb__key-panel {
-  cursor: pointer; }
-  .step-8-active .honeycomb__key-panel:hover polygon {
-    fill: #FFA300; }
-  .step-8-active .honeycomb__key-panel:hover .honeycomb__key-panel__text,
-  .step-8-active .honeycomb__key-panel:hover .honeycomb__key-panel__icon {
-    fill: white; }
-
-.honeycomb-key-panels--active {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.75);
-  z-index: 5; }
-
 /* Step activations
    ========================================================================== */
-/* Step 7
+/* Step 6
    ========================================================================== */
-.step-7-active .honeycomb {
+.step-6-active .honeycomb {
   -webkit-transform: translateY(-75%);
      -moz-transform: translateY(-75%);
       -ms-transform: translateY(-75%);
        -o-transform: translateY(-75%);
           transform: translateY(-75%); }
 
-/* Step 8
+/* Step 7
    ========================================================================== */
-.step-8-active .honeycomb {
+.step-7-active .honeycomb {
   -webkit-transform: translateY(-55%);
      -moz-transform: translateY(-55%);
       -ms-transform: translateY(-55%);
        -o-transform: translateY(-55%);
           transform: translateY(-55%); }
+  @media (max-width: 767px) {
+    .step-7-active .honeycomb {
+      -webkit-transform: translateY(-15%);
+         -moz-transform: translateY(-15%);
+          -ms-transform: translateY(-15%);
+           -o-transform: translateY(-15%);
+              transform: translateY(-15%); } }
 
-.step-8-active .honeycomb__key-panel__text,
-.step-8-active .honeycomb__key-panel__icon {
+.step-7-active .honeycomb__key-panel__text,
+.step-7-active .honeycomb__key-panel__icon {
   visibility: visible; }
 
-/* Step 9
+.step-7-active .honeycomb__key-panel {
+  cursor: pointer; }
+  .step-7-active .honeycomb__key-panel polygon {
+    -webkit-transition: fill 0.625s ease;
+       -moz-transition: fill 0.625s ease;
+         -o-transition: fill 0.625s ease;
+            transition: fill 0.625s ease; }
+  .step-7-active .honeycomb__key-panel:hover polygon {
+    fill: #FFA300; }
+  .step-7-active .honeycomb__key-panel:hover .honeycomb__key-panel__text,
+  .step-7-active .honeycomb__key-panel:hover .honeycomb__key-panel__icon {
+    fill: white; }
+
+/* Step 8
    ========================================================================== */
-.step-9-active .honeycomb {
+.step-8-active .honeycomb {
   -webkit-transform: translateY(27.5%);
      -moz-transform: translateY(27.5%);
       -ms-transform: translateY(27.5%);
@@ -2426,6 +2551,37 @@ h4,
      -moz-transition: -moz-transform 5s ease;
        -o-transition: -o-transform 5s ease;
           transition: transform 5s ease; }
+  @media (max-width: 767px) {
+    .step-8-active .honeycomb {
+      -webkit-transform: translateY(105%);
+         -moz-transform: translateY(105%);
+          -ms-transform: translateY(105%);
+           -o-transform: translateY(105%);
+              transform: translateY(105%); } }
+
+/* Mobile
+
+   Have written these styles in there own section as they are unusual mods
+   to apply for mobile.
+   ========================================================================== */
+@media (max-width: 767px) {
+  .step-7-active .honeycomb > g {
+    visibility: hidden;
+    display: none; }
+    .step-7-active .honeycomb > g.honeycomb__key-panel {
+      visibility: visible;
+      display: block; }
+  .honeycomb__key-panel--one {
+    -webkit-transform: translateY(-120%);
+       -moz-transform: translateY(-120%);
+        -ms-transform: translateY(-120%);
+         -o-transform: translateY(-120%);
+            transform: translateY(-120%);
+    -webkit-transform-origin: center;
+       -moz-transform-origin: center;
+        -ms-transform-origin: center;
+         -o-transform-origin: center;
+            transform-origin: center; } }
 
 /* ==========================================================================
    _service-group.scss
@@ -2436,20 +2592,59 @@ h4,
   margin-top: 1em; }
 
 .service-group__item {
-  float: none;
-  display: inline-block;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
   vertical-align: top;
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
-          box-sizing: border-box; }
-  .service-group__item:not(:first-of-type) {
-    padding-left: 1.25em; }
+          box-sizing: border-box;
+  -webkit-transition: background-color 0.625s ease, color 0.3125s ease;
+     -moz-transition: background-color 0.625s ease, color 0.3125s ease;
+       -o-transition: background-color 0.625s ease, color 0.3125s ease;
+          transition: background-color 0.625s ease, color 0.3125s ease;
+  cursor: pointer;
+  padding: 1.25em;
+  width: 25%;
+  float: left; }
+  .service-group__item:hover {
+    background-color: #FFFFFF;
+    color: #79C2EB; }
+    .service-group__item:hover .service-group__image {
+      fill: #79C2EB; }
+  @media (max-width: 767px) {
+    .service-group__item {
+      width: 50%;
+      float: left;
+      padding: 0.75em; } }
 
 .service-group__image {
   max-height: 70px;
-  display: block;
   margin: 0 auto 1em;
-  fill: #FFF; }
+  display: block;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  fill: #FFFFFF;
+  -webkit-transition: fill 0.3125s ease;
+     -moz-transition: fill 0.3125s ease;
+       -o-transition: fill 0.3125s ease;
+          transition: fill 0.3125s ease; }
+
+@media (max-width: 767px) {
+  .service-group__title {
+    font-size: 1em; } }
+
+/* ==========================================================================
+   _overlays.scss
+   ========================================================================== */
+.overlay {
+  position: relative;
+  z-index: 100; }
+
+.overlay--hidden {
+  visibility: hidden;
+  opacity: 0; }
 
 /* Trumps
 
@@ -2520,28 +2715,37 @@ h4,
 
    Cheats. Hacks.
    ========================================================================== */
-.step-8-active #section-7 {
-  z-index: 3; }
-
-.step-4-active .plant__stem {
+.step-3-active .plant__stem {
   -webkit-transform: scale(1);
      -moz-transform: scale(1);
       -ms-transform: scale(1);
        -o-transform: scale(1);
           transform: scale(1); }
 
-.step-7-active .section__copy {
-  z-index: 4; }
+.step-7-active #section-6 {
+  z-index: 3; }
 
+.step-2-active .plant,
 .step-3-active .plant,
 .step-4-active .plant,
-.step-5-active .plant,
-.step-6-active .plant {
+.step-5-active .plant {
   -webkit-transform: scale(1) translateX(-50%);
      -moz-transform: scale(1) translateX(-50%);
       -ms-transform: scale(1) translateX(-50%);
        -o-transform: scale(1) translateX(-50%);
           transform: scale(1) translateX(-50%); }
+
+.step-5-active .plant {
+  /**
+   * Enlarge 
+   */ }
+  @media (max-width: 767px) {
+    .step-5-active .plant {
+      -webkit-transform: scale(2) translateX(-50%);
+         -moz-transform: scale(2) translateX(-50%);
+          -ms-transform: scale(2) translateX(-50%);
+           -o-transform: scale(2) translateX(-50%);
+              transform: scale(2) translateX(-50%); } }
 
 .is-not-a-good-browser .bee {
   visibility: hidden; }
@@ -2557,9 +2761,15 @@ h4,
   position: absolute;
   left: 0; }
 
+#section-8 .like-h3 {
+  font-size: 1.25em; }
+
+#section-8 .like-h1 {
+  font-size: 1.5em; }
+
 /* Animations
    ========================================================================== */
-@-webkit-keyframes stepNineIndexHack {
+@-webkit-keyframes stepEightIndexHack {
   0% {
     z-index: 0; }
   99% {
@@ -2567,7 +2777,7 @@ h4,
   100% {
     z-index: 3; } }
 
-@-moz-keyframes stepNineIndexHack {
+@-moz-keyframes stepEightIndexHack {
   0% {
     z-index: 0; }
   99% {
@@ -2575,7 +2785,7 @@ h4,
   100% {
     z-index: 3; } }
 
-@-o-keyframes stepNineIndexHack {
+@-o-keyframes stepEightIndexHack {
   0% {
     z-index: 0; }
   99% {
@@ -2583,7 +2793,7 @@ h4,
   100% {
     z-index: 3; } }
 
-@keyframes stepNineIndexHack {
+@keyframes stepEightIndexHack {
   0% {
     z-index: 0; }
   99% {
@@ -2591,9 +2801,9 @@ h4,
   100% {
     z-index: 3; } }
 
-.step-9-active #section-9 {
-  -webkit-animation: stepNineIndexHack 5s linear forwards;
-  -moz-animation: stepNineIndexHack 5s linear forwards;
-  -o-animation: stepNineIndexHack 5s linear forwards;
-  animation: stepNineIndexHack 5s linear forwards; }
+.step-8-active #section-8 {
+  -webkit-animation: stepEightIndexHack 5s linear forwards;
+  -moz-animation: stepEightIndexHack 5s linear forwards;
+  -o-animation: stepEightIndexHack 5s linear forwards;
+  animation: stepEightIndexHack 5s linear forwards; }
 /*# sourceMappingURL=style.css.map */

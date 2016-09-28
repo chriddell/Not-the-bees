@@ -4,27 +4,32 @@
    Cheats. Hacks.
    ========================================================================== */
 
-.step-8-active #section-7 {
-  // because we have no #section-8 in DOM, section 7 still needs to be active
-  z-index: 3; 
-}
-
-.step-4-active .plant__stem {
+.step-3-active .plant__stem {
   // keep plant stem visible when not used in animations
   transform: scale(1);
 }
 
-.step-7-active .section__copy {
-  // allows text to be selectable because honeycomb image is above by default
-  z-index: 4;
+
+.step-7-active #section-6 {
+  // because we have no #section-7 in DOM, section 6 still needs to be active
+  z-index: 3; 
 }
 
+.step-2-active,
 .step-3-active,
 .step-4-active,
-.step-5-active,
-.step-6-active {
+.step-5-active {
   .plant {
     transform: scale(1) translateX(-50%);
+  }
+}
+
+.step-5-active .plant {
+  /**
+   * Enlarge 
+   */
+  @include respond-to(small) {
+    transform: scale(2) translateX(-50%);
   }
 }
 
@@ -52,9 +57,17 @@
   }
 }
 
+// Smaller font-size on final slide (mobile)
+#section-8 .like-h3 {
+  font-size: 1.25em;
+}
+#section-8 .like-h1 {
+  font-size: 1.5em;
+}
+
 /* Animations
    ========================================================================== */
-@include keyframes(stepNineIndexHack) {
+@include keyframes(stepEightIndexHack) {
   0% {
     z-index: 0;
   }
@@ -68,6 +81,6 @@
   }
 }
 
-.step-9-active #section-9 {
-  @include animation(stepNineIndexHack $gtd * 4 linear forwards);
+.step-8-active #section-8 {
+  @include animation(stepEightIndexHack $gtd * 4 linear forwards);
 }

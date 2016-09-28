@@ -9,19 +9,45 @@
 }
 
 .service-group__item {
-  float: none;
-  display: inline-block; // override floats
+  border-radius: $border-radius;
   vertical-align: top;
   box-sizing: border-box;
+  transition: background-color $gtd / 2 ease, color $gtd / 4 ease;
+  cursor: pointer;
+  padding: 1.25em;
+
+  @include span(2.5);
 
   &:not(:first-of-type) {
-    padding-left: 1.25em;
+    //padding-left: 1.25em;
+  }
+
+  &:hover {
+    background-color: #FFFFFF;
+    color: $sky-blue-color;
+
+    .service-group__image {
+      fill: $sky-blue-color;
+    }
+  }
+
+  @include respond-to(small) {
+    @include span(5);
+    padding: 0.75em;
   }
 }
 
 .service-group__image {
   max-height: 70px;
-  display: block;
   margin: 0 auto 1em;
-  fill: #FFF;
+  display: block;
+  box-sizing: border-box;
+  fill: #FFFFFF;
+  transition: fill $gtd / 4 ease;
+}
+
+.service-group__title {
+  @include respond-to(small) {
+    font-size: 1em;
+  }
 }

@@ -31,14 +31,14 @@
   }
 
   100% {
-    background-position-y: 230%;
+    background-position-y: 2000px;
   }
 }
 
 /* Step activations
    ========================================================================== */
 
-.step-4-active .rain {
+.step-3-active .rain {
   opacity: 0.5;
   transition: opacity $gtd * 4 ease;
   @include animation(makeItRain 30s infinite linear forwards);

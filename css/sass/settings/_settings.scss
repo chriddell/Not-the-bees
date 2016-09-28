@@ -5,8 +5,15 @@
    ========================================================================== */
 
 $main-text-color: #FFFFFF;
+$sky-blue-color: #79C2EB;
+
+$border-radius: 5px;
 
 $gtd: 1.25s; // global transition duration
+
+$breakpoints: (
+  'small': ( max-width: 767px )
+);
 
 
 /* Fonts
