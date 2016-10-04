@@ -458,6 +458,9 @@ body {
      */
       font-size: 12px; } }
 
+p {
+  font-size: 1.4em; }
+
 @media (max-width: 767px) {
   p,
   ul,
