@@ -286,15 +286,36 @@ function closeOverlay(clicked) {
 
 }
 
+/**
+ * Progress app by detecting
+ * key press (< and >)
+ */
+function detectKey(e) {
+
+  e = e || window.event;
+  // if left key
+  if ( e.keyCode === 37 && currentSection > 1) {
+    currentSection--;
+    DOMGetsTheClass();
+  } 
+
+  // right key
+  else if ( e.keyCode === 39 && currentSection < totalSections ) {
+    currentSection++;
+    DOMGetsTheClass();
+  }
+}
+
 /* ==========================================================================
    Event Listeners / Triggers
    ========================================================================== */
 
 $(document).ready(function(){
 
-  // Master scroll function
+  // Master scroll functions
   scrollProgressApp();
   scrollProgressOnTouch();
+  document.onkeydown = detectKey;
 
   // Prevent bouncing on touch devices when user scrolls
   preventBounceiOS();
@@ -351,9 +372,7 @@ $(document).ready(function(){
 
    Burn after using.
    ========================================================================== */
-var startAt = 1;
-
-currentSection = startAt;
+currentSection = 1;
 
 $(document).ready(function(){
 
