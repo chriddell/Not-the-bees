@@ -236,7 +236,7 @@ function scrollProgressApp() {
 /**
  * Scroll function for touch devices
  */
-function scrollProgressAppTouch() {
+function scrollProgressOnTouch() {
 
   $('body').on('swipeup', function(){
 
@@ -294,7 +294,7 @@ $(document).ready(function(){
 
   // Master scroll function
   scrollProgressApp();
-  scrollProgressAppTouch();
+  scrollProgressOnTouch();
 
   // Prevent bouncing on touch devices when user scrolls
   preventBounceiOS();
@@ -351,7 +351,7 @@ $(document).ready(function(){
 
    Burn after using.
    ========================================================================== */
-var startAt = 8;
+var startAt = 1;
 
 currentSection = startAt;
 
