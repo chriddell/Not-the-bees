@@ -1,9 +1,5 @@
 'use strict';
 
-var recipient = 
-var sender = $('#forward-to-colleague-form ')
-
-
 $('#forward-to-colleague-form').submit(function(e){
 
   var url = 'process/submit.php';

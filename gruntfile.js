@@ -8,27 +8,21 @@ module.exports = function (grunt) {
       sass: {
         files: ['./css/sass/*.scss', './css/sass/*/*.scss'],
         tasks: ['sass:dev', 'autoprefixer:dev'],
-        options: {
-          livereload: true
-        }
       },
       js: {
-        files: ['./js/*'],
-        tasks: [''],
-        options: {
-          livereload: true
-        }
+        files: ['./js/*/*.js'],
+        tasks: ['uglify'],
       }
     },
 
     sass: {
       dev: {
         options: {
-          outputStyle: 'nested',
+          outputStyle: 'compressed',
           sourceMap: true
         },
         files: {
-          './css/style.css': './css/sass/style.scss'
+          './css/style.min.css': './css/sass/style.scss'
         }
       },
       dist: {
@@ -42,29 +36,50 @@ module.exports = function (grunt) {
       }
     },
 
+    uglify: {
+      lib: {
+        files: [{
+          cwd: './',
+          src: 'js/lib/*.js',
+          dest: './js/lib/built/lib.min.js'
+        }],
+        options: {
+          sourceMap: true
+        }
+      },
+      app: {
+        files: [{
+          cwd: './',
+          src: 'js/app/*.js',
+          dest: './js/app/built/app.min.js'
+        }],
+        options: {
+          sourceMap: true
+        }
+      }
+    },
+
     autoprefixer: {
       dev: {
         options: {
           map: true, 
           browsers: ['ie >= 8', '> 0%']
         }, 
-        src: './css/style.css',
-        dest: './css/style.css'
+        src: './css/style.min.css',
+        dest: './css/style.min.css'
       }
     },
 
     browserSync: {
-      main: {
-        bsFiles: {
-          src : [
-            'css/style.css',
-            'js/**/*'
-          ]
-        },
-        options: {
-          watchTask: true,
-          proxy: 'advent.dev/abm'
-        }
+      bsFiles: {
+        src : [
+          'css/style.css',
+          'js/*/*/*.js'
+        ]
+      },
+      options: {
+        watchTask: true,
+        proxy: 'advent.dev/abm'
       }
     }
 
@@ -74,14 +89,12 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-browser-sync');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.registerTask('default', [
-    'watch'
+    'browserSync', 'watch'
   ]);
   grunt.registerTask('dist', [
     'autoprefixer', 'sass:dist'
-  ]);
-  grunt.registerTask('sync', [
-    'browserSync', 'watch'
   ]);
 };
