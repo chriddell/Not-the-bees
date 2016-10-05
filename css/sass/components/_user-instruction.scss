@@ -154,8 +154,3 @@
     }
   }
 }
-
-.step-2-active .user-instruction__container {
-  // So we see instruction briefly on step-2
-  @include animation(showInstructionBriefly $gtd * 4 2s backwards ease-out);
-}
