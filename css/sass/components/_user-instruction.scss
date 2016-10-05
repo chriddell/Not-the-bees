@@ -19,10 +19,18 @@
   display: inline-block;
   vertical-align: middle;
   margin: 0 5px;
+  fill: $sky-blue-color;
+}
+
+.user-instruction__container {
+  display: inline-block;
+  padding: 1em 2em 0.85em;
+  background: #FFFFFF;
+  color: $sky-blue-color;
 }
 
 .user-instruction__copy:first-of-type {
-  margin-top: 10px;
+  margin: 0;
 }
 
 /* Animations
@@ -68,4 +76,9 @@
 
 .ani--show-user-instruction {
   @include animation(showInstructionBriefly $gtd * 4 forwards ease-out);
+}
+
+.step-2-active .user-instruction__container {
+  // So we see instruction briefly on step-2
+  @include animation(showInstructionBriefly $gtd * 4 2s backwards ease-out);
 }

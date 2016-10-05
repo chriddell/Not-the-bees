@@ -336,15 +336,3 @@ $(document).ready(function(){
       $('html').addClass('is-not-a-good-browser');
   }
 });
-
-/* ==========================================================================
-   Development functions
-
-   Burn after using.
-   ========================================================================== */
-currentSection = 1;
-
-$(document).ready(function(){
-
-  DOMGetsTheClass();
-});
