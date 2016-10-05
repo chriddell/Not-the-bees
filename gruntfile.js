@@ -12,6 +12,13 @@ module.exports = function (grunt) {
           livereload: true
         }
       },
+      js: {
+        files: ['./js/*'],
+        tasks: [''],
+        options: {
+          livereload: true
+        }
+      }
     },
 
     sass: {
@@ -44,6 +51,21 @@ module.exports = function (grunt) {
         src: './css/style.css',
         dest: './css/style.css'
       }
+    },
+
+    browserSync: {
+      main: {
+        bsFiles: {
+          src : [
+            'css/style.css',
+            'js/**/*'
+          ]
+        },
+        options: {
+          watchTask: true,
+          proxy: 'advent.dev/abm'
+        }
+      }
     }
 
   });
@@ -51,11 +73,15 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-autoprefixer');
+  grunt.loadNpmTasks('grunt-browser-sync');
 
   grunt.registerTask('default', [
     'watch'
   ]);
   grunt.registerTask('dist', [
     'autoprefixer', 'sass:dist'
+  ]);
+  grunt.registerTask('sync', [
+    'browserSync', 'watch'
   ]);
 };
