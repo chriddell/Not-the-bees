@@ -314,8 +314,12 @@ $(document).ready(function(){
 
   // Master scroll functions
   scrollProgressApp();
-  scrollProgressOnTouch();
   document.onkeydown = detectKey;
+
+  // If we're on touch, use touch events
+  if ( $( 'html' ).hasClass( 'touchevents' ) ) {
+    scrollProgressOnTouch();
+  };
 
   // Prevent bouncing on touch devices when user scrolls
   preventBounceiOS();
