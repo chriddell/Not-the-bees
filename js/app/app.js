@@ -273,7 +273,6 @@ $(document).ready(function(){
 
   // Show user instruction when they try to scroll
   $(document).on('DOMMouseScroll mousewheel MozMousePixelScroll scroll', function(){
-
     _.throttle( showUserInstruction( '.user-instruction--header' ), 500 );
   });
 

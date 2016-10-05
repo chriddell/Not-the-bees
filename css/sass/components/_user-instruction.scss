@@ -12,7 +12,7 @@
   position: relative;
   padding-top: 35px; // match logo
   visibility: hidden;
-  z-index: 3; // keep above active section
+  z-index: 1000; // keep above header
 }
 
 .user-instruction__icon {
