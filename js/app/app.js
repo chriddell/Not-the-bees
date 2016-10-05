@@ -271,14 +271,15 @@ $(document).ready(function(){
   // Detect which key on keydown
   $(document).on('keydown', detectKey);
 
-  // Show user instruction when they try to scroll
-  $(document).on('DOMMouseScroll mousewheel MozMousePixelScroll scroll', function(){
-    _.throttle( showUserInstruction( '.user-instruction--header' ), 500 );
+  // When user clicks trigger, go to next step
+  $(document).on('click', '.go-to-next-step', function(){
+    currentSection++;
+    DOMGetsTheClass();
   });
 
-  // Show user instruction when they click on step-2
-  $(document).on( 'click', '.step-2-active *', function(){
-    _.throttle( showUserInstruction( '.user-instruction--header' ), 500 );
+  // Show user instruction when they try to scroll
+  $(document).on('DOMMouseScroll mousewheel MozMousePixelScroll scroll', function(){
+    _.throttle( showUserInstruction( '.user-instruction--modal--header' ), 500 );
   });
 
   // If we're on touch, use touch events to progress
