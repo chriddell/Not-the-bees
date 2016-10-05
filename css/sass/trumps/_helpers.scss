@@ -37,3 +37,17 @@
 .like-link {
   cursor: pointer;
 }
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.hide-text {
+  text-indent: -10000000px;
+}

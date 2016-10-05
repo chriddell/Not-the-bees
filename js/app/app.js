@@ -6,8 +6,15 @@
 
 var currentSection = 1,
     totalSections = 8,
-    scrollAllowed = true,
-    usefulClassName = 'step';
+    noScrollClass = 'no-scroll',
+    usefulClassName = 'step',
+    isScroll = function() {
+      if ( $('body').hasClass( noScrollClass ) ) {
+        return true;
+      } else {
+        return false;
+    }
+}
 
 /* ==========================================================================
    Functions
@@ -120,7 +127,6 @@ function DOMGetsTheClass() {
 
 /**
  * Prevent vertical scrolling bounce on iOS
- *
  * http://bit.ly/1t7M4qp
  */
 function preventBounceiOS() {
@@ -144,93 +150,6 @@ function preventBounceiOS() {
       e.preventDefault();
     }
   });
-}
-
-/**
- * Master scroll function
- * which powers app through it's stages
- */
-function scrollProgressApp() {
-
-  $('body').on(
-
-    'DOMMouseScroll mousewheel MozMousePixelScroll scroll', function(e) {  
-    /*
-     * Multiple events for compat.
-     *
-     * See:
-     * http://bit.ly/2cWWZ0j
-     * http://www.javascriptkit.com/javatutors/onmousewheel.shtml
-     */
-
-      if (!$('body').hasClass('no-scroll')) {
-
-        e.preventDefault();
-        e.stopPropagation();
-
-        /**
-         * Set scrollAllowed back to true
-         * after a designated interval
-         */
-        clearTimeout( $.data( this, 'timer' ) );
-        $.data(this, 'timer', setTimeout(function() {
-          scrollAllowed = true;
-        }, 150));
-
-        if ( scrollAllowed ) {
-
-          /*
-           * Set scrollAllowed to false 
-           * to prevent currentSection changing twice
-           */
-          scrollAllowed = false;
-
-          /*
-           * jQuery mousewheel direction capture
-           * works cross-browser
-           */
-          if ( typeof e.originalEvent.detail == 'number' && e.originalEvent.detail !== 0 ) {
-
-            if( e.originalEvent.detail > 0 && currentSection < totalSections ) {
-
-              // Next section
-              currentSection++;
-
-            } else if( e.originalEvent.detail < 0 && currentSection > 1 ){
-
-              // Previous section
-              currentSection--;
-
-            }
-
-          } else if ( typeof e.originalEvent.wheelDelta == 'number' ) {
-
-            if ( e.originalEvent.wheelDelta < 0 && currentSection < totalSections ) {
-
-              // Next section
-              currentSection++;
-
-            } else if ( e.originalEvent.wheelDelta > 0 && currentSection > 1 ) {
-
-              // Previous section
-              currentSection--;
-
-            }
-          }
-
-          DOMGetsTheClass();
-
-        } 
-
-        else {
-
-          // Do nothing...
-          return false;
-
-        }
-      }
-    }
-  );
 }
 
 /**
@@ -288,21 +207,58 @@ function closeOverlay(clicked) {
 
 /**
  * Progress app by detecting
- * key press (< and >)
+ * arrow key press
  */
 function detectKey(e) {
 
   e = e || window.event;
-  // if left key
-  if ( e.keyCode === 37 && currentSection > 1) {
+  // if left or up key
+  if ( ( e.keyCode === 37 || e.keyCode === 38 ) && currentSection > 1) {
     currentSection--;
     DOMGetsTheClass();
   } 
 
-  // right key
-  else if ( e.keyCode === 39 && currentSection < totalSections ) {
+  // right or down key
+  else if ( ( e.keyCode === 39 || e.keyCode === 40 ) && currentSection < totalSections ) {
     currentSection++;
     DOMGetsTheClass();
+  }
+}
+
+/**
+ * Detect inactivity
+ * or 'wrong' activity
+ */
+var timeInactive;
+function detectInactivity(e) {
+
+  e = e || window.event;
+}
+
+/**
+ * Show user instruction
+ */
+function showUserInstruction(target) {
+
+  var el = target,
+      classToAdd = 'ani--show-user-instruction';
+
+  function showInstruction() {
+    $( el ).addClass( classToAdd );
+    $(document).on( 'animationend webkitAnimationEnd oanimationend MSAnimationEnd', el, function(){
+      hideInstruction();
+    });
+  }
+
+  function hideInstruction() {
+    $( el ).removeClass( classToAdd );
+  }
+
+  // User instruction is not visible      
+  if ( !$( el ).hasClass( classToAdd ) ) {
+
+    // Add the class
+    _.throttle(showInstruction(), 500);
   }
 }
 
@@ -312,11 +268,21 @@ function detectKey(e) {
 
 $(document).ready(function(){
 
-  // Master scroll functions
-  scrollProgressApp();
-  document.onkeydown = detectKey;
+  // Detect which key on keydown
+  $(document).on('keydown', detectKey);
 
-  // If we're on touch, use touch events
+  // Show user instruction when they try to scroll
+  $(document).on('DOMMouseScroll mousewheel MozMousePixelScroll scroll', function(){
+
+    _.throttle( showUserInstruction( '.user-instruction--header' ), 500 );
+  });
+
+  // Show user instruction when they click on step-2
+  $(document).on( 'click', '.step-2-active *', function(){
+    _.throttle( showUserInstruction( '.user-instruction--header' ), 500 );
+  });
+
+  // If we're on touch, use touch events to progress
   if ( $( 'html' ).hasClass( 'touchevents' ) ) {
     scrollProgressOnTouch();
   };
@@ -325,7 +291,7 @@ $(document).ready(function(){
   preventBounceiOS();
 
   // Reset to step 1
-  $('#reset-app').on('click', function(){
+  $( '#reset-app' ).on( 'click', function(){
     // Only reset if we are not on first screen
     if ( currentSection !== 1 ) {
       resetApp();
@@ -333,36 +299,36 @@ $(document).ready(function(){
   });
 
   // Advance to next step
-  $('#plant-seed, #scroll-start, .service-group__item').on('click', function(){
+  $(document).on( 'click', '#plant-seed, #scroll-start, .service-group__item', function(){
     currentSection++;
     DOMGetsTheClass();
   });
 
   // Key panels - open
-  $('.honeycomb__key-panel').on('click', function(){
+  $(document).on( 'click', '.honeycomb__key-panel', function(){
 
     // only fire if we're on step 8
-    if ( $('body').hasClass('step-7-active') ) {
+    if ( $( 'body' ).hasClass( 'step-7-active' ) ) {
 
       showKeyPanel(this);
-      $('body').addClass('no-scroll');
+      $( 'body' ).addClass( 'no-scroll' );
     }
   });
 
   // Key panel - close
-  $('.honeycomb__key-panel--large__close').on('click', function(){
-    hideKeyPanel(this);
-    $('body').removeClass('no-scroll');
+  $(document).on( 'click', '.honeycomb__key-panel--large__close', function(){
+    hideKeyPanel( this );
+    $( 'body' ).removeClass( 'no-scroll' );
   });
 
   // Overlay - open
-  $(document).on('click', '.overlay__open', function(){
-    showOverlay(this);
+  $(document).on( 'click', '.overlay__open', function(){
+    showOverlay( this );
   });
 
   // Overlay - close
-  $(document).on('click', '.overlay__close', function(){
-    closeOverlay(this);
+  $(document).on( 'click', '.overlay__close', function(){
+    closeOverlay( this );
   });
 
   // Add body class if Microsoft browser

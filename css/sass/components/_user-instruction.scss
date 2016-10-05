@@ -1,0 +1,71 @@
+/* ==========================================================================
+   _user-instruction.scss
+
+   Helpers which appear on the screen to aid users to use the app.
+   ========================================================================== */
+
+.user-instruction {
+  font-size: 0.85em;
+}
+
+.user-instruction--header {
+  position: relative;
+  padding-top: 35px; // match logo
+  visibility: hidden;
+  z-index: 3; // keep above active section
+}
+
+.user-instruction__icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 5px;
+}
+
+.user-instruction__copy:first-of-type {
+  margin-top: 10px;
+}
+
+/* Animations
+   ========================================================================== */
+@include keyframes(showInstruction) {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+    visibility: visible;
+  }
+
+  75% {
+    transform: translateY(-2px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+}
+
+@include keyframes(showInstructionBriefly) {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+    visibility: visible;
+  }
+
+  10%, 
+  90% {
+    transform: translateY(-2px);
+  }
+
+  15%,
+  85% {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+}
+
+.ani--show-user-instruction {
+  @include animation(showInstructionBriefly $gtd * 4 forwards ease-out);
+}

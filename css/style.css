@@ -698,6 +698,23 @@ h4,
               background-size: 210px 50px; } }
 
 /* ==========================================================================
+   _icons.scss
+   ========================================================================== */
+.icon {
+  -webkit-background-size: 100% 100%;
+     -moz-background-size: 100% 100%;
+       -o-background-size: 100% 100%;
+          background-size: 100% 100%;
+  height: 36px;
+  width: 36px; }
+
+.icon--key-up {
+  background-image: url(../assets/img/arrow_up.svg); }
+
+.icon--key-down {
+  background-image: url(../assets/img/arrow_down.svg); }
+
+/* ==========================================================================
    _scroll-hint.scss
 
    Mouse/scroll icon
@@ -2649,6 +2666,180 @@ h4,
   visibility: hidden;
   opacity: 0; }
 
+/* ==========================================================================
+   _user-instruction.scss
+
+   Helpers which appear on the screen to aid users to use the app.
+   ========================================================================== */
+.user-instruction {
+  font-size: 0.85em; }
+
+.user-instruction--header {
+  position: relative;
+  padding-top: 35px;
+  visibility: hidden;
+  z-index: 3; }
+
+.user-instruction__icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 5px; }
+
+.user-instruction__copy:first-of-type {
+  margin-top: 10px; }
+
+/* Animations
+   ========================================================================== */
+@-webkit-keyframes showInstruction {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px);
+    visibility: visible; }
+  75% {
+    -webkit-transform: translateY(-2px);
+            transform: translateY(-2px); }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    visibility: visible; } }
+
+@-moz-keyframes showInstruction {
+  0% {
+    opacity: 0;
+    -moz-transform: translateY(10px);
+         transform: translateY(10px);
+    visibility: visible; }
+  75% {
+    -moz-transform: translateY(-2px);
+         transform: translateY(-2px); }
+  100% {
+    opacity: 1;
+    -moz-transform: translateY(0);
+         transform: translateY(0);
+    visibility: visible; } }
+
+@-o-keyframes showInstruction {
+  0% {
+    opacity: 0;
+    -o-transform: translateY(10px);
+       transform: translateY(10px);
+    visibility: visible; }
+  75% {
+    -o-transform: translateY(-2px);
+       transform: translateY(-2px); }
+  100% {
+    opacity: 1;
+    -o-transform: translateY(0);
+       transform: translateY(0);
+    visibility: visible; } }
+
+@keyframes showInstruction {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(10px);
+       -moz-transform: translateY(10px);
+         -o-transform: translateY(10px);
+            transform: translateY(10px);
+    visibility: visible; }
+  75% {
+    -webkit-transform: translateY(-2px);
+       -moz-transform: translateY(-2px);
+         -o-transform: translateY(-2px);
+            transform: translateY(-2px); }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+       -moz-transform: translateY(0);
+         -o-transform: translateY(0);
+            transform: translateY(0);
+    visibility: visible; } }
+
+@-webkit-keyframes showInstructionBriefly {
+  0%,
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px);
+    visibility: visible; }
+  10%,
+  90% {
+    -webkit-transform: translateY(-2px);
+            transform: translateY(-2px); }
+  15%,
+  85% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    visibility: visible; } }
+
+@-moz-keyframes showInstructionBriefly {
+  0%,
+  100% {
+    opacity: 0;
+    -moz-transform: translateY(10px);
+         transform: translateY(10px);
+    visibility: visible; }
+  10%,
+  90% {
+    -moz-transform: translateY(-2px);
+         transform: translateY(-2px); }
+  15%,
+  85% {
+    opacity: 1;
+    -moz-transform: translateY(0);
+         transform: translateY(0);
+    visibility: visible; } }
+
+@-o-keyframes showInstructionBriefly {
+  0%,
+  100% {
+    opacity: 0;
+    -o-transform: translateY(10px);
+       transform: translateY(10px);
+    visibility: visible; }
+  10%,
+  90% {
+    -o-transform: translateY(-2px);
+       transform: translateY(-2px); }
+  15%,
+  85% {
+    opacity: 1;
+    -o-transform: translateY(0);
+       transform: translateY(0);
+    visibility: visible; } }
+
+@keyframes showInstructionBriefly {
+  0%,
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(10px);
+       -moz-transform: translateY(10px);
+         -o-transform: translateY(10px);
+            transform: translateY(10px);
+    visibility: visible; }
+  10%,
+  90% {
+    -webkit-transform: translateY(-2px);
+       -moz-transform: translateY(-2px);
+         -o-transform: translateY(-2px);
+            transform: translateY(-2px); }
+  15%,
+  85% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+       -moz-transform: translateY(0);
+         -o-transform: translateY(0);
+            transform: translateY(0);
+    visibility: visible; } }
+
+.ani--show-user-instruction {
+  -webkit-animation: showInstructionBriefly 5s forwards ease-out;
+  -moz-animation: showInstructionBriefly 5s forwards ease-out;
+  -o-animation: showInstructionBriefly 5s forwards ease-out;
+  animation: showInstructionBriefly 5s forwards ease-out; }
+
 /* Trumps
 
    Helpers & overrides
@@ -2712,6 +2903,17 @@ h4,
 
 .like-link {
   cursor: pointer; }
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.text-center {
+  text-align: center; }
+
+.hide-text {
+  text-indent: -10000000px; }
 
 /* ==========================================================================
    _trumps.scss

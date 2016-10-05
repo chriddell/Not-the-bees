@@ -29,7 +29,7 @@
   <!-- end #main-header -->
 
   <!-- #main-container -->
-  <div id="main-container">
+  <div id="main-container" class="clearfix">
     <!--
     <section id="section-1" class="section col-10">
       <span class="section-copy__wrapper col-6 centered">
@@ -57,7 +57,7 @@
           how will Ruffer grow tomorrow? <br/>
           Will smart growth come from your reputation?
         </p>
-        <span class="btn like-link section__copy" id="plant-seed">Scroll to discover</span>
+        <span class="btn like-link section__copy" id="plant-seed">Begin</span>
       </span>
       <span class="earth__container col-10">
         <span class="earth earth__layer earth__layer--one col-10 zi--2"></span>
@@ -656,6 +656,10 @@
       </span>
     </section>
 
+    <div class="user-instruction user-instruction--header text-center">
+      <p class="user-instruction__copy user-instruction--header__copy">Use the <span class="user-instruction__icon icon icon--key-up hide-text">up</span> and <span class="user-instruction__icon icon icon--key-down hide-text">down</span> keys to progress</p>
+    </div>
+
   </div>
   <!-- end #main-container -->
 
@@ -675,6 +679,7 @@
 </body>
 
 <!-- Scripts -->
+<script type="text/javascript" src="js/lib/underscore.js"></script>
 <script type="text/javascript" src="js/lib/modernizr-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/lib/vminpoly/parser.js"></script>
 <script type="text/javascript" src="js/lib/vminpoly/tokenizer.js"></script>
