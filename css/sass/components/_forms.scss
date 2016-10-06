@@ -11,6 +11,7 @@
 
   @include respond-to(small) {
     margin: 0 auto;
+    padding: 1.5em 1.5em;
   }
 }
 
@@ -23,6 +24,14 @@
   background: $yellow-color;
   background: none;
   box-sizing: border-box;
+}
+
+::-webkit-input-placeholder,
+:-moz-placeholder,
+::-moz-placeholder,
+:-ms-input-placeholder {
+  color: #000000;
+  opacity: 0.75;
 }
 
 .form__input--submit {
@@ -44,31 +53,48 @@
   }
 }
 
-::-webkit-input-placeholder,
-:-moz-placeholder,
-::-moz-placeholder,
-:-ms-input-placeholder {
-  color: #000000;
-  opacity: 0.75;
+.form__message-container {
+  width: 100%;
 }
 
 /**
  * Hide form and show user a message 
  * when form has been submitted
  */
-.form__success-message {
+.form__message {
   display: none; // hide until success
+  opacity: 0; // hide until success
   margin-bottom: 0;
   color: black;
+  transition: opacity $gtd / 2 ease;
 }
+
+.form__message:nth-of-type(2), 
+.form__message:nth-of-type(3) {
+  font-size: 1.1em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
 
 .form--submitted {
   .form {
     display: none;
   }
 
-  .form__success-message {
+  .form__message--success {
     display: block;
+    @include animation(fadeInUp $gtd / 2 forwards ease);
+  }
+
+  .form__message:nth-of-type(2), 
+  .form__message:nth-of-type(3) {
+    display: inline-block;
+    @include animation(fadeInUp $gtd / 2 $gtd / 2 forwards ease);
+
+    .cssanimations & {
+      opacity: 0; // set opacity as 0, only on browsers which can animate
+    }
   }
 }
 
@@ -79,6 +105,44 @@
   box-sizing: border-box;
 
   @include respond-to(small) {
-    height: auto;
+    height: 250px;
+  }
+}
+
+.form--share-url {
+  @include animation(fadeInDown $gtd / 2 forwards ease); // fade in when user elects to send again
+}
+
+/* Animations
+   ========================================================================== */
+@include keyframes(fadeInUp) {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  80% {
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@include keyframes(fadeInDown) {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  80% {
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

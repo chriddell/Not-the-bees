@@ -203,7 +203,7 @@ function showOverlay( clicked ) {
 function closeOverlay( clicked ) {
 
   $( clicked )
-   .parent('.overlay')
+   .parents('.overlay')
    .addClass('overlay--hidden'); 
 
 }
@@ -323,7 +323,7 @@ $(document).ready(function(){
   });
 
   // Overlay - close
-  $(document).on( 'click', '.overlay__close', function(){
+  $(document).on( 'click', '.overlay__close, .overlay__bg', function(){
     closeOverlay( this );
   });
 
