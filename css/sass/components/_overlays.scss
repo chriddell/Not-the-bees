@@ -2,11 +2,25 @@
    _overlays.scss
    ========================================================================== */
 .overlay {
-  position: relative;
-  z-index: 100;
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: 6;
 }
 
 .overlay--hidden {
   visibility: hidden;
   opacity: 0;
+}
+
+.overlay__bg {
+  display: block;
+  position: absolute;
+  top: 0; right: 0; left: 0; bottom: 0;
+  padding: 80px;
+  background: black;
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.overlay__content {
+  z-index: 1;
 }

@@ -15,11 +15,22 @@
   border-color: #000000;
 }
 
-.btn.like-link {
+.btn--submit {
+  background: #000000;
+  color: #FFFFFF;
+  border: none;
   transition: background-color $gtd / 2 ease, color $gtd / 4 ease;
 
+  &:hover {
+    background: lighten(#000000, 20%);
+  }
+}
+
+.btn--trigger {
+  transition: background-color $gtd / 2 ease, color $gtd / 4 ease !important;
+
   &:hover {  // hover state for buttons which are triggers
-    background-color: white;
+    background-color: #FFFFFF;;
     color: $sky-blue-color;
   }
 }
@@ -28,13 +39,10 @@
   width: 270px;
   padding-left: 0;
   padding-right: 0;
+  margin: 0 0.25em 0.5em;
   box-sizing: border-box;
 
   @include respond-to(small) {
     width: 100%;
-    
-    &:not(:first-of-type) {
-      margin-top: 1em;
-    }
   }
 }

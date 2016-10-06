@@ -1,3 +1,84 @@
 /* ==========================================================================
    _forms.scss
    ========================================================================== */
+
+.form__container {
+  max-width: 600px;
+  padding: 1.5em 2.5em;
+  border: 5px solid $orange-color;
+  background: $yellow-color;
+  color: #000000;
+
+  @include respond-to(small) {
+    margin: 0 auto;
+  }
+}
+
+.form__input--text {
+  width: 100%;
+  padding: 0.75em 1em;
+  margin-bottom: 1em;
+  border: 2px solid;
+  border-radius: $border-radius;
+  background: $yellow-color;
+  background: none;
+  box-sizing: border-box;
+}
+
+.form__input--submit {
+  float: right;
+
+  @include respond-to(small) {
+    width: 100%;
+  }
+}
+
+.form__back {
+  padding-left: 1em;
+  border: none;
+  float: left;
+
+  @include respond-to(small) {
+    width: 100%;
+    padding-left: inherit;
+  }
+}
+
+::-webkit-input-placeholder,
+:-moz-placeholder,
+::-moz-placeholder,
+:-ms-input-placeholder {
+  color: #000000;
+  opacity: 0.75;
+}
+
+/**
+ * Hide form and show user a message 
+ * when form has been submitted
+ */
+.form__success-message {
+  display: none; // hide until success
+  margin-bottom: 0;
+  color: black;
+}
+
+.form--submitted {
+  .form {
+    display: none;
+  }
+
+  .form__success-message {
+    display: block;
+  }
+}
+
+/* Variations
+   ========================================================================== */
+.form--share-url__container {
+  height: 320px; // define a height on larger screen sizes so it stays consistent when content changes
+  box-sizing: border-box;
+
+  @include respond-to(small) {
+    height: auto;
+  }
+}

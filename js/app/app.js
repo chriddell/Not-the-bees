@@ -240,18 +240,18 @@ function scrollProgressOnTouch() {
 
   $('body').on('swipeup', function(){
 
-    if (!$('body').hasClass('no-scroll')) {
-      if (currentSection < totalSections) {
+    if (!$( 'body' ).hasClass( noScrollClass )) {
+      if ( currentSection < totalSections ) {
         currentSection++;
         DOMGetsTheClass();
       }
     }
   });
 
-  $('body').on('swipedown', function(){
+  $( 'body' ).on( 'swipedown', function(){
 
-    if (!$('body').hasClass('no-scroll')) {
-      if (currentSection > 1) {
+    if (!$( 'body' ).hasClass( noScrollClass )) {
+      if ( currentSection > 1 ) {
         currentSection--;
         DOMGetsTheClass();
       }
@@ -262,30 +262,82 @@ function scrollProgressOnTouch() {
 /**
  * Show overlay
  */
-function showOverlay(clicked) {
+function showOverlay( clicked ) {
 
   // find out which overlay to show based on data-attr
-  var whichOverlay = $(clicked).data('overlay');
+  var whichOverlay = $( clicked ).data( 'overlay' );
 
   // find the relevant overlay
-  var target = $('body').find('.overlay[data-overlay="' + whichOverlay + '"]'); 
+  var target = $( 'body' ).find( '.overlay[data-overlay="' + whichOverlay + '"]' ); 
 
   // remove the hidden class
-  target.removeClass('overlay--hidden'); 
+  target.removeClass( 'overlay--hidden' ); 
+
+  // add no scroll to body
+  $( 'body' ).addClass( noScrollClass );
 
 }
 
 /**
  * Hide overlay
  */
-function closeOverlay(clicked) {
+function closeOverlay( clicked ) {
 
-  $(clicked)
-   .parent('.overlay')
-   .addClass('overlay--hidden'); 
+  $( clicked )
+    .parents( '.overlay' )
+    .addClass( 'overlay--hidden' );
 
+  $( 'body' ).removeClass( noScrollClass );
 }
 
+/**
+ * Progress app by detecting
+ * arrow key press
+ */
+function detectKey(e) {
+
+  e = e || window.event;
+  // if left or up key
+  if ( ( e.keyCode === 37 || e.keyCode === 38 ) && currentSection > 1) {
+    currentSection--;
+    DOMGetsTheClass();
+  } 
+
+  // right or down key
+  else if ( ( e.keyCode === 39 || e.keyCode === 40 ) && currentSection < totalSections ) {
+    currentSection++;
+    DOMGetsTheClass();
+  }
+}
+
+/**
+ * Show user instruction
+ */
+function showUserInstruction(target) {
+
+  var el = target,
+      classToAdd = 'ani--show-user-instruction';
+
+  function showInstruction() {
+    $( el ).addClass( classToAdd );
+    $( 'body' ).addClass( noScrollClass );
+    $(document).on( 'animationend webkitAnimationEnd oanimationend MSAnimationEnd', el, function(){
+      hideInstruction();
+    });
+  }
+
+  function hideInstruction() {
+    $( el ).removeClass( classToAdd );
+    $( 'body' ).removeClass( noScrollClass );
+  }
+
+  // User instruction is not visible      
+  if ( !$( el ).hasClass( classToAdd ) && !$('body').hasClass( noScrollClass ) ) {
+
+    // Add the class
+    _.throttle(showInstruction(), 500);
+  }
+}
 /* ==========================================================================
    Event Listeners / Triggers
    ========================================================================== */
@@ -304,7 +356,7 @@ $(document).ready(function(){
   preventBounceiOS();
 
   // Reset to step 1
-  $('#reset-app').on('click', function(){
+  $( document ).on( 'click', '#reset-app', function(){
     // Only reset if we are not on first screen
     if ( currentSection !== 1 ) {
       resetApp();
@@ -340,8 +392,8 @@ $(document).ready(function(){
   });
 
   // Overlay - close
-  $(document).on('click', '.overlay__close', function(){
-    closeOverlay(this);
+  $(document).on( 'click', '.overlay__close, .overlay__bg', function(){
+    closeOverlay( this );
   });
 
   // Add body class if Microsoft browser

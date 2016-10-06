@@ -36,4 +36,22 @@
 
 .like-link {
   cursor: pointer;
+
+  &:not(.btn--trigger):not(.btn--submit):hover {
+    text-decoration: underline;
+  }
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.hide-text {
+  text-indent: -10000000px;
 }

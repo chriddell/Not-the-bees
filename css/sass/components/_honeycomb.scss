@@ -5,7 +5,6 @@
 .honeycomb {
   transform: translateY(-100%); // position off screen until we need it
   transition: transform $gtd * 2 ease;
-  z-index: 4;
   position: relative;
 }
 
