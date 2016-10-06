@@ -14,7 +14,7 @@ var currentSection = 1,
       } else {
         return false;
     }
-}
+  };
 
 /* ==========================================================================
    Functions
@@ -246,7 +246,7 @@ function showUserInstruction( target ) {
 
   function hideInstruction() {
     $( el ).removeClass( classToAdd );
-    $( 'body' ).addClass( noScrollClass );
+    $( 'body' ).removeClass( noScrollClass );
   }
 
   // User instruction is not visible      
