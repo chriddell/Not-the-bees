@@ -19,7 +19,6 @@
 }
 
 .honeycomb__key-panel--large {
-  visibility: hidden;
   height: 650px;
   width: 580px;
   color: black;
@@ -42,22 +41,12 @@
   top: 53% !important; // override centered class
 }
 
-.honeycomb__key-panel--large__close {
+.honeycomb__key-panel--large__icon {
   width: 35px;
   display: block;
   margin: 1em auto 0;
   text-align: center;
   cursor: pointer;
-}
-
-.honeycomb-key-panels--active {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.75);
-  z-index: 5;
 }
 
 /**

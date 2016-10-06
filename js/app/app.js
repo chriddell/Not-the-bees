@@ -68,42 +68,6 @@ $.fn.alterClass = function ( removals, additions ) {
 };
 
 /**
- * Show key panel
- */
-function showKeyPanel( clicked ) {
-
-  var self = clicked;
-
-  // target has similar id to clicked so let's merge
-  var targetID = '#large-' + self.id;
-
-  $('#honeycomb-key-panels')
-    .addClass( 'honeycomb-key-panels--active' )
-    .find( targetID )
-    .css({
-      'visibility': 'visible'
-    });
-
-};
-
-/**
- * Hide key panel
- */
-function hideKeyPanel( clicked ) {
-
-  var self = clicked;
-
-  $(self)
-    .parents( '.honeycomb__key-panel--large' )
-    .css({
-      'visibility': 'hidden'
-    })
-    .parents( '#honeycomb-key-panels' )
-    .removeClass( 'honeycomb-key-panels--active' );
-
-};
-
-/**
  * Reset app to step 1
  */
 function resetApp() {
@@ -283,27 +247,6 @@ $(document).ready(function(){
     scrollProgressOnTouch();
     preventBounceiOS();
   };
-
-  /**
-   * Key Panels
-   */
-
-  // Open
-  $(document).on( 'click', '.honeycomb__key-panel', function(){
-
-    // only fire if we're on step 8
-    if ( $( 'body' ).hasClass( 'step-7-active' ) ) {
-
-      showKeyPanel(this);
-      $( 'body' ).addClass( 'no-scroll' );
-    }
-  });
-
-  // Close
-  $(document).on( 'click', '.honeycomb__key-panel--large__close', function(){
-    hideKeyPanel( this );
-    $( 'body' ).removeClass( 'no-scroll' );
-  });
 
   /**
    * Overlays
