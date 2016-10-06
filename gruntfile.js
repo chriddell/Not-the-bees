@@ -73,7 +73,7 @@ module.exports = function (grunt) {
     browserSync: {
       bsFiles: {
         src : [
-          'css/style.css',
+          'css/style.min.css',
           'js/*/*/*.js'
         ]
       },

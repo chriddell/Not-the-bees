@@ -6,8 +6,15 @@
 
 var currentSection = 1,
     totalSections = 8,
-    scrollAllowed = true,
-    usefulClassName = 'step';
+    noScrollClass = 'no-scroll',
+    usefulClassName = 'step',
+    isScroll = function() {
+      if ( $('body').hasClass( noScrollClass ) ) {
+        return true;
+      } else {
+        return false;
+    }
+}
 
 /* ==========================================================================
    Functions
@@ -120,7 +127,6 @@ function DOMGetsTheClass() {
 
 /**
  * Prevent vertical scrolling bounce on iOS
- *
  * http://bit.ly/1t7M4qp
  */
 function preventBounceiOS() {
@@ -147,111 +153,24 @@ function preventBounceiOS() {
 }
 
 /**
- * Master scroll function
- * which powers app through it's stages
- */
-function scrollProgressApp() {
-
-  $('body').on(
-
-    'DOMMouseScroll mousewheel MozMousePixelScroll scroll', function(e) {  
-    /*
-     * Multiple events for compat.
-     *
-     * See:
-     * http://bit.ly/2cWWZ0j
-     * http://www.javascriptkit.com/javatutors/onmousewheel.shtml
-     */
-
-      if (!$('body').hasClass('no-scroll')) {
-
-        e.preventDefault();
-        e.stopPropagation();
-
-        /**
-         * Set scrollAllowed back to true
-         * after a designated interval
-         */
-        clearTimeout( $.data( this, 'timer' ) );
-        $.data(this, 'timer', setTimeout(function() {
-          scrollAllowed = true;
-        }, 150));
-
-        if ( scrollAllowed ) {
-
-          /*
-           * Set scrollAllowed to false 
-           * to prevent currentSection changing twice
-           */
-          scrollAllowed = false;
-
-          /*
-           * jQuery mousewheel direction capture
-           * works cross-browser
-           */
-          if ( typeof e.originalEvent.detail == 'number' && e.originalEvent.detail !== 0 ) {
-
-            if( e.originalEvent.detail > 0 && currentSection < totalSections ) {
-
-              // Next section
-              currentSection++;
-
-            } else if( e.originalEvent.detail < 0 && currentSection > 1 ){
-
-              // Previous section
-              currentSection--;
-
-            }
-
-          } else if ( typeof e.originalEvent.wheelDelta == 'number' ) {
-
-            if ( e.originalEvent.wheelDelta < 0 && currentSection < totalSections ) {
-
-              // Next section
-              currentSection++;
-
-            } else if ( e.originalEvent.wheelDelta > 0 && currentSection > 1 ) {
-
-              // Previous section
-              currentSection--;
-
-            }
-          }
-
-          DOMGetsTheClass();
-
-        } 
-
-        else {
-
-          // Do nothing...
-          return false;
-
-        }
-      }
-    }
-  );
-}
-
-/**
  * Scroll function for touch devices
  */
 function scrollProgressOnTouch() {
 
   $('body').on('swipeup', function(){
 
-    if (!$( 'body' ).hasClass( noScrollClass )) {
-      if ( currentSection < totalSections ) {
+    if (!$('body').hasClass('no-scroll')) {
+      if (currentSection < totalSections) {
         currentSection++;
         DOMGetsTheClass();
       }
     }
   });
 
-  $( 'body' ).on( 'swipedown', function(){
+  $('body').on('swipedown', function(){
 
-    if (!$( 'body' ).hasClass( noScrollClass )) {
-      if ( currentSection > 1 ) {
+    if (!$('body').hasClass('no-scroll')) {
+      if (currentSection > 1) {
         currentSection--;
         DOMGetsTheClass();
       }
@@ -262,32 +181,28 @@ function scrollProgressOnTouch() {
 /**
  * Show overlay
  */
-function showOverlay( clicked ) {
+function showOverlay(clicked) {
 
   // find out which overlay to show based on data-attr
-  var whichOverlay = $( clicked ).data( 'overlay' );
+  var whichOverlay = $(clicked).data('overlay');
 
   // find the relevant overlay
-  var target = $( 'body' ).find( '.overlay[data-overlay="' + whichOverlay + '"]' ); 
+  var target = $('body').find('.overlay[data-overlay="' + whichOverlay + '"]'); 
 
   // remove the hidden class
-  target.removeClass( 'overlay--hidden' ); 
-
-  // add no scroll to body
-  $( 'body' ).addClass( noScrollClass );
+  target.removeClass('overlay--hidden'); 
 
 }
 
 /**
  * Hide overlay
  */
-function closeOverlay( clicked ) {
+function closeOverlay(clicked) {
 
-  $( clicked )
-    .parents( '.overlay' )
-    .addClass( 'overlay--hidden' );
+  $(clicked)
+   .parent('.overlay')
+   .addClass('overlay--hidden'); 
 
-  $( 'body' ).removeClass( noScrollClass );
 }
 
 /**
@@ -311,6 +226,16 @@ function detectKey(e) {
 }
 
 /**
+ * Detect inactivity
+ * or 'wrong' activity
+ */
+var timeInactive;
+function detectInactivity(e) {
+
+  e = e || window.event;
+}
+
+/**
  * Show user instruction
  */
 function showUserInstruction(target) {
@@ -320,7 +245,6 @@ function showUserInstruction(target) {
 
   function showInstruction() {
     $( el ).addClass( classToAdd );
-    $( 'body' ).addClass( noScrollClass );
     $(document).on( 'animationend webkitAnimationEnd oanimationend MSAnimationEnd', el, function(){
       hideInstruction();
     });
@@ -328,26 +252,37 @@ function showUserInstruction(target) {
 
   function hideInstruction() {
     $( el ).removeClass( classToAdd );
-    $( 'body' ).removeClass( noScrollClass );
   }
 
   // User instruction is not visible      
-  if ( !$( el ).hasClass( classToAdd ) && !$('body').hasClass( noScrollClass ) ) {
+  if ( !$( el ).hasClass( classToAdd ) ) {
 
     // Add the class
     _.throttle(showInstruction(), 500);
   }
 }
+
 /* ==========================================================================
    Event Listeners / Triggers
    ========================================================================== */
 
 $(document).ready(function(){
 
-  // Master scroll function
-  scrollProgressApp();
+  // Detect which key on keydown
+  $(document).on('keydown', detectKey);
 
-  // If we're on touch, use touch events
+  // When user clicks trigger, go to next step
+  $(document).on('click', '.go-to-next-step', function(){
+    currentSection++;
+    DOMGetsTheClass();
+  });
+
+  // Show user instruction when they try to scroll
+  $(document).on('DOMMouseScroll mousewheel MozMousePixelScroll scroll', function(){
+    _.throttle( showUserInstruction( '.user-instruction--modal--header' ), 500 );
+  });
+
+  // If we're on touch, use touch events to progress
   if ( $( 'html' ).hasClass( 'touchevents' ) ) {
     scrollProgressOnTouch();
   };
@@ -356,7 +291,7 @@ $(document).ready(function(){
   preventBounceiOS();
 
   // Reset to step 1
-  $( document ).on( 'click', '#reset-app', function(){
+  $( '#reset-app' ).on( 'click', function(){
     // Only reset if we are not on first screen
     if ( currentSection !== 1 ) {
       resetApp();
@@ -364,35 +299,35 @@ $(document).ready(function(){
   });
 
   // Advance to next step
-  $('#plant-seed, #scroll-start, .service-group__item').on('click', function(){
+  $(document).on( 'click', '#plant-seed, #scroll-start, .service-group__item', function(){
     currentSection++;
     DOMGetsTheClass();
   });
 
   // Key panels - open
-  $('.honeycomb__key-panel').on('click', function(){
+  $(document).on( 'click', '.honeycomb__key-panel', function(){
 
     // only fire if we're on step 8
-    if ( $('body').hasClass('step-7-active') ) {
+    if ( $( 'body' ).hasClass( 'step-7-active' ) ) {
 
       showKeyPanel(this);
-      $('body').addClass('no-scroll');
+      $( 'body' ).addClass( 'no-scroll' );
     }
   });
 
   // Key panel - close
-  $('.honeycomb__key-panel--large__close').on('click', function(){
-    hideKeyPanel(this);
-    $('body').removeClass('no-scroll');
+  $(document).on( 'click', '.honeycomb__key-panel--large__close', function(){
+    hideKeyPanel( this );
+    $( 'body' ).removeClass( 'no-scroll' );
   });
 
   // Overlay - open
-  $(document).on('click', '.overlay__open', function(){
-    showOverlay(this);
+  $(document).on( 'click', '.overlay__open', function(){
+    showOverlay( this );
   });
 
   // Overlay - close
-  $(document).on( 'click', '.overlay__close, .overlay__bg', function(){
+  $(document).on( 'click', '.overlay__close', function(){
     closeOverlay( this );
   });
 
@@ -400,18 +335,4 @@ $(document).ready(function(){
   if (/MSIE 10/i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent)) {
       $('html').addClass('is-not-a-good-browser');
   }
-});
-
-/* ==========================================================================
-   Development functions
-
-   Burn after using.
-   ========================================================================== */
-var startAt = 1;
-
-currentSection = startAt;
-
-$(document).ready(function(){
-
-  DOMGetsTheClass();
 });
