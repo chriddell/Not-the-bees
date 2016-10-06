@@ -9,6 +9,10 @@
   transform: scale(1);
 }
 
+.step-6-active #section-6 .section-copy__wrapper {
+  // make sure indicator is clickable above honeycomb SVG
+  z-index: 3;
+}
 
 .step-7-active #section-6 {
   // because we have no #section-7 in DOM, section 6 still needs to be active

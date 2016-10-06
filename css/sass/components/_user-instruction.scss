@@ -144,7 +144,7 @@
 
   @if $i == 7 {
     .step-#{$i}-active .user-instruction__indicator--no-section {
-      @include animation(showIndicator $gtd * 2 4s forwards);
+      @include animation(showIndicator $gtd * 2 6s forwards);
     }
   }
 
