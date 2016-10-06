@@ -36,6 +36,10 @@
 
 .like-link {
   cursor: pointer;
+
+  &:not(.btn--trigger):not(.btn--submit):hover {
+    text-decoration: underline;
+  }
 }
 
 .clearfix:after {

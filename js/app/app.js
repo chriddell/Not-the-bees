@@ -78,8 +78,8 @@ function showKeyPanel( clicked ) {
   var targetID = '#large-' + self.id;
 
   $('#honeycomb-key-panels')
-    .addClass('honeycomb-key-panels--active')
-    .find(targetID)
+    .addClass( 'honeycomb-key-panels--active' )
+    .find( targetID )
     .css({
       'visibility': 'visible'
     });
@@ -94,12 +94,12 @@ function hideKeyPanel( clicked ) {
   var self = clicked;
 
   $(self)
-    .parents('.honeycomb__key-panel--large')
+    .parents( '.honeycomb__key-panel--large' )
     .css({
       'visibility': 'hidden'
     })
-    .parents('#honeycomb-key-panels')
-    .removeClass('honeycomb-key-panels--active');
+    .parents( '#honeycomb-key-panels' )
+    .removeClass( 'honeycomb-key-panels--active' );
 
 };
 
@@ -122,7 +122,7 @@ function resetApp() {
  * This triggers the CSS animations which drive the application
  */
 function DOMGetsTheClass() {
-  $('body').alterClass(usefulClassName + '-*', usefulClassName + '-' +  currentSection + '-active');
+  $( 'body' ).alterClass( usefulClassName + '-*', usefulClassName + '-' +  currentSection + '-active' );
 }
 
 /**
@@ -133,14 +133,14 @@ function preventBounceiOS() {
 
   var xStart, yStart = 0;
  
-  document.addEventListener('touchstart',function(e) {
+  document.addEventListener( 'touchstart', function( e ) {
 
     xStart = e.touches[0].screenX;
     yStart = e.touches[0].screenY;
 
   });
    
-  document.addEventListener('touchmove',function(e) {
+  document.addEventListener( 'touchmove', function( e ) {
 
     var xMovement = Math.abs(e.touches[0].screenX - xStart);
     var yMovement = Math.abs(e.touches[0].screenY - yStart);
@@ -157,19 +157,19 @@ function preventBounceiOS() {
  */
 function scrollProgressOnTouch() {
 
-  $('body').on('swipeup', function(){
+  $( 'body' ).on( 'swipeup', function(){
 
-    if (!$('body').hasClass('no-scroll')) {
-      if (currentSection < totalSections) {
+    if (!$( 'body' ).hasClass( 'no-scroll' )) {
+      if ( currentSection < totalSections ) {
         currentSection++;
         DOMGetsTheClass();
       }
     }
   });
 
-  $('body').on('swipedown', function(){
+  $( 'body' ).on('swipedown', function(){
 
-    if (!$('body').hasClass('no-scroll')) {
+    if ( !$( 'body' ).hasClass( 'no-scroll' ) ) {
       if (currentSection > 1) {
         currentSection--;
         DOMGetsTheClass();
@@ -181,25 +181,28 @@ function scrollProgressOnTouch() {
 /**
  * Show overlay
  */
-function showOverlay(clicked) {
+function showOverlay( clicked ) {
 
   // find out which overlay to show based on data-attr
-  var whichOverlay = $(clicked).data('overlay');
+  var whichOverlay = $( clicked ).data( 'overlay' );
 
   // find the relevant overlay
-  var target = $('body').find('.overlay[data-overlay="' + whichOverlay + '"]'); 
+  var target = $( 'body' ).find( '.overlay[data-overlay="' + whichOverlay + '"]' ); 
 
   // remove the hidden class
-  target.removeClass('overlay--hidden'); 
+  target.removeClass( 'overlay--hidden' ); 
+
+  // add no scroll to body
+  $( 'body' ).addClass( noScrollClass );
 
 }
 
 /**
  * Hide overlay
  */
-function closeOverlay(clicked) {
+function closeOverlay( clicked ) {
 
-  $(clicked)
+  $( clicked )
    .parent('.overlay')
    .addClass('overlay--hidden'); 
 
@@ -209,7 +212,7 @@ function closeOverlay(clicked) {
  * Progress app by detecting
  * arrow key press
  */
-function detectKey(e) {
+function detectKey( e ) {
 
   e = e || window.event;
   // if left or up key
@@ -226,25 +229,16 @@ function detectKey(e) {
 }
 
 /**
- * Detect inactivity
- * or 'wrong' activity
- */
-var timeInactive;
-function detectInactivity(e) {
-
-  e = e || window.event;
-}
-
-/**
  * Show user instruction
  */
-function showUserInstruction(target) {
+function showUserInstruction( target ) {
 
   var el = target,
       classToAdd = 'ani--show-user-instruction';
 
   function showInstruction() {
     $( el ).addClass( classToAdd );
+    $( 'body' ).addClass( noScrollClass );
     $(document).on( 'animationend webkitAnimationEnd oanimationend MSAnimationEnd', el, function(){
       hideInstruction();
     });
@@ -252,13 +246,15 @@ function showUserInstruction(target) {
 
   function hideInstruction() {
     $( el ).removeClass( classToAdd );
+    $( 'body' ).addClass( noScrollClass );
   }
 
   // User instruction is not visible      
-  if ( !$( el ).hasClass( classToAdd ) ) {
+  if ( !$( el ).hasClass( classToAdd ) && !$( 'body' ).hasClass( noScrollClass ) ) {
+
 
     // Add the class
-    _.throttle(showInstruction(), 500);
+    _.throttle( showInstruction(), 500 );
   }
 }
 
@@ -291,7 +287,7 @@ $(document).ready(function(){
   preventBounceiOS();
 
   // Reset to step 1
-  $( '#reset-app' ).on( 'click', function(){
+  $( document ).on( 'click', '#reset-app', function(){
     // Only reset if we are not on first screen
     if ( currentSection !== 1 ) {
       resetApp();
