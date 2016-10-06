@@ -278,13 +278,50 @@ $(document).ready(function(){
     _.throttle( showUserInstruction( '.user-instruction--modal--header' ), 500 );
   });
 
-  // If we're on touch, use touch events to progress
+  // If we're on touch, do touchy stuff
   if ( $( 'html' ).hasClass( 'touchevents' ) ) {
     scrollProgressOnTouch();
+    preventBounceiOS();
   };
 
-  // Prevent bouncing on touch devices when user scrolls
-  preventBounceiOS();
+  /**
+   * Key Panels
+   */
+
+  // Open
+  $(document).on( 'click', '.honeycomb__key-panel', function(){
+
+    // only fire if we're on step 8
+    if ( $( 'body' ).hasClass( 'step-7-active' ) ) {
+
+      showKeyPanel(this);
+      $( 'body' ).addClass( 'no-scroll' );
+    }
+  });
+
+  // Close
+  $(document).on( 'click', '.honeycomb__key-panel--large__close', function(){
+    hideKeyPanel( this );
+    $( 'body' ).removeClass( 'no-scroll' );
+  });
+
+  /**
+   * Overlays
+   */
+
+  // Open
+  $(document).on( 'click', '.overlay__open', function(){
+    showOverlay( this );
+  });
+
+  // Close
+  $(document).on( 'click', '.overlay__close, .overlay__bg', function(){
+    closeOverlay( this );
+  });
+
+  /**
+   * Hacks / Extras
+   */
 
   // Reset to step 1
   $( document ).on( 'click', '#reset-app', function(){
@@ -298,33 +335,6 @@ $(document).ready(function(){
   $(document).on( 'click', '#plant-seed, #scroll-start, .service-group__item', function(){
     currentSection++;
     DOMGetsTheClass();
-  });
-
-  // Key panels - open
-  $(document).on( 'click', '.honeycomb__key-panel', function(){
-
-    // only fire if we're on step 8
-    if ( $( 'body' ).hasClass( 'step-7-active' ) ) {
-
-      showKeyPanel(this);
-      $( 'body' ).addClass( 'no-scroll' );
-    }
-  });
-
-  // Key panel - close
-  $(document).on( 'click', '.honeycomb__key-panel--large__close', function(){
-    hideKeyPanel( this );
-    $( 'body' ).removeClass( 'no-scroll' );
-  });
-
-  // Overlay - open
-  $(document).on( 'click', '.overlay__open', function(){
-    showOverlay( this );
-  });
-
-  // Overlay - close
-  $(document).on( 'click', '.overlay__close, .overlay__bg', function(){
-    closeOverlay( this );
   });
 
   // Add body class if Microsoft browser
