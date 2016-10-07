@@ -9,23 +9,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="css/style.min.css"/>
-
-  <style>
-    .hidden {
-      display: none;
-    }
-  </style>
 </head>
 
 <body>
-  <div class="form__container form--share-url__container">
-    <form id="forward-to-colleague-form" class="form form--share-url">
-      <input type="text" id="sender" name="sender-email" placeholder="Your email" required/>
-      <input type="text" id="recipient" name="recipient-email" placeholder="Colleague's email" required/>
-      <input type="submit"/>
-    </form>
-    <p class="form__success-message form--share-url__success-message">Your email has been sent!</p>
-  </div>
+  <div class="form__container form--share-url__container overlay__content col-6 col-mob-8 centered">
+        <h3 class="overlay__title overlay--forward__title">Forward to a colleague</h1>
+        <form id="forward-to-colleague-form" class="form form--share-url clearfix">
+          <input type="email" id="sender" name="sender-email" placeholder="Your email" required class="form__input form__input--text"/>
+          <input type="email" id="recipient" name="recipient-email" placeholder="Colleague's email" required class="form__input form__input--text"/>
+          <input type="hidden" name="url" value=""/>
+          <span class="overlay__close form__back like-link btn">Go back</span>
+          <input type="submit" name="submit" value="Submit" class="form__input--submit btn btn--submit like-link"/>
+        </form>
+        <span class="form__message-container centered">
+          <p class="form__message form__message--success form--share-url__message--success">Your email has been sent!</p>
+          <p class="form__message form__message--success form--share-url__message--success like-link show-form">Send another?</p>
+          <p class="form__message form__message--success form--share-url__message--success like-link overlay__close reset-form">Or go back.</p>
+        </span>
+      </div>
 </body>
 
 <!-- Scripts -->

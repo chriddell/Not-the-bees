@@ -1,31 +1,56 @@
 <?php
 
-  if(isset($_GET["submit"])){
+  if ( isset($_GET['submit']) ){
 
-    // Required vars
-    $sender = $_GET["sender-email"];
-    $recipient = $_GET["recipient-email"];
+    $to = $_GET['recipient-email'];
+    $from = $_GET['sender-email'];
+    $shareURL = $_GET['url'];
     
-    // Subject of Email
-    $subject = "Advent ABM";
+    $subject = 'Advent ABM';
 
-    // Set up main body var
-    $body = "";
-     
-    // prepare email body text
-    $body .= "Hey, look at this: ";
+    $headers = "From: " . $from . "\r\n";
+    $headers .= "Reply-To: " . $_GET['sender-email'] . "\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
-    if ( $sender != "" && $recipient != "" ){
+    $message = '<html><body>';
+    $message .= '<table width="640" cellpadding="0" cellspacing="0"><tbody><tr><td>';
+    $message .= '<img src="http://www.approvalarea.com/advent/abm/assets/img/for-email/header.png" width="100%" height="auto"/>';
+    $message .= '<br/><br/>';
+    $message .= 'Hey, look at this: <a href="http://www.approvalarea.com/advent/abm">Advent ABM</a>';
+    $message .= '</td></tr></tbody></table>';
+    $message .= '</body></html>';
 
-      // Send an email
-      @mail($recipient, $subject, $body, "From:" . $sender);
+    if ( $from != '' && $to != '' && $shareURL != '' ){
 
-      // Return a message
-      echo "Success";
-    } else {
-      echo "Error";
+      @mail($to, $subject, $message, $headers);
+      echo 'Success';
+    } 
+
+    else if ( $shareURL = '' ) {
+
+      echo 'The URL field is not defined.';
+    } 
+
+    else if ( $from = '' ) {
+
+      echo 'The sender is not defined.';
+    } 
+
+    else if ( $to = '' ) {
+
+      echo 'The recipient is not defined.';
+    } 
+
+    else {
+
+      echo 'Error';
     }
-  } else {
+
+  } 
+
+  else {
+
     echo 'Submit not set';
   }
 ?>

@@ -8,7 +8,7 @@ $( '#forward-to-colleague-form' ).submit( function( e ){
   var url = 'process/submit.php';
 
   // jQuery AJAX GET request
-  $.get({
+  $.ajax({
 
     type: 'GET',
     url: url,
@@ -76,3 +76,15 @@ function resetForm( formID ) {
   $(formID)[0].reset();
 }
 $( document ).on( 'click', '.form--share-url__container .close__overlay', function(){ resetForm( '#forward-to-colleague-form' ) } );
+
+/**
+ * Anonymous function to populate hidden
+ * input field with current URL, so we can
+ * send it in our email regardless of if the 
+ * site's URL changes
+ */
+(function(){
+  $( 'input[name="url"]' ).val( 
+    window.location.protocol + "//" + window.location.host + window.location.pathname 
+  );
+})()
