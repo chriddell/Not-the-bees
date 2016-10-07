@@ -122,6 +122,7 @@ function preventBounceiOS() {
 function scrollProgressOnTouch() {
 
   function onSwipeUp() {
+    
     if (!$( 'body' ).hasClass( 'no-scroll' )) {
 
       if ( currentSection < totalSections ) {
