@@ -1,0 +1,37 @@
+/* ==========================================================================
+   _animations.scss
+
+   Global animations.
+   ========================================================================== */
+
+@include keyframes(fadeInUp) {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  80% {
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@include keyframes(fadeInDown) {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  80% {
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

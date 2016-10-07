@@ -25,6 +25,16 @@
   background-image: url(../assets/img/hex-single.svg);
   background-size: 100% 100%;
   z-index: 3;
+
+  /**
+   * Animate in
+   */
+  .overlay & {
+    @include animation(fadeInUp $gtd / 2 forwards ease);
+  }
+  .overlay--hidden & {
+    animation: none;
+  }
 }
 
 .honeycomb__key-panel--large__copy {
