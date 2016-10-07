@@ -121,23 +121,45 @@ function preventBounceiOS() {
  */
 function scrollProgressOnTouch() {
 
-  $( 'body' ).on( 'swipeup', function(){
-
+  function onSwipeUp() {
     if (!$( 'body' ).hasClass( 'no-scroll' )) {
+
       if ( currentSection < totalSections ) {
+
         currentSection++;
         DOMGetsTheClass();
       }
-    }
-  });
 
-  $( 'body' ).on('swipedown', function(){
+      else {
+
+        return false;
+      }
+    }
+  };
+
+  function onSwipeDown() {
 
     if ( !$( 'body' ).hasClass( 'no-scroll' ) ) {
+
       if (currentSection > 1) {
+
         currentSection--;
         DOMGetsTheClass();
       }
+    }
+
+    else {
+
+      return false;
+    }
+  };
+
+  $( 'body' ).swipe({
+    swipeUp: function(){
+      onSwipeUp();
+    },
+    swipeDown: function(){
+      onSwipeDown();
     }
   });
 }
@@ -154,10 +176,12 @@ function showOverlay( clicked ) {
   var target = $( 'body' ).find( '.overlay[data-overlay="' + whichOverlay + '"]' ); 
 
   // remove the hidden class
-  target.removeClass( 'overlay--hidden' ); 
+  target
+    .removeClass( 'overlay--hidden' ); 
 
   // add no scroll to body
-  $( 'body' ).addClass( noScrollClass );
+  $( 'body' )
+    .addClass( noScrollClass );
 
 }
 
@@ -166,10 +190,14 @@ function showOverlay( clicked ) {
  */
 function closeOverlay( clicked ) {
 
+  // hide overlay
   $( clicked )
    .parents('.overlay')
    .addClass('overlay--hidden'); 
 
+  // enable scroll
+  $( 'body' ) 
+    .removeClass(noScrollClass);
 }
 
 /**
@@ -228,19 +256,20 @@ function showUserInstruction( target ) {
 
 $(document).ready(function(){
 
-  // Detect which key on keydown
-  $(document).on('keydown', detectKey);
+  /**
+   * If we're not on touch device,
+   * do non-touchy things
+   */
+  if ( $( 'html' ).hasClass( 'no-touchevents') ) {
 
-  // When user clicks trigger, go to next step
-  $(document).on('click', '.go-to-next-step', function(){
-    currentSection++;
-    DOMGetsTheClass();
-  });
+    // Detect which key on keydown
+    $(document).on('keydown', detectKey);
 
-  // Show user instruction when they try to scroll
-  $(document).on('DOMMouseScroll mousewheel MozMousePixelScroll scroll', function(){
-    _.throttle( showUserInstruction( '.user-instruction--modal--header' ), 500 );
-  });
+    // Show user instruction when they try to scroll
+    $(document).on('DOMMouseScroll mousewheel MozMousePixelScroll scroll', function(){
+      _.throttle( showUserInstruction( '.user-instruction--modal--header' ), 500 );
+    });
+  }
 
   // If we're on touch, do touchy stuff
   if ( $( 'html' ).hasClass( 'touchevents' ) ) {
@@ -274,8 +303,8 @@ $(document).ready(function(){
     }
   });
 
-  // Advance to next step
-  $(document).on( 'click', '#plant-seed, #scroll-start, .service-group__item', function(){
+  // Advance to next step on certain elem clicks
+  $(document).on('click', '.go-to-next-step', function(){
     currentSection++;
     DOMGetsTheClass();
   });
