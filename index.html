@@ -678,7 +678,9 @@
       <div class="form__container form--share-url__container overlay__content col-6 col-mob-8 centered">
         <h3 class="overlay__title overlay--forward__title">Forward to a colleague</h1>
         <form id="forward-to-colleague-form" class="form form--share-url clearfix">
+          <label for="sender-email" class="form__label">Your email</label>
           <input type="email" id="sender" name="sender-email" placeholder="Your email" required class="form__input form__input--text"/>
+          <label for="recipient-email" class="form__label">Colleague's email</label>
           <input type="email" id="recipient" name="recipient-email" placeholder="Colleague's email" required class="form__input form__input--text"/>
           <input type="hidden" name="url" value=""/>
           <span class="overlay__close form__input form__back like-link btn">Go back</span>

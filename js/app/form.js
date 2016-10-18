@@ -145,7 +145,7 @@ $( document ).on( 'click', '.form--share-url__container .close__overlay', functi
     $('.mktoButtonRow').removeClass('mktoButtonRow');
 
     // Remove superfluous elements
-    $('.mktoOffset, .mktoGutter, .mktoClear, .form--marketo-demo label').remove();
+    $('.mktoOffset, .mktoGutter, .mktoClear').remove();
 
     // Remove inline styles
     $('.form--marketo-demo, .form--marketo-demo *').removeAttr('style');
@@ -155,6 +155,10 @@ $( document ).on( 'click', '.form--share-url__container .close__overlay', functi
     $('.form--marketo-demo input[type="text"], .form--marketo-demo input[type="email"]').addClass('form__input--text');
     $('.form--marketo-demo button[type="submit"]').addClass('form__input form__input--submit btn btn--submit like-link');
     $('.form--marketo-demo select').addClass('form__input--select');
+    $('.form--marketo-demo label').addClass('form__label').removeClass('mktoLabel');
+
+    // Set first-name and last-name inputs to be half-width
+    $('.form--marketo-demo > div:nth-of-type(1), .form--marketo-demo > div:nth-of-type(2)').addClass('form__input__container--half-width');
   });
 
 })();
