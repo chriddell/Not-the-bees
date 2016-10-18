@@ -1,21 +1,21 @@
 /*! modernizr 3.3.1 (Custom Build) | MIT *
- * https://modernizr.com/download/?-cssanimations-touchevents-setclasses !*/
+ * https://modernizr.com/download/?-cssanimations-placeholder-touchevents-setclasses !*/
 ! function(e, n, t) {
     function o(e, n) {
         return typeof e === n
     }
 
-    function s() {
-        var e, n, t, s, r, i, a;
+    function r() {
+        var e, n, t, r, s, i, a;
         for (var l in C)
             if (C.hasOwnProperty(l)) {
                 if (e = [], n = C[l], n.name && (e.push(n.name.toLowerCase()), n.options && n.options.aliases && n.options.aliases.length))
                     for (t = 0; t < n.options.aliases.length; t++) e.push(n.options.aliases[t].toLowerCase());
-                for (s = o(n.fn, "function") ? n.fn() : n.fn, r = 0; r < e.length; r++) i = e[r], a = i.split("."), 1 === a.length ? Modernizr[a[0]] = s : (!Modernizr[a[0]] || Modernizr[a[0]] instanceof Boolean || (Modernizr[a[0]] = new Boolean(Modernizr[a[0]])), Modernizr[a[0]][a[1]] = s), g.push((s ? "" : "no-") + a.join("-"))
+                for (r = o(n.fn, "function") ? n.fn() : n.fn, s = 0; s < e.length; s++) i = e[s], a = i.split("."), 1 === a.length ? Modernizr[a[0]] = r : (!Modernizr[a[0]] || Modernizr[a[0]] instanceof Boolean || (Modernizr[a[0]] = new Boolean(Modernizr[a[0]])), Modernizr[a[0]][a[1]] = r), g.push((r ? "" : "no-") + a.join("-"))
             }
     }
 
-    function r(e) {
+    function s(e) {
         var n = _.className,
             t = Modernizr._config.classPrefix || "";
         if (x && (n = n.baseVal), Modernizr._config.enableJSClass) {
@@ -34,13 +34,13 @@
         return e || (e = i(x ? "svg" : "body"), e.fake = !0), e
     }
 
-    function l(e, t, o, s) {
-        var r, l, f, u, c = "modernizr",
+    function l(e, t, o, r) {
+        var s, l, f, u, c = "modernizr",
             d = i("div"),
             p = a();
         if (parseInt(o, 10))
-            for (; o--;) f = i("div"), f.id = s ? s[o] : c + (o + 1), d.appendChild(f);
-        return r = i("style"), r.type = "text/css", r.id = "s" + c, (p.fake ? p : d).appendChild(r), p.appendChild(d), r.styleSheet ? r.styleSheet.cssText = e : r.appendChild(n.createTextNode(e)), d.id = c, p.fake && (p.style.background = "", p.style.overflow = "hidden", u = _.style.overflow, _.style.overflow = "hidden", _.appendChild(p)), l = t(d, e), p.fake ? (p.parentNode.removeChild(p), _.style.overflow = u, _.offsetHeight) : d.parentNode.removeChild(d), !!l
+            for (; o--;) f = i("div"), f.id = r ? r[o] : c + (o + 1), d.appendChild(f);
+        return s = i("style"), s.type = "text/css", s.id = "s" + c, (p.fake ? p : d).appendChild(s), p.appendChild(d), s.styleSheet ? s.styleSheet.cssText = e : s.appendChild(n.createTextNode(e)), d.id = c, p.fake && (p.style.background = "", p.style.overflow = "hidden", u = _.style.overflow, _.style.overflow = "hidden", _.appendChild(p)), l = t(d, e), p.fake ? (p.parentNode.removeChild(p), _.style.overflow = u, _.offsetHeight) : d.parentNode.removeChild(d), !!l
     }
 
     function f(e, n) {
@@ -60,9 +60,9 @@
     }
 
     function d(e, n, t) {
-        var s;
-        for (var r in e)
-            if (e[r] in n) return t === !1 ? e[r] : (s = n[e[r]], o(s, "function") ? c(s, t || n) : s);
+        var r;
+        for (var s in e)
+            if (e[s] in n) return t === !1 ? e[s] : (r = n[e[s]], o(r, "function") ? c(r, t || n) : r);
         return !1
     }
 
@@ -73,45 +73,45 @@
     }
 
     function m(n, o) {
-        var s = n.length;
+        var r = n.length;
         if ("CSS" in e && "supports" in e.CSS) {
-            for (; s--;)
-                if (e.CSS.supports(p(n[s]), o)) return !0;
+            for (; r--;)
+                if (e.CSS.supports(p(n[r]), o)) return !0;
             return !1
         }
         if ("CSSSupportsRule" in e) {
-            for (var r = []; s--;) r.push("(" + p(n[s]) + ":" + o + ")");
-            return r = r.join(" or "), l("@supports (" + r + ") { #modernizr { position: absolute; } }", function(e) {
+            for (var s = []; r--;) s.push("(" + p(n[r]) + ":" + o + ")");
+            return s = s.join(" or "), l("@supports (" + s + ") { #modernizr { position: absolute; } }", function(e) {
                 return "absolute" == getComputedStyle(e, null).position
             })
         }
         return t
     }
 
-    function h(e, n, s, r) {
+    function h(e, n, r, s) {
         function a() {
             c && (delete N.style, delete N.modElem)
         }
-        if (r = o(r, "undefined") ? !1 : r, !o(s, "undefined")) {
-            var l = m(e, s);
+        if (s = o(s, "undefined") ? !1 : s, !o(r, "undefined")) {
+            var l = m(e, r);
             if (!o(l, "undefined")) return l
         }
         for (var c, d, p, h, v, y = ["modernizr", "tspan", "samp"]; !N.style && y.length;) c = !0, N.modElem = i(y.shift()), N.style = N.modElem.style;
         for (p = e.length, d = 0; p > d; d++)
             if (h = e[d], v = N.style[h], f(h, "-") && (h = u(h)), N.style[h] !== t) {
-                if (r || o(s, "undefined")) return a(), "pfx" == n ? h : !0;
+                if (s || o(r, "undefined")) return a(), "pfx" == n ? h : !0;
                 try {
-                    N.style[h] = s
+                    N.style[h] = r
                 } catch (g) {}
                 if (N.style[h] != v) return a(), "pfx" == n ? h : !0
             }
         return a(), !1
     }
 
-    function v(e, n, t, s, r) {
+    function v(e, n, t, r, s) {
         var i = e.charAt(0).toUpperCase() + e.slice(1),
-            a = (e + " " + T.join(i + " ") + i).split(" ");
-        return o(n, "string") || o(n, "undefined") ? h(a, n, s, r) : (a = (e + " " + P.join(i + " ") + i).split(" "), d(a, n, t))
+            a = (e + " " + z.join(i + " ") + i).split(" ");
+        return o(n, "string") || o(n, "undefined") ? h(a, n, r, s) : (a = (e + " " + P.join(i + " ") + i).split(" "), d(a, n, t))
     }
 
     function y(e, n, o) {
@@ -166,10 +166,10 @@
         }
         return t
     });
-    var z = "Moz O ms Webkit",
-        T = w._config.usePrefixes ? z.split(" ") : [];
-    w._cssomPrefixes = T;
-    var P = w._config.usePrefixes ? z.toLowerCase().split(" ") : [];
+    var T = "Moz O ms Webkit",
+        z = w._config.usePrefixes ? T.split(" ") : [];
+    w._cssomPrefixes = z;
+    var P = w._config.usePrefixes ? T.toLowerCase().split(" ") : [];
     w._domPrefixes = P;
     var E = {
         elem: i("modernizr")
@@ -182,7 +182,7 @@
     };
     Modernizr._q.unshift(function() {
         delete N.style
-    }), w.testAllProps = v, w.testAllProps = y, Modernizr.addTest("cssanimations", y("animationName", "a", !0)), s(), r(g), delete w.addTest, delete w.addAsyncTest;
+    }), w.testAllProps = v, w.testAllProps = y, Modernizr.addTest("cssanimations", y("animationName", "a", !0)), Modernizr.addTest("placeholder", "placeholder" in i("input") && "placeholder" in i("textarea")), r(), s(g), delete w.addTest, delete w.addAsyncTest;
     for (var j = 0; j < Modernizr._q.length; j++) Modernizr._q[j]();
     e.Modernizr = Modernizr
 }(window, document);

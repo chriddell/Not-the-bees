@@ -16,7 +16,8 @@
   }
 }
 
-.form__input--text {
+.form__input--text,
+.form__input--select {
   width: 100%;
   padding: 0.75em 1em;
   margin-bottom: 1em;
@@ -25,6 +26,19 @@
   background: $yellow-color;
   background: none;
   box-sizing: border-box;
+}
+
+.form__input--select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 53px;
+  background-image: url(../assets/img/arrow_down-black.svg);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 60px 35px;
+
+  cursor: pointer;
 }
 
 ::-webkit-input-placeholder,
@@ -115,6 +129,12 @@
   @include respond-to(small) {
     height: 250px;
   }
+}
+
+.form--marketo-demo .overlay__close {
+  position: absolute;
+  bottom: 1.5em;
+  left: 2.5em;
 }
 
 .form--share-url .form__input {

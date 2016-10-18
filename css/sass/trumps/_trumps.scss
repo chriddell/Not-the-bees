@@ -86,5 +86,6 @@
 }
 
 .step-8-active #section-8 {
-  @include animation(stepEightIndexHack $gtd * 4 linear forwards);
+  //@include animation(stepEightIndexHack $gtd * 4 linear forwards);
+  z-index: 5;
 }

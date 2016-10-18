@@ -124,15 +124,37 @@ $( document ).on( 'click', '.form--share-url__container .close__overlay', functi
   // Load the form and populate <form> element in DOM
   MktoForms2.loadForm("//app-ab17.marketo.com", "694-KCV-926", 1557, 
 
-    // Now do some of our stuff ;)
+    // Now do our own stuff
     function(form) {
 
       // On successful submission
       form.onSuccess(function(){
 
+        // Show user some feedback
         showUserAResponse('success');
-        return false;
-      })
+        return false; // Keep user on page
+      });
     }
   );
+
+  MktoForms2.whenRendered(function(form){
+
+    // Remove form classes to prevent styles leak
+    $('.form--marketo-demo').removeClass('mktoForm');
+    $('.mktoFormRow').removeClass('mktoFormRow');
+    $('.mktoButtonRow').removeClass('mktoButtonRow');
+
+    // Remove superfluous elements
+    $('.mktoOffset, .mktoGutter, .mktoClear, .form--marketo-demo label').remove();
+
+    // Remove inline styles
+    $('.form--marketo-demo, .form--marketo-demo *').removeAttr('style');
+
+    // Add class to fields, so style in global way
+    $('.form--marketo-demo input, .form--marketo-demo button, .form--marketo-demo select').addClass('form__input');
+    $('.form--marketo-demo input[type="text"], .form--marketo-demo input[type="email"]').addClass('form__input--text');
+    $('.form--marketo-demo button[type="submit"]').addClass('form__input form__input--submit btn btn--submit like-link');
+    $('.form--marketo-demo select').addClass('form__input--select');
+  });
+
 })();
