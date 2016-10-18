@@ -32,13 +32,15 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  height: 53px;
   background-image: url(../assets/img/arrow_down-black.svg);
   background-repeat: no-repeat;
   background-position: right;
   background-size: 60px 35px;
-
   cursor: pointer;
+
+  @include respond-to(small) {
+    background-size: 30px 18px;
+  }
 }
 
 .form__input--submit {
@@ -75,10 +77,18 @@
 
   &:nth-of-type(even) {
     margin-left: 0.5%;
+
+    @include respond-to(small) {
+      margin: 0;
+    }
   }
 
   &:nth-of-type(odd) {
     margin-right: 0.5%;
+
+    @include respond-to(small) {
+      margin: 0;
+    }
   }
 
   @include respond-to(small) {
