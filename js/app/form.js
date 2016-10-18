@@ -31,6 +31,16 @@ $( '#forward-to-colleague-form' ).submit( function( e ){
 
 });
 
+/**
+ * Finds which form has been submitted
+ * based on which overlay is currently visible
+ */
+function whichFormWasIt() {
+
+  var thisForm = $('.overlay:not(.overlay--hidden)').data('overlay');
+  return thisForm;
+};
+
 
 /**
  * Add class to form container when
@@ -43,13 +53,17 @@ function showUserAResponse( data ) {
     // Log a message
     console.log( data );
 
-    $( '.form--share-url__container' ).addClass( 'form--submitted' );
-  } else {
+    // Add a class to reveal a message to user
+    $( '.overlay:not(.overlay--hidden) .form__container' ).addClass( 'form--submitted' );
+  } 
+
+  else {
 
     // Log an error
     console.error( data );
 
-    $( '.form--share-url__container' ).addClass( 'form--failed' );
+    // Add a class to reveal a message to user
+    $( '.overlay:not(.overlay--hidden) .form__container' ).addClass( 'form--failed' );
   }
 
 };
@@ -65,8 +79,18 @@ function showForm( formID ) {
     .removeClass('form--submitted')
 
   $(formID)[0].reset();
+
+  // If it's the Marketo form...
+  if ( formID.indexOf('mkto') != -1 ) {
+
+    // Re-enable submit
+    $(formID + ' button[type="submit"]')
+      .removeAttr('disabled')
+      .text('Submit');
+  }
 }
 $( document ).on( 'click', '.form--share-url__container .show-form', function(){ showForm( '#forward-to-colleague-form' ) } );
+$( document ).on( 'click', '.form--marketo__container .show-form', function(){ showForm( '#mktoForm_1557' ) } );
 
 /**
  * Reset a form
@@ -87,4 +111,28 @@ $( document ).on( 'click', '.form--share-url__container .close__overlay', functi
   $( 'input[name="url"]' ).val( 
     window.location.protocol + "//" + window.location.host + window.location.pathname 
   );
-})()
+})();
+
+/**
+ * Populate form with Marketo ID no.
+ * using the Marketo API
+ *
+ * http://developers.marketo.com/javascript-api/forms/api-reference/
+ */
+(function(){
+  
+  // Load the form and populate <form> element in DOM
+  MktoForms2.loadForm("//app-ab17.marketo.com", "694-KCV-926", 1557, 
+
+    // Now do some of our stuff ;)
+    function(form) {
+
+      // On successful submission
+      form.onSuccess(function(){
+
+        showUserAResponse('success');
+        return false;
+      })
+    }
+  );
+})();

@@ -4,6 +4,7 @@
 
 .form__container {
   max-width: 600px;
+  min-height: 320px;
   padding: 1.5em 2.5em;
   border: 5px solid $orange-color;
   background: $yellow-color;
@@ -109,7 +110,6 @@
 /* Variations
    ========================================================================== */
 .form--share-url__container {
-  height: 320px; // define a height on larger screen sizes so it stays consistent when content changes
   box-sizing: border-box;
 
   @include respond-to(small) {

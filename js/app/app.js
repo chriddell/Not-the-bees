@@ -315,3 +315,17 @@ $(document).ready(function(){
       $('html').addClass('is-not-a-good-browser');
   }
 });
+
+
+
+
+
+
+
+$(document).on('ready', function(){
+
+  currentSection = 8;
+
+  DOMGetsTheClass();
+
+});
