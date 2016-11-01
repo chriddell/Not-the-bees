@@ -78,5 +78,5 @@
 }
 
 .step-1-active .earth__seed {
-  @include animation(seedStepTwo $gtd $gtd forwards ease);
+  @include animation(seedStepTwo $gtd $gtd * 2 forwards ease);
 }
