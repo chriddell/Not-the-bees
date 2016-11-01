@@ -24,19 +24,31 @@ $sectionCount: 8;
    ========================================================================== */
 
 .section__copy {
-  opacity: 0;
+  opacity: 0; // overwritten when step is active
   transition: opacity $gtd ease;
 }
 
 /* Progression through states
    ========================================================================== */
 
-@for $i from 1 through $sectionCount {
+@for $i from 2 through $sectionCount {
   .step-#{$i}-active #section-#{$i} {
     z-index: 2;
 
     .section__copy {
       opacity: 1;
+    }
+  }
+}
+
+.step-1-active #section-1 {
+  z-index: 2;
+
+  .section__copy {
+    @include animation(fadeInUp $gtd $gtd / 2 ease forwards);
+
+    &.btn {
+      animation-delay: $gtd * 3;
     }
   }
 }
