@@ -79,7 +79,7 @@ module.exports = function (grunt) {
       },
       options: {
         watchTask: true,
-        proxy: 'advent.dev/abm'
+        proxy: 'advent.dev/smart-growth'
       }
     }
 
