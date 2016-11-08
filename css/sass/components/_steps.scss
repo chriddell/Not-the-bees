@@ -26,6 +26,8 @@ $sectionCount: 8;
 .section__copy {
   opacity: 0; // overwritten when step is active
   transition: opacity $gtd ease;
+  -webkit-font-smoothing: antialiased;
+  transform: translate3d( 0, 0, 0);
 }
 
 /* Progression through states
@@ -37,6 +39,7 @@ $sectionCount: 8;
 
     .section__copy {
       opacity: 1;
+      transform: translate3d( 0, 0, 0);
     }
   }
 }
